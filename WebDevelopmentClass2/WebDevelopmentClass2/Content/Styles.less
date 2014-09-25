@@ -1,0 +1,46 @@
+﻿@nav-height: 66px;
+@definition-margin-bottom: 15px;
+
+body.hero {
+    //background-color: rgba(0, 0, 0, 0);
+    background-image: url(/Images/macbook-air-all-faded-and-stuff_dark.jpg);
+    background-attachment: fixed;
+    background-position: center @nav-height;
+    background-repeat: no-repeat;
+}
+
+main {
+    margin-top: @nav-height;
+}
+
+dd {
+    margin-bottom: @definition-margin-bottom;
+}
+
+/*.hero {
+    background-image: url(/Images/macbook-air-all-faded-and-stuff_dark.jpg);
+    background-attachment: fixed;
+    background-position: center @nav-height;
+    background-repeat: no-repeat;
+    height: 675px;
+}*/
+
+.jumbotron {
+    //text-align: center;
+}
+
+td.code .container {
+    &:before, &:after {
+        content: "";
+    }
+}
+
+.ui-accordion-content a {
+    color: #428bca;
+}
+
+/*      Lesson 1
+-------------------------------- */
+#fatSpiderMan {
+    display: none;
+}

@@ -1,0 +1,447 @@
+﻿@{
+    ViewBag.Title = "Lesson 1";
+}
+
+<article>
+    <h1>Lesson 1</h1>
+    <section>
+        <h2>How does the web work?</h2>
+        <div>
+            <figure>
+                <img src="~/Images/servers.jpg" alt="web servers" width="880" />
+                <figcaption>
+                    Image by <cite><a href="https://www.flickr.com/photos/torkildr/3462607995/in/photolist-6gYLHR-4H1hyC-2Wrvx-65cUp7-6NAXg-9v7Kgx-5RvGZs-iygJ-82PXBP-6gYLjx-cfXKY1-n6mHgT-8XH6Na-mZJBc2-4YVJXw-8HRrSg-7YNxq-exjsm-6h3W3W-bf2wtK-4PGC7o-3M87z-5nSsLu-eWnwZ-akqkB-8cd3Np-tCk6d-2JXe1q-7MriLM-8cdXjv-mMwb-8HRrWF-9yZPZE-4qZaVM-i45vj-9cmbDu-icgBtX-iFVWP-658CQ2-658CWa-658Eat-4U32QP-9jXKfb-9W6HmQ-cqqwcb-5RwfNK-85BNnq-8JNFey-5RwevD-4De9y7/">Torkild Retvedt</a></cite>
+                </figcaption>
+            </figure>
+
+            <p>
+                Every web page that you view was sent to your browser from a web server. That web server could be located anywhere in the world.
+                You may have seen images of web servers before like the one shown above. The image shows racks and racks of servers. This is sometimes called a web farm.
+                A server is simply a computer that is running all the time and doing nothing but serving web content.
+            </p>
+            <img src="~/Images/468px-Client-server-model.svg.png" />
+            <p>
+                So how does your computer find the web server? Each computer connected to the internet is identified by an address called an IP Address.
+                When you type in an address like http://www.google.com, your computer first connects to your <dfn>Internet service provider</dfn> (<abbr>ISP</abbr>) (e.g, Comcast, Century Link, etc)
+                who in turn talks to a <dfn>Domain Name System</dfn> (<abbr>DNS</abbr>). The purpose of a DNS is to find the IP Address for the web site you are trying to visit.
+            </p>
+            <p>
+                You could, if you so desired, go to a website by directly entering its IP Address.
+                For example, where does this IP Address go to: <a href="http://171.20.34.151" target="_blank">http://171.20.34.151</a>?
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Websites are written in HTML</h2>
+        <div>
+            <h3>Blogging tools write HTML for you.</h3>
+            <p>
+                Every web page that you view on the web is made by using HTML. Tools like <a href="https://wordpress.com/">Wordpress</a> and <a href="https://www.blogger.com/features">Blogger</a>
+                write the HTML for you. In this class you will learn how to write your own HTML.
+            </p>
+
+            <h3>HTML vs Blogging Tool</h3>
+
+            <table class="table-bordered">
+                @*<caption>Comparison of writing your own HTML vs using a Blogging tool (such as Wordpress or Blogger).</caption>*@
+                <thead>
+                    <tr>
+                        <th>Writing your own HTML</th>
+                        <th>Using a Blogging tool</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Complete control over the look of your website</td>
+                        <td>Pre-made themes/templates to choose from.</td>
+                    </tr>
+                    <tr>
+                        <td>You build it yourself.</td>
+                        <td>Someone else already built it and you're just using it</td>
+                    </tr>
+                    <tr>
+                        <td>Typically takes more time to do it yourself.</td>
+                        <td>Very fast to put up a website.</td>
+                    </tr>
+                    <tr>
+                        <td>You can use any "back end" technology of your choice.</td>
+                        <td>You must use PHP.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                <dfn>HTML</dfn> stands for HyperText Markup Language. It is the language of the web. Can you think of why the name says "HyperText"? (<a href="http://en.wikipedia.org/wiki/Hyperlink" target="_blank">hint</a>)
+            </p>
+            <p>
+                HTML is a markup language, because you must "mark up" everything on the page, that is, you must add some special marks in your document to tell the brower how it should be displayed.
+                For example, you "mark up" a paragraph like so:
+
+                <pre><code class="brush: html;">@(@"
+                <p>This is a paragraph</p>
+                ")</code></pre>
+            </p>
+            <p>
+                The <code>&lt;p&gt;</code> is the opening <dfn>tag</dfn> and the <code>&lt;/p&gt;</code> is the closing tag (notice the slash). The two tags plus the text between them is called an <dfn>element</dfn>.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>How to view the HTML of Existing Sites</h2>
+        <div>
+            <p>
+                You can view the HTML of any website by first browsing to it, e.g. the website you're on right now, and then pressing <kbd><kbd>Ctrl</kbd>+<kbd>U</kbd></kbd> (<kbd>Ctrl</kbd> and <kbd>U</kbd> at the same time).
+                This shows the HTML exactly as it was sent by the web server.
+            </p>
+            <p>
+                Another way to view the HTML is to right click and choose "Inspect Element", this opens up the developer tools. Here you can not only view the HTML
+                but you can modify it as well! Try it out! There is no need to worry about messing up the page. You are only editing a copy of the web page that exists
+                on your computer. If you want to see the original web page again, just refresh the page and it will look good as new.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>How can I create a new HTML document?</h2>
+        <div>
+            <p>
+                HTML is a text file. That means that humans can read it (trust me on this one :)! The alternative would be a binary file, which is a bunch of 1's and 0's (not easily understood by humans).
+                On a Windows computer, you can create a new HTML document by opening up notepad, typing your HTML tags, and then saving it with a .html extension.
+            </p>
+            <p>
+                But wait! There is a much better way to create an HTML document! In this class, we'll use Aptana Studio!
+                You can download <a href="http://www.aptana.com/" target="_blank">Aptana Studio</a> for free by following the link.
+                Click on the large blue button that says, "Download Aptana Studio 3".
+            </p>
+            <p><img src="~/Images/aptanaDownload.png" alt="Aptana Studio Home Page" width="880" /></p>
+
+            <p>
+                Aptana Studio is what's known as an <dfn>Integrated Development Environment</dfn> (<abbr>IDE</abbr>). An IDE offers many advantages over notepad:
+            </p>
+
+            <dl>
+                <dt>Syntax Highlighting</dt>
+                <dd>Look at all the pretty colors!</dd>
+
+                <dt>Debugging</dt>
+                <dd>Why doesn't my code work?</dd>
+
+                <dt>Code Completion</dt>
+                <dd>Predict-a-text</dd>
+
+                <dt>Error Marks</dt>
+                <dd>Squigglies</dd>
+
+                <dt>Line Numbers</dt>
+                <dd>Self-explanatory</dd>
+            </dl>
+        </div>
+    </section>
+
+    <section>
+        <h2>Let's begin</h2>
+        <div>
+            <p>The <em>starting</em> HTML of every web page:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Your title here</title>
+            </head>
+            <body>
+                <!-- Put content here -->
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Text Elements</h2>
+        <div>
+            <p>
+                HTML defines six levels of headings. <code>&lt;h1&gt;</code> is used for main headings. <code>&lt;h2&gt;</code> is used for sub headings. <code>&lt;h3&gt;</code>,
+                <code>&lt;h4&gt;</code>, etc get progressively smaller and smaller.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <h1>Largest</h1>
+            <h2>Larger</h2>
+            <h3>Large</h3>
+            <h4>Small</h4>
+            <h5>Smaller</h5>
+            <h6>Smallest</h6>
+            ")</code></pre>
+
+            <p>
+                As already mentioned, paragraphs go inside the <code>&lt;p&gt;</code> tag (or element). The browser displays a paragraph with whitespace above and below it. Let's try making two paragraphs.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <p>
+                This is my first paragraph. Notice how there is whitespace above and below it
+                just as you would expect if you were writing it by hand or typing it into word
+                processing software such as Microsoft Word.
+            </p>
+            <p>
+                This is another paragraph so we can see how the two are separated by whitespace.
+                Big gulps, huh? Well, see ya later.
+            </p>
+            ")</code></pre>
+
+            <p>
+                Some tags are <dfn>self-closing</dfn>. These tags don't have content. Because they don't have content, there's no need to have
+                both opening and closing tags. Instead, self-closing tags have only a single tag with a slash before the closing angle bracket.
+            </p>
+
+            <p>
+                Here are our first examples of self-closing tags, <code>&lt;br /&gt;</code> and <code>&lt;hr /&gt;</code>. The <code>&lt;br /&gt;</code> represents a line break, that is, it
+                put the text after it on a new line. The <code>&lt;hr /&gt;</code> tag represents what is called a horizontal rule. A horizontal rule is displayed as
+                a horizontal line across the screen.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <p>
+                This paragraph has no line breaks.
+                Both sentencess are on the same line.
+            </p>
+            <hr />
+            <p>
+                This is the first line. <br />
+                This is the second line.
+            </p>
+            ")</code></pre>
+
+            <p>
+                There are lots of other elements used to mark up text. Here are some of them
+            </p>
+
+            <ul>
+                <li>The <code>&lt;b&gt;</code> tag makes text appear as bold.</li>
+                <li>The <code>&lt;i&gt;</code> tag makes the text italicized.</li>
+                <li>The <code>&lt;sup&gt;</code> tag displays text as a superscript.</li>
+                <li>The <code>&lt;sub&gt;</code> tag displays text as a subscript.</li>
+                <li>The <code>&lt;strong&gt;</code> tag is used to mark up text that has strong importance.</li>
+                <li>
+                    The <code>&lt;em&gt;</code> tag is used to mark up text that should be emphasized when speaking it. This changes the meaning of the sentence.
+                    For example, "I <code>&lt;em&gt;</code>love<code>&lt;/em&gt;</code> you!" has a different emphasis than, "I love <code>&lt;em&gt;</code>you<code>&lt;/em&gt;</code>!"
+                </li>
+                <li>The <code>&lt;blockquote&gt;</code> is used to display a large quote that is its own paragraph.</li>
+                <li>The <code>&lt;q&gt;</code> tag is for a smaller inline quote.</li>
+                <li>The <code>&lt;abbr&gt;</code> tag is for an abbreviation.</li>
+                <li>The <code>&lt;cite&gt;</code> tag is used to mark up the title of some work such as a book, movie, song, etc.</li>
+                <li>The <code>&lt;dfn&gt;</code> tag is used to denote the definition of some new term.</li>
+                <li>
+                    The <code>&lt;address&gt;</code> tag has a very specific meaning. It's not used for just any old address.
+                    Its sole purpose is to mark up the address of the author of the website.
+                </li>
+                <li>The <code>&lt;ins&gt;</code> tag denotes text that has been inserted into the document.</li>
+                <li>The <code>&lt;del&gt;</code> tag denotes text that has been deleted from the document.</li>
+                <li>
+                    The <code>&lt;s&gt;</code> tag displays text with a strikethrough, that is, a line through it. It is used to display text that is no longer relevant or accurate.
+                    Even though it may have the same visual appearance as the <code>&lt;del&gt;</code> tag, it has a different meaning.
+                </li>
+            </ul>
+
+            <p>
+                Try adding each of these text elements to your HTML document. How does each one appear?
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Links</h2>
+        <div>
+            <h3>Anchors Away!</h3>
+            <p>
+                Now we're getting to the fun stuff! Hyperlinks are placed into the document using the <code>&lt;a&gt;</code> tag. "a" stands for anchor. Don't ask me why
+                links are called anchors, I can only guess. :)
+            </p>
+
+            <h3>Attributes</h3>
+            <p>
+                In order to talk about links, however, we need to talk about attributes. HTML tags can store additional information that's not shown to the user.
+                This additional information is added to the <em>opening</em> tag using what are called <dfn>attributes</dfn>.
+                Attributes have two parts: a name and a value. The two parts are separated by an equals sign and the value goes inside of double quotes.
+                Here is an example of a link with an attribute:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""http://www.google.com"">Google</a>
+            ")</code></pre>
+
+            <p>
+                In this example, the name of the attribute is "href" and the value is "http://www.google.com". This attribute is very important since it tells
+                the browser where the hyperlink should go to. Notice that the content "Google" is what's shown to the user and can be different than the href.
+            </p>
+
+            <h3>Relative URLs</h3>
+            <p>
+                That last example showed how we can link to another site on the web. Now lets see how we can create a link to another page in our <em>own</em> site.
+                To do that we can use what is called a <dfn>relative URL</dfn>. If the other web page is in the same folder as the current page, then the href only needs
+                to include the name of the other HTML file. Suppose we have another web page called "page2.html" that is in the same folder as "page1.html", then all we need
+                to do on page1 is add a link like so:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""page2.html"">Page2</a>
+            ")</code></pre>
+
+            <p>If page2.html is in a folder called "stuff", then the link would look like this:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""stuff/page2.html"">Page2</a>
+            ")</code></pre>
+
+            <p>On the other hand, if page2.html is up a level, that is, in a parent folder, then you have to use two dots like so:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""../page2.html"">Page2</a>
+            ")</code></pre>
+
+            <h3>Linking Within Same Page</h3>
+            <p>
+                Links don't always have to go to another page. You can link to a another part of the current page. To do this, first you have to set the "id" attribute
+                on some element on the page. The id can be (almost) anything you want, but it has to be unique. In other words, once you give an element a particular id
+                (for example "mainHeader"), then you can't use that id again. id's cannot have spaces in them. You'll notice I said "mainHeader" instead of "main Header".
+            </p>
+
+            <p>
+                Now that you know about the id attribute, you are ready to learn how to link to a specific part of the page. To do so, the href should have a hash tag
+                (<code>#</code>) followed by the id of some other element on the page.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <h1 id=""mainHeader"">Main Header</h1>
+            <!-- much farther down on the page -->
+            <a href=""#mainHeader"">Top of Page</a>
+            ")</code></pre>
+
+            <h3>Linking to Specific Part of Another Site</h3>
+            <p>
+                You can even link to a specific part of another page by adding the hash tag and the id of an element on that page. This link goes a particular section
+                of a wikipedia article.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""http://en.wikipedia.org/wiki/Computer#Programs"">Programs</a>
+            ")</code></pre>
+
+            <h3>New Window</h3>
+            <p>
+                If you want to make the link open up in a new window, then add the <code>target="_blank"</code> attribute to your link.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""http://en.wikipedia.org/wiki/Computer#Programs"" target=""_blank"">Programs</a>
+            ")</code></pre>
+
+            <h3>Email</h3>
+            <p>
+                You can even have a link to an email address. This will open up your default email client.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <a href=""mailto:joe@demo.com"">Contact Joe</a>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Images</h2>
+        <div>
+            <h3>img Tag</h3>
+            <p>
+                Images are added using the <code>&lt;img /&gt;</code> tag. This tag is a self closing tag; it can't contain content. The <code>src</code> attribute specifies the image
+                to be displayed. It is very similar to the anchor's <code>href</code> attribute. The image could be located somewhere on the web or it could be located in the same folder
+                as the HTML page. Here is a picture of the San Diego Skyline at night:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <img src=""http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg"" />
+            ")</code></pre>
+
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg" alt="San Diego Skyline at night" title="San Diego" width="800" height="357" />
+
+            <h3>Important Attributes</h3>
+            <p>
+                Some other important attributes to specify for an image are <code>alt</code>, <code>title</code>, <code>width</code>, and <code>height</code>. The <code>alt</code> attribute
+                specifies alternate text to display if the image cannot be found or it can be read by a <a href="http://en.wikipedia.org/wiki/Screen_reader" target="_blank">screen reader</a>.
+                The <code>title</code> attribute specifies a tool tip that is displayed when the user hovers over the image. The <code>title</code> attribute is actually an example of a global attribute;
+                it can be applied to any element. The <code>width</code> and <code>height</code> are not required, but they inform the browser as to how much space to reserve for the image as it's downloading.
+                If they're not specified, the page layout may change as the image loads.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <img src=""http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg"" alt=""San Diego Skyline at night"" title=""San Diego"" width=""800"" height=""357"" />
+            ")</code></pre>
+
+            <h3>Types of Images</h3>
+            <p>
+                There are three main types of images that can be displayed on the web, jpg, png, and gif.
+            </p>
+            <p>
+                Choose a jpg when you have an images with lots of colors. Photographs are almost always saved as jpg's. If you take a picture with a digital camera, the file type will be jpg.
+            </p>
+            <p>
+                Choose a gif if you have an img an image with few colors and/or large areas of the same color. Gifs can also be animated, meaning that they have several frames
+                that are repeated over and over to make it look like it's moving. Often, animated gifs are just plain annoying. Check out this sweet beauty:
+            </p>
+
+            <button type="button" id="showGif">Show</button>
+            <button type="button" id="hideGif">Hide</button><br />
+            <img src="http://img.pandawhale.com/post-4529-Fat-Spider-Man-wqDT.gif" id="fatSpiderMan" alt="Dancing Fat Spider-Man" width="300" />
+
+            <p>
+                Choose a png if you want your image to have parts that are transparent (see-through). Oftentimes, when I make an image in Photoshop, I save it as a png.
+            </p>
+
+            <p>
+                Frequently we'd like to show an image with a caption. That is what the <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> elements are for.
+                You still need to use the <code>&lt;img&gt;</code> tag inside of the <code>&lt;figure&gt;</code> element like so:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <figure>
+                <img src=""http://asimo.honda.com/ASIMO_DCTM/News/images/highres/Meet_ASIMO.jpg"" alt=""Asimo"" width=""340"" />
+                <figcaption>The world's most advanced humanoid robot</figcaption>
+            </figure>
+            ")</code></pre>
+
+            <figure>
+                <img src="http://asimo.honda.com/ASIMO_DCTM/News/images/highres/Meet_ASIMO.jpg" alt="Asimo" width="340" />
+                <figcaption>The world's most advanced humanoid robot</figcaption>
+            </figure>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+
+            $("#showGif").click(function () {
+                $("#fatSpiderMan").show();
+            });
+
+            $("#hideGif").click(function () {
+                $("#fatSpiderMan").hide();
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
