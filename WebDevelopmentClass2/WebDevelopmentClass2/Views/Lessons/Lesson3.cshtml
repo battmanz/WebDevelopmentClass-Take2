@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Lesson 3";
 }
 
@@ -7,8 +6,14 @@
     <h1>Lesson 3</h1>
 
     <section>
+        <h2>A Quiz!</h2>
+        <p><a href="https://docs.google.com/forms/d/11ctnQ4CfhnOpQ7_xSpodVFZbEE-QV62BEuuOEk_LZH4/viewform" target="_blank">Lessons 1 &amp; 2 quiz</a></p>
+    </section>
+
+    <section>
         <h2>Forms</h2>
         <div>
+            <h3>Collecting User Data</h3>
             <p>
                 When you need to collect data from a visitor to your website, you need to use a form. A form allows you to collect the information from the user and send it back to the server
                 to be processed. We've all seen examples of forms before. Every time your enter a username and password on a website, you've filled out a form. Forms will often contain elements
@@ -194,51 +199,70 @@
 
                 <button type="submit" class="btn btn-default">Create Account</button>
             </form>
+
+            <h3>Server Side</h3>
+            <p>
+                When you enter data into a form and then press the submit button what happens to it? Have you ever thought about that?
+                Well, there is typically a computer program on the server that accepts that data and then does something with it.
+                How the data is used is up to the programmer that created the program on the server.
+            </p>
+            <p>
+                I've made a very simple program that will simply 'echo' the data that you send to it. In order to try out my program
+                create a form and set the value of the <code>action</code> attribute to http://webdevelopmentclass.apphb.com/echo.
+                The following is a sample form and a sample response returned by the server.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <form action=""http://webdevelopmentclass.apphb.com/echo"">
+                <label>Name</label>
+                <input type=""text"" name=""name"" />
+                <label>Age</label>
+                <input type=""text"" name=""age"" />
+                <label>Favorite Food</label>
+                <input type=""text"" name=""favoriteFood"" />
+                <button type=""submit"">Submit</button>
+            </form>")
+            </code></pre>
+
+            @*<form action="http://webdevelopmentclass.apphb.com/echo">
+                    <label>Name</label>
+                    <input type="text" name="name" />
+
+                    <label>Age</label>
+                    <input type="text" name="age" />
+
+                    <label>Favorite Food</label>
+                    <input type="text" name="favoritefood" />
+
+                    <button type="submit">Submit</button>
+                </form>*@
+
+            <p>Output:</p>
+
+            <dl>
+                <dt>name</dt>
+                <dd>Michaelangelo</dd>
+                <dt>age</dt>
+                <dd>15</dd>
+                <dt>favoritefood</dt>
+                <dd>Pizza</dd>
+            </dl>
         </div>
     </section>
 
     <section>
-        <h2>Additional Markup</h2>
+        <h2>Block vs Inline</h2>
         <div>
-            <h3>Comments</h3>
-            <p>
-                You can add comments to your HTML. The browser will not display comments on the screen. The only way to see the comment is to view the source of the webpage.
-                A comment can be used to explain to other developers (or even remind yourself in the future) about why you chose to layout the page like you did.
-                Because anyone can see your comment if they view the source, you should not put passwords or usernames in comments.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <!-- I'm a comment -->
-            ")</code></pre>
-
-            <h3>DOCTYPE</h3>
-            <p>
-                We've already seen the <code>&lt;!DOCTYPE&gt;</code> declaration. It tells the browser which type of HTML document it is.
-                There are actually several versions of HTML, each one with its own rules. The following are several doctypes that you might encounter.
-                Aren't you glad that we can use HTML5? :)
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <!-- HTML 5 -->
-            <!DOCTYPE html>
-            <!-- HTML 4 -->
-            <!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">
-            <!-- Transitional XHTML 1.0 -->
-            <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
-            <!-- Strict XHTML 1.0 -->
-            <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"">
-            ")</code></pre>
-
-            <h3>Block vs Inline</h3>
             <p>
                 All HTML elements fall into two categories, either <dfn>block</dfn> or <dfn>inline</dfn>. Block elements don't allow other elements on either side of them.
                 That is, they are displayed with an automatic line break before and after. Examples of block level elements include <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>,
                 <code>&lt;ul&gt;</code>, and <code>&lt;li&gt;</code>.
-            <p>
             </p>
-            Inline elements, on the other hand, don't have automatic line breaks around them. So multiple inline elements
-            can sit on the same line. Hence the term, "inline". Examples of inline elements include: <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;strong&gt;</code>,
-            and <code>&lt;em&gt;</code>. Try out the following code, to see how block elements differ from inline elements.
+
+            <p>
+                Inline elements, on the other hand, don't have automatic line breaks around them. So multiple inline elements
+                can sit on the same line. Hence the term, "inline". Examples of inline elements include: <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;strong&gt;</code>,
+                and <code>&lt;em&gt;</code>. Try out the following code, to see how block elements differ from inline elements.
             </p>
 
             <pre><code class="brush: html;">@(@"
@@ -264,15 +288,22 @@
                     <li><a href=""contanct.html"">Contact</a></li>
                 </ul>
             </div>
+
             <div id=""rightSide"">
                 <h1>Home Page</h1>
                 <p>
-                    Nulla vel nunc sed tellus luctus luctus vitae a risus. Ut vel facilisis quam. Integer in diam libero. Fusce odio enim, pellentesque ut ante in, elementum volutpat augue.
-                    Fusce lacinia velit eget arcu euismod, sed porta nisl placerat. Suspendisse sodales quam quis sapien placerat, vitae condimentum quam porttitor. Phasellus pharetra elementum elementum.
+                    Nulla vel nunc sed tellus luctus luctus vitae a risus. Ut vel facilisis quam. Integer in diam libero.
+                    Fusce odio enim, pellentesque ut ante in, elementum volutpat augue.
+                    Fusce lacinia velit eget arcu euismod, sed porta nisl placerat.
+                    Suspendisse sodales quam quis sapien placerat, vitae condimentum quam porttitor.
+                    Phasellus pharetra elementum elementum.
                 </p>
                 <p>
-                    Aenean nec posuere quam. Aliquam vel velit eros. Vivamus placerat urna massa, et mollis est lobortis et. Aliquam at arcu tempor dui placerat fringilla imperdiet in nibh.
-                    Sed ullamcorper est velit, vulputate facilisis nisi imperdiet vel. Aliquam orci odio, vestibulum vulputate justo et, consectetur facilisis nibh. Nulla mollis adipiscing hendrerit.
+                    Aenean nec posuere quam. Aliquam vel velit eros. Vivamus placerat urna massa, et mollis est lobortis et.
+                    Aliquam at arcu tempor dui placerat fringilla imperdiet in nibh.
+                    Sed ullamcorper est velit, vulputate facilisis nisi imperdiet vel.
+                    Aliquam orci odio, vestibulum vulputate justo et, consectetur facilisis nibh.
+                    Nulla mollis adipiscing hendrerit.
                 </p>
             </div>
             ")</code></pre>
@@ -293,13 +324,60 @@
                 than 20 feet (6.1 m) of tubing wrapped into a coil with a flared bell.
             </p>
             ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Additional Markup</h2>
+        <div>
+            <h3>Comments</h3>
+            <p>
+                You can add comments to your HTML. The browser will not display comments on the screen. The only way to see the comment is to view the source of the webpage.
+                A comment can be used to explain to other developers (or even remind yourself in the future) about why you chose to layout the page like you did.
+                Because anyone can see your comment if they view the source, you should not put passwords or usernames in comments.
+            </p>
+            <pre><code class="brush: html;">@(@"
+            <!-- I'm a comment -->
+            ")</code></pre>
+
+            <h3>DOCTYPE</h3>
+            <p>
+                We've already seen the <code>&lt;!DOCTYPE&gt;</code> declaration. It tells the browser which type of HTML document it is.
+                There are actually several versions of HTML, each one with its own rules. The following are several doctypes that you might encounter.
+                Aren't you glad that we can use HTML5? :)
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!-- HTML 5 -->
+            <!DOCTYPE html>
+            <!-- HTML 4 -->
+            <!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">
+            <!-- Transitional XHTML 1.0 -->
+            <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
+            <!-- Strict XHTML 1.0 -->
+            <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"">
+            ")</code></pre>
 
             <h3>class Attribute</h3>
             <p>
-                That last example demonstrated another attribute that we haven't seen before, the <dfn>class</dfn> attribute. You can use any value you'd like (using letters, spaces, dashes, and underscores)
-                and multiple elements can all have the same class. In fact an element can have multiple classes separated by spaces. With CSS we can style all elements with the same class give
+                The <code>span</code> example above demonstrated another attribute that we haven't seen before, the <dfn>class</dfn> attribute.
+                You can use any value you'd like (using letters, spaces, dashes, and underscores) and multiple elements can all have the same class.
+                In fact an element can have multiple classes as well - separated by spaces. With CSS we can style all elements with the same class and give
                 them a unique look. The class attribute differs from the id attribute, because you cannot use the same id more than once.
             </p>
+
+            <p>Example of multiple elements with the same class:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <p class=""latin"">lorem ipsum</p>
+            <p class=""latin"">latin latin latin...</p>
+            ")</code></pre>
+
+            <p>Example of a single element with multiple classes:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <p class=""latin funny-looking"">lorem ipsum</p>
+            ")</code></pre>
 
             <h3>iframe</h3>
             <p>
@@ -312,7 +390,12 @@
             ")</code></pre>
 
             <iframe src="http://marvel.com/" width="880" height="400"></iframe>
+        </div>
+    </section>
 
+    <section>
+        <h2>HTML5 Layout</h2>
+        <div>
             <h3>New HTML5 Elements</h3>
             <p>
                 HTML5 has added several new elements that help to create the layout of your page.
