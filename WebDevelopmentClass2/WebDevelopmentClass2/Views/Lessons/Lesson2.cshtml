@@ -4,9 +4,77 @@
 
 <article>
     <h1>Lesson 2</h1>
-    <section>
+    @*<section>
         <h2>A Quiz!</h2>
         <p><a href="https://docs.google.com/forms/d/11ctnQ4CfhnOpQ7_xSpodVFZbEE-QV62BEuuOEk_LZH4/viewform" target="_blank">Lesson 1 quiz</a></p>
+    </section>*@
+
+    <section>
+        <h2>Images</h2>
+        <div>
+            <h3>img Tag</h3>
+            <p>
+                Images are added using the <code>&lt;img /&gt;</code> tag. This tag is a self closing tag; it can't contain content. The <code>src</code> attribute specifies the image
+                to be displayed. It is very similar to the anchor's <code>href</code> attribute. The image could be located somewhere on the web or it could be located in the same folder
+                as the HTML page. Here is a picture of the San Diego Skyline at night:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <img src=""http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg"" />
+            ")</code></pre>
+
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg" alt="San Diego Skyline at night" title="San Diego" width="800" height="357" />
+
+            <h3>Important Attributes</h3>
+            <p>
+                Some other important attributes to specify for an image are <code>alt</code>, <code>title</code>, <code>width</code>, and <code>height</code>. The <code>alt</code> attribute
+                specifies alternate text to display if the image cannot be found or it can be read by a <a href="http://en.wikipedia.org/wiki/Screen_reader" target="_blank">screen reader</a>.
+                The <code>title</code> attribute specifies a tool tip that is displayed when the user hovers over the image. The <code>title</code> attribute is actually an example of a global attribute;
+                it can be applied to any element. The <code>width</code> and <code>height</code> are not required, but they inform the browser as to how much space to reserve for the image as it's downloading.
+                If they're not specified, the page layout may change as the image loads.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <img src=""http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg"" alt=""San Diego Skyline at night"" title=""San Diego"" width=""800"" height=""357"" />
+            ")</code></pre>
+
+            <h3>Types of Images</h3>
+            <p>
+                There are three main types of images that can be displayed on the web, jpg, png, and gif.
+            </p>
+            <p>
+                Choose a jpg when you have an images with lots of colors. Photographs are almost always saved as jpg's. If you take a picture with a digital camera, the file type will be jpg.
+            </p>
+            <p>
+                Choose a gif if you have an img an image with few colors and/or large areas of the same color. Gifs can also be animated, meaning that they have several frames
+                that are repeated over and over to make it look like it's moving. Often, animated gifs are just plain annoying. Check out this sweet beauty:
+            </p>
+
+            <button type="button" id="showGif">Show</button>
+            <button type="button" id="hideGif">Hide</button><br />
+            <img src="http://img.pandawhale.com/post-4529-Fat-Spider-Man-wqDT.gif" id="fatSpiderMan" alt="Dancing Fat Spider-Man" width="300" />
+
+            <p>
+                Choose a png if you want your image to have parts that are transparent (see-through). Oftentimes, when I make an image in Photoshop, I save it as a png.
+            </p>
+
+            <p>
+                Frequently we'd like to show an image with a caption. That is what the <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> elements are for.
+                You still need to use the <code>&lt;img&gt;</code> tag inside of the <code>&lt;figure&gt;</code> element like so:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <figure>
+                <img src=""http://asimo.honda.com/ASIMO_DCTM/News/images/highres/Meet_ASIMO.jpg"" alt=""Asimo"" width=""340"" />
+                <figcaption>The world's most advanced humanoid robot</figcaption>
+            </figure>
+            ")</code></pre>
+
+            <figure>
+                <img src="http://asimo.honda.com/ASIMO_DCTM/News/images/highres/Meet_ASIMO.jpg" alt="Asimo" width="340" />
+                <figcaption>The world's most advanced humanoid robot</figcaption>
+            </figure>
+        </div>
     </section>
 
     <section>
@@ -378,435 +446,6 @@
                     </tr>
                 </tfoot>
             </table>
-        </div>
-    </section>
-
-    <section>
-        <h2>Forms</h2>
-        <div>
-            <p>
-                When you need to collect data from a visitor to your website, you need to use a form. A form allows you to collect the information from the user and send it back to the server
-                to be processed. We've all seen examples of forms before. Every time your enter a username and password on a website, you've filled out a form. Forms will often contain elements
-                such as textboxes, checkboxes, dropdowns, and buttons (to name a few). Forms are contained within a <code>&lt;form&gt;</code> element.
-            </p>
-
-            <p>
-                Here is a lengthy form that demonstrates many of the inputs that can be used to collect user data. In addition to <code>&lt;input&gt;</code> elements, I'm also demonstrating the
-                <code>&lt;label&gt;</code> element which associates a label or text description to the input. You also notice that I've used the <code>&lt;fieldset&gt;</code> element, which is
-                used to group several inputs together. The <code>&lt;fieldset&gt;</code> can also have a <code>&lt;legend&gt;</code> that describes the entire group of inputs.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <form action="""">
-                <fieldset>
-                    <legend>Choose your favorite color</legend>
-                    <label><input type=""radio"" name=""favcolor"" value=""blue"" />Blue</label>
-                    <label><input type=""radio"" name=""favcolor"" value=""green"" />Green</label>
-                    <label><input type=""radio"" name=""favcolor"" value=""red"" />Red</label>
-                    <label><input type=""radio"" name=""favcolor"" value=""orange"" />Orange</label>
-                    <label><input type=""radio"" name=""favcolor"" value=""purple"" />Purple</label>
-                    <label><input type=""radio"" name=""favcolor"" value=""yellow"" />Yellow</label>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Which sports do you like to play (choose all that apply)</legend>
-                    <label><input type=""checkbox"" name=""sport"" value=""basketball"" />Basketball</label>
-                    <label><input type=""checkbox"" name=""sport"" value=""baseball"" />Baseball</label>
-                    <label><input type=""checkbox"" name=""sport"" value=""football"" />Football</label>
-                    <label><input type=""checkbox"" name=""sport"" value=""soccer"" />Soccer</label>
-                    <label><input type=""checkbox"" name=""sport"" value=""running"" />Running</label>
-                </fieldset>
-                
-                <label for=""email"">Email</label>
-                <input type=""email"" id=""email"" name=""email"" /><br />
-
-                <label for="" birthdate"">Birthdate</label>
-                <input type=""date"" id=""birthdate"" name=""birthdate"" /><br />
-
-                <label for=""favathlete"">Favorite professional athlete</label>
-                <select id=""favathlete"" name=""favathlete"">
-                    <optgroup label=""basketball"">
-                        <option>Michael Jordan</option>
-                        <option>John Stockton</option>
-                        <option>Kobe Bryant></option>
-                        <option>Shaquille O'Neal</option>
-                        <option>LeBron James</option>
-                    </optgroup>
-                    <optgroup label="" baseball"">
-                        <option>Babe Ruth</option>
-                        <option>Jackie Robinson</option>
-                        <option>Joe DiMaggio</option>
-                        <option>Ted Williams</option>
-                        <option>Nolan Ryan</option>
-                    </optgroup>
-                    <optgroup label="" football"">
-                        <option>Steve Young</option>
-                        <option>Brett Favre</option>
-                        <option>Dan Marino</option>
-                        <option>Alex Smith</option>
-                    </optgroup>
-                </select><br />
-
-                <label for=""username"">User name</label>
-                <input type=""text"" id=""username"" name=""username"" required /><br />
-
-                <label for=""password"">Password</label>
-                <input type=""password"" id=""password"" name=""password"" required /><br />
-
-                <label for="" picture"">Picture</label>
-                <input type=""file"" id=""picture"" name=""picture"" multiple /><br />
-
-                <label for=""comments"">Suggestions or comments</label>
-                <textarea id=""comments"" name=""comments""></textarea><br />
-
-                <button type=""submit"" value="" create account"" />
-            </form>
-            ")</code></pre>
-
-            <h3>Result</h3>
-            <p>Here is what the user would see in the browser:</p>
-
-            <form action="">
-                <fieldset>
-                    <legend>Choose your favorite color</legend>
-
-                    <div class="radio">
-                        <label><input type="radio" name="favcolor" value="blue" />Blue</label>
-                    </div>
-
-                    <div class="radio">
-                        <label><input type="radio" name="favcolor" value="green" />Green</label>
-                    </div>
-
-                    <div class="radio">
-                        <label><input type="radio" name="favcolor" value="red" />Red</label>
-                    </div>
-
-                    <div class="radio">
-                        <label><input type="radio" name="favcolor" value="orange" />Orange</label>
-                    </div>
-
-                    <div class="radio">
-                        <label><input type="radio" name="favcolor" value="purple" />Purple</label>
-                    </div>
-
-                    <div class="radio">
-                        <label><input type="radio" name="favcolor" value="yellow" />Yellow</label>
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Which sports do you like to play (choose all that apply)</legend>
-
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="sport" value="basketball" />Basketball</label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="sport" value="baseball" />Baseball</label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="sport" value="football" />Football</label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="sport" value="soccer" />Soccer</label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label><input type="checkbox" name="sport" value="running" />Running</label>
-                    </div>
-                </fieldset>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" />
-                </div>
-
-                <div class="form-group">
-                    <label for="birthdate">Birthdate</label>
-                    <input type="date" class="form-control" id="birthdate" name="birthdate" />
-                </div>
-
-                <div class="form-group">
-                    <label for="favAthlete">Favorite professional athlete</label>
-                    <select id="favAthlete" class="form-control" name="favAthlete">
-                        <optgroup label="Basketball">
-                            <option>Michael Jordan</option>
-                            <option>John Stockton</option>
-                            <option>Kobe Bryant></option>
-                            <option>Shaquille O'Neal</option>
-                            <option>LeBron James</option>
-                        </optgroup>
-                        <optgroup label="Baseball">
-                            <option>Babe Ruth</option>
-                            <option>Jackie Robinson</option>
-                            <option>Joe DiMaggio</option>
-                            <option>Ted Williams</option>
-                            <option>Nolan Ryan</option>
-                        </optgroup>
-                        <optgroup label="Football">
-                            <option>Steve Young</option>
-                            <option>Brett Favre</option>
-                            <option>Dan Marino</option>
-                            <option>Alex Smith</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="username">User name</label>
-                    <input type="text" class="form-control" id="username" name="username" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required />
-                </div>
-
-                <div class="form-group">
-                    <label for="picture">Picture</label>
-                    <input type="file" class="form-control" id="picture" name="picture" multiple />
-                </div>
-
-                <div class="form-group">
-                    <label for="comments">Suggestions or comments</label>
-                    <textarea id="comments" class="form-control" name="comments"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-default">Create Account</button>
-            </form>
-        </div>
-    </section>
-
-    <section>
-        <h2>Additional Markup</h2>
-        <div>
-            <h3>Comments</h3>
-            <p>
-                You can add comments to your HTML. The browser will not display comments on the screen. The only way to see the comment is to view the source of the webpage.
-                A comment can be used to explain to other developers (or even remind yourself in the future) about why you chose to layout the page like you did.
-                Because anyone can see your comment if they view the source, you should not put passwords or usernames in comments.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <!-- I'm a comment -->
-            ")</code></pre>
-
-            <h3>DOCTYPE</h3>
-            <p>
-                We've already seen the <code>&lt;!DOCTYPE&gt;</code> declaration. It tells the browser which type of HTML document it is.
-                There are actually several versions of HTML, each one with its own rules. The following are several doctypes that you might encounter.
-                Aren't you glad that we can use HTML5? :)
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <!-- HTML 5 -->
-            <!DOCTYPE html>
-            <!-- HTML 4 -->
-            <!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" ""http://www.w3.org/TR/html4/loose.dtd"">
-            <!-- Transitional XHTML 1.0 -->
-            <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
-            <!-- Strict XHTML 1.0 -->
-            <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"">
-            ")</code></pre>
-
-            <h3>Block vs Inline</h3>
-            <p>
-                All HTML elements fall into two categories, either <dfn>block</dfn> or <dfn>inline</dfn>. Block elements don't allow other elements on either side of them.
-                That is, they are displayed with an automatic line break before and after. Examples of block level elements include <code>&lt;h1&gt;</code>, <code>&lt;p&gt;</code>,
-                <code>&lt;ul&gt;</code>, and <code>&lt;li&gt;</code>.
-            <p>
-            </p>
-            Inline elements, on the other hand, don't have automatic line breaks around them. So multiple inline elements
-            can sit on the same line. Hence the term, "inline". Examples of inline elements include: <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;strong&gt;</code>,
-            and <code>&lt;em&gt;</code>. Try out the following code, to see how block elements differ from inline elements.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <p>Block 1</p><p>Block 2</p>
-            <strong>Inline 1</strong><strong>Inline 2</strong>
-            ")</code></pre>
-
-            <h3>div</h3>
-            <p>
-                HTML provides a generic block level element called a <code>&lt;div&gt;</code>. It can be used to group a set of related elements as a block. This will be very useful
-                when we get to CSS later.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <div id=""leftSide"">
-                <form>
-                    <input type=""text"" name=""search"" />
-                    <input type=""submit"" value=""Search"" />
-                </form>
-                <ul>
-                    <li><a href=""home.html"">Home</a></li>
-                    <li><a href=""about.html"">About</a></li>
-                    <li><a href=""contanct.html"">Contact</a></li>
-                </ul>
-            </div>
-            <div id=""rightSide"">
-                <h1>Home Page</h1>
-                <p>
-                    Nulla vel nunc sed tellus luctus luctus vitae a risus. Ut vel facilisis quam. Integer in diam libero. Fusce odio enim, pellentesque ut ante in, elementum volutpat augue.
-                    Fusce lacinia velit eget arcu euismod, sed porta nisl placerat. Suspendisse sodales quam quis sapien placerat, vitae condimentum quam porttitor. Phasellus pharetra elementum elementum.
-                </p>
-                <p>
-                    Aenean nec posuere quam. Aliquam vel velit eros. Vivamus placerat urna massa, et mollis est lobortis et. Aliquam at arcu tempor dui placerat fringilla imperdiet in nibh.
-                    Sed ullamcorper est velit, vulputate facilisis nisi imperdiet vel. Aliquam orci odio, vestibulum vulputate justo et, consectetur facilisis nibh. Nulla mollis adipiscing hendrerit.
-                </p>
-            </div>
-            ")</code></pre>
-
-            <h3>span</h3>
-            <p>
-                There is also a generic inline element called a <code>&lt;span&gt;</code>. This could be used to group a set of inline elements, but it's
-                more commonly used to apply a style to a particular word or phrase for which there doesn't seem to be a suitable existing tag.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <!-- Source wikipedia -->
-            <p>
-                The <span class=""instrument"">harp</span> is a multi-string musical instrument
-                which has the plane of its strings positioned perpendicularly to the soundboard.
-                The <span class=""instrument"">horn</span>, also known as the <span class=""instrument"">corno</span>
-                and <span class=""instrument"">French horn</span>, is a brass instrument made of more
-                than 20 feet (6.1 m) of tubing wrapped into a coil with a flared bell.
-            </p>
-            ")</code></pre>
-
-            <h3>class Attribute</h3>
-            <p>
-                That last example demonstrated another attribute that we haven't seen before, the <dfn>class</dfn> attribute. You can use any value you'd like (using letters, spaces, dashes, and underscores)
-                and multiple elements can all have the same class. In fact an element can have multiple classes separated by spaces. With CSS we can style all elements with the same class give
-                them a unique look. The class attribute differs from the id attribute, because you cannot use the same id more than once.
-            </p>
-
-            <h3>iframe</h3>
-            <p>
-                The <code>&lt;iframe&gt;</code> element allows you to embed another webpage within your webpage. The following code produces the result seen below.
-                Note that a website can block you from showing it in an iframe. So this won't work for every site. I found that marvel.com happens to work.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <iframe src=""http://marvel.com/"" width=""880"" height=""400""></iframe>
-            ")</code></pre>
-
-            <iframe src="http://marvel.com/" width="880" height="400"></iframe>
-
-            <h3>New HTML5 Elements</h3>
-            <p>
-                HTML5 has added several new elements that help to create the layout of your page.
-            </p>
-
-            <dl class="niceLayout">
-                <dt><code>&lt;article&gt;</code></dt>
-                <dd>
-                    <blockquote cite="http://www.w3.org/TR/html5/sections.html#the-article-element">
-                        The article element represents a component of a page that consists of a self-contained composition in a document, page, application, or site and that is intended to be
-                        independently distributable or reusable, e.g. in syndication. This could be a forum post, a magazine or newspaper article, a blog entry, a user-submitted comment, an
-                        interactive widget or gadget, or any other independent item of content.
-                    </blockquote>
-                    - <a href="http://www.w3.org/TR/html5/sections.html#the-article-element" target="specs">W3C <code>article</code></a>
-                </dd>
-
-                <dt><code>&lt;section&gt;</code></dt>
-                <dd>
-                    <blockquote cite="http://www.w3.org/html/wg/drafts/html/master/sections.html#the-section-element">
-                        The section element represents a generic document or application section…The section element is not a generic container element. When an element is needed only for
-                        styling purposes or as a convenience for scripting, authors are encouraged to use the div element instead. A general rule is that the section element is appropriate
-                        only if the element’s contents would be listed explicitly in the document’s outline.
-                    </blockquote>
-                    - <a href="http://www.w3.org/html/wg/drafts/html/master/sections.html#the-section-element" target="specs">W3C <code>section</code></a>
-                </dd>
-
-                <dt><code>&lt;header&gt;</code></dt>
-                <dd>
-                    <blockquote cite="http://www.w3.org/TR/html5/sections.html#the-header-element">
-                        The header element represents introductory content for its nearest ancestor sectioning content or sectioning root element.
-                        A header typically contains a group of introductory or navigational aids.
-                    </blockquote>
-                    - <a href="http://www.w3.org/TR/html5/sections.html#the-header-element" target="specs">W3C <code>header</code></a>
-                </dd>
-
-                <dt><code>&lt;footer&gt;</code></dt>
-                <dd>
-                    <blockquote cite="http://www.w3.org/TR/html5/sections.html#the-footer-element">
-                        The footer element represents a footer for its nearest ancestor sectioning content or sectioning root element. A footer typically contains information about its
-                        section such as who wrote it, links to related documents, copyright data, and the like.
-                    </blockquote>
-                    - <a href="http://www.w3.org/TR/html5/sections.html#the-footer-element" target="specs">W3C <code>footer</code></a>
-                </dd>
-
-                <dt><code>&lt;aside&gt;</code></dt>
-                <dd>
-                    <blockquote cite="http://www.w3.org/TR/html5/sections.html#the-aside-element">
-                        The aside element represents a section of a page that consists of content that is tangentially related to the content around the aside element, and which could be
-                        considered separate from that content. Such sections are often represented as sidebars in printed typography.
-                    </blockquote>
-                    - <a href="http://www.w3.org/TR/html5/sections.html#the-aside-element" target="specs">W3C <code>aside</code></a>
-                </dd>
-
-                <dt><code>&lt;nav&gt;</code></dt>
-                <dd>
-                    <blockquote cite="http://www.w3.org/TR/html5/sections.html#the-nav-element">
-                        The nav element represents a section of a page that links to other pages or to parts within the page: a section with navigation links.
-                        Not all groups of links on a page need to be in a nav element — the element is primarily intended for sections that consist of major navigation blocks.
-                    </blockquote>
-                    - <a href="http://www.w3.org/TR/html5/sections.html#the-nav-element" target="specs">W3C <code>nav</code></a>
-                </dd>
-            </dl>
-
-            <p>
-                Here is an example layout for a website using the new HTML5 elements. Note that prior to HTML5, the <code>div</code> element would
-                have been used in place of the new elements.
-            </p>
-
-            <pre><code class="brush: html;">@(@"
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset=""utf-8"" />
-                <title>Your title here</title>
-            </head>
-            <body>
-                <header>
-                    <nav>
-                        <ul>
-                            <li><a href=""home.html"">Home</a></li>
-                            <li><a href=""about.html"">About</a></li>
-                            <li><a href=""contact.html"">Contact</a></li>
-                        </ul>
-                    </nav>
-                </header>
-                <div id=""content"">
-                    <article>
-                        <header>
-                            <h1>Article 1</h1>
-                            <p>lorem ipsum ...</p>
-                        </header>
-                        <section>
-                            <h2>Section 1</h2>
-                            <p>...</p>
-                        </section>
-                        <section>
-                            <h2>Section 2</h2>
-                            <p>...</p>
-                        </section>
-                    </article>
-                    <article>
-                        <h1>Article 2</h1>
-                    </article>
-                </div>
-                <aside>
-                </aside>
-                <footer>
-                </footer>
-            </body>
-            </html>
-            ")</code></pre>
         </div>
     </section>
 </article>

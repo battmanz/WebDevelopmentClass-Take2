@@ -1,0 +1,15 @@
+﻿@model FormCollection
+
+@{
+    ViewBag.Title = "Echo";
+}
+
+<h1>Echo</h1>
+<p>I'm just repeating what you said</p>
+
+<dl>
+    @foreach (var key in Model.AllKeys) {
+        <dt>@key</dt>
+        <dd>@Model.Get(key)</dd>
+    }
+</dl>
