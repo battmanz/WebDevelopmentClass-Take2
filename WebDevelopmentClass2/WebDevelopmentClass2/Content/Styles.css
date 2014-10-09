@@ -29,4 +29,57 @@ td.code .container:after {
 #fatSpiderMan {
   display: none;
 }
+/*      Lesson 4
+-------------------------------- */
+#colorDemo {
+  background-color: lightslategray;
+  padding: 1px 10px;
+}
+#colorDemo > h1 {
+  color: #FFFAFA;
+  background-color: #BA55D3;
+}
+#colorDemo > p {
+  background-color: teal;
+  color: #FFFAFA;
+}
+#opacityDemo {
+  background-color: lightblue;
+}
+#opacityDemo > p {
+  background-color: pink;
+}
+#opacityDemo > p.opaque {
+  opacity: 1;
+}
+#opacityDemo > p.opacity75 {
+  opacity: 0.75;
+}
+#opacityDemo > p.opacity50 {
+  opacity: 0.75;
+}
+#opacityDemo > p.opacity25 {
+  opacity: 0.25;
+}
+#opacityDemo > p.transparent {
+  opacity: 0;
+}
+#rgbaDemo {
+  background-color: lightblue;
+}
+#rgbaDemo > p.opaque {
+  background-color: #ffc0cb;
+}
+#rgbaDemo > p.opacity75 {
+  background-color: rgba(255, 192, 203, 0.75);
+}
+#rgbaDemo > p.opacity50 {
+  background-color: rgba(255, 192, 203, 0.5);
+}
+#rgbaDemo > p.opacity25 {
+  background-color: rgba(255, 192, 203, 0.25);
+}
+#rgbaDemo > p.transparent {
+  background-color: rgba(255, 192, 203, 0);
+}
 /*# sourceMappingURL=Styles.css.map */

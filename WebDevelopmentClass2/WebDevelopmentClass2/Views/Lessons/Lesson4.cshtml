@@ -1,0 +1,559 @@
+﻿@{
+    ViewBag.Title = "Lesson 4";
+}
+
+<article>
+    <h1>Lesson 4</h1>
+
+    <section>
+        <h2>What is CSS?</h2>
+        <div>
+            <h3>Definition</h3>
+            <p>
+                <dfn>CSS</dfn> stands for Cascading Style Sheets. CSS allows you to modify how your HTML is displayed. The same HTML can be displayed in an infinte number of ways
+                by changing the CSS. The term "Cascading" is used because styles flow or cascade from more general to more specific.
+                The most specific rule has the highest priority. We'll see what that means later on.
+            </p>
+
+            <p>
+                Just like there are different version of HTML, there are different versions of CSS. The latest version of HTML is 5 and the latest version of CSS is 3.
+                At the time that I am writing this, neither HTML5 nor CSS3 are official. They are both works in progress. It is entirely
+                possible that they may still change before the specs are finalized.
+            </p>
+
+            <h3>How do I add CSS to my HTML?</h3>
+            <p>
+                There are three ways to add CSS to your HTML document. I'll start with the preferred method first.
+            </p>
+            <p>
+                The best way to add CSS to your HTML document
+                is to create a separate text file that has an extension of ".css". Lets suppose you named it "styles.css", you could then add it to your HTML document
+                by simply adding a <code>&lt;link&gt;</code> element inside the <code>&lt;head&gt;</code> element of your HTML page. The <code>link</code> element
+                is self-closing, so it doesn't have any content. You should be sure, however, to set the following attributes: <code>href="styles.css"</code>,
+                <code>type="text/css"</code>, and <code>rel="stylesheet"</code>.
+            </p>
+
+            <p>Here's how it will look:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Your title here</title>
+                <link href=""styles.css"" type=""text/css"" rel=""stylesheet"" />
+            </head>
+            <body>
+                <h1>CSS Demo</h1>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                The second way is to include a <code>&lt;style&gt;</code> element inside the <code>&lt;head&gt;</code> element of your HTML page. Here again, you would add an attribute
+                of <code>type="text/css"</code>, but the <code>style</code> element does not have the <code>href</code> or <code>rel</code> attributes. Inside of the <code>style</code> element
+                you directly write your styles. This is different from using the <code>link</code> element because using the <code>link</code> element allows you to keep your CSS in a
+                completely different file from your HTML.
+            </p>
+
+            <p>Here's an example using the <code>style</code> element.</p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Your title here</title>
+                <style type=""text/css"">
+                    body {
+                        background-color: pink;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1>CSS Demo</h1>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                The third way to include styles in your HTML is to use the <code>style</code> attribute on any element in the document. This is considered a bad practice and should
+                be avoided. You might see this in older pages you visit. In this example, the text color of the first paragraph is set to blue.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Your title here</title>
+            </head>
+            <body>
+                <h1>CSS Demo</h1>
+                <p style=""color: blue;"">I'm feeling blue</p>
+                <p>I'm not</p>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Selectors</h2>
+        <div>
+            <h3>We are Family</h3>
+            <p>
+                Relationships exist among elements in an HTML document. You can think of these relationships as a family tree.
+            </p>
+            <ul>
+                <li>An element that contains another is said to be the <dfn>parent</dfn> element (or parent <dfn>node</dfn> - an element can also be referred to as a node).</li>
+                <li>The element that is contained by another element is said to be the <dfn>child</dfn> node.</li>
+                <li>Two nodes that have the same parent are <dfn>siblings</dfn></li>
+                <li>A node whose parent is contained by yet another node is a <dfn>grandchild</dfn> of the parent's parent.</li>
+                <li>Likewise, the parent of a parent node, is a <dfn>grandparent</dfn>.</li>
+                <li>All nodes contained within a node at any level are <dfn>descendants</dfn> of that node.</li>
+                <li>All containing nodes of a node at any level are that nodes <dfn>ancestors</dfn></li>
+            </ul>
+            <p>
+                Let's illustrate with an example. Take, for instance, the HTML document with which we concluded lesson 3:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Your title here</title>
+            </head>
+            <body>
+                <header>
+                    <nav>
+                        <ul>
+                            <li><a href=""home.html"">Home</a></li>
+                            <li><a href=""about.html"">About</a></li>
+                            <li><a href=""contact.html"">Contact</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div id=""content"">
+                    <article>
+                        <header>
+                            <h1>Article 1</h1>
+                            <p>lorem ipsum ...</p>
+                        </header>
+                        <section>
+                            <h2>Section 1</h2>
+                            <p>...</p>
+                        </section>
+                        <section>
+                            <h2>Section 2</h2>
+                            <p>...</p>
+                        </section>
+                    </article>
+                    <article>
+                        <h1>Article 2</h1>
+                    </article>
+                </div>
+                <aside>
+                </aside>
+                <footer>
+                </footer>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                In this document the <code>body</code> is the parent of the <code>header</code>, <code>div</code>, <code>aside</code>, and <code>footer</code>.
+                The <code>body</code> is the grandparent of the <code>nav</code> and both <code>article</code> elements. The two <code>article</code> elements
+                are siblings as are the two <code>section</code> elements. The <code>header</code> inside of the first <code>article</code> is also a sibling of the two
+                <code>section</code> elements.
+            </p>
+            <p>
+                The <code>html</code> node is the ancestor of every other node. There is a special name for such a node, it is called the <dfn>root</dfn> node.
+            </p>
+
+            <h3>Using Selectors</h3>
+            <p>
+                A style sheet consists of one or more <dfn>rules</dfn> that tell the browser how to style your HTML. Each rule consists of a <dfn>selector</dfn> and one or more <dfn>declarations</dfn>.
+                The selector tells the browser which elements should have the style applied to them. The declarations are contained within curly braces and give the browser information about how the matches set
+                of elements should be displayed. Each declaration has two parts: a property and a value.
+            </p>
+            <p>
+                The following example has two rules. The first rule selects all <code>body</code> elements (there should be only one). It has two declarations that set the background color and the text color.
+                The second rule selects all <code>p</code> elements. It has a single declaration that sets the font family, that is, which type of font to use.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            body {
+                background-color: black;
+                color: white;
+            }
+            p {
+                font-family: Arial;
+            }
+            ")</code></pre>
+
+            <h3>Types of Selectors</h3>
+            <p>
+                Now that we know about the relationships among HTML elements and what selectors are used for, let's look at the various types of selectors that exist.
+            </p>
+
+            <table class="table table-bordered table-striped" id="selectorsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Definition</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Universal Selector</td>
+                        <td>Selects all elements.</td>
+                        <td>*</td>
+                    </tr>
+                    <tr>
+                        <td>Child Selector</td>
+                        <td>Selects immediate children of a parent node. This won't select grandchildren, etc.</td>
+                        <td>div > p</td>
+                    </tr>
+                    <tr>
+                        <td>Descendant Selector</td>
+                        <td>Selects all descendants of a node. This includes grandchildren, great-grandchildren, etc.</td>
+                        <td>div p</td>
+                    </tr>
+                    <tr>
+                        <td>Adjacent Sibling Selector</td>
+                        <td>Selects only the first sibling that immediately follows an element.</td>
+                        <td>h1 + p</td>
+                    </tr>
+                    <tr>
+                        <td>General Sibling Selector</td>
+                        <td>Selects all siblings that follow an element.</td>
+                        <td>h1 ~ p</td>
+                    </tr>
+                    <tr>
+                        <td>ID Selector</td>
+                        <td>Selects the element with the given ID.</td>
+                        <td>#myId</td>
+                    </tr>
+                    <tr>
+                        <td>Class Selector</td>
+                        <td>Selects all elements with the given class name.</td>
+                        <td>.myClass</td>
+                    </tr>
+                    <tr>
+                        <td>First Child Selector</td>
+                        <td>Selects an element only if it is the first child of its parent.</td>
+                        <td>p:first-child</td>
+                    </tr>
+                    <tr>
+                        <td>Last Child Selector</td>
+                        <td>Selects an element only if it is the last child of its parent.</td>
+                        <td>p:last-child</td>
+                    </tr>
+                    <tr>
+                        <td>n<sup>th</sup> Child Selector</td>
+                        <td>
+                            Selects an element only if it is the n<sup>th</sup> child of its parent.
+                            In order to use this selector, you need to pass in either a number (e.g. 5) or a formula (e.g. 2n).
+                            See the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child">MDN</a> website for more info.
+                        </td>
+                        <td>p:nth-child(5)</td>
+                    </tr>
+                    <tr>
+                        <td>First Line Selector</td>
+                        <td>Selects the first line of text within an element.</td>
+                        <td>p:first-line</td>
+                    </tr>
+                    <tr>
+                        <td>First Letter Selector</td>
+                        <td>Selects the first letter within an element.</td>
+                        <td>p:first-letter</td>
+                    </tr>
+                    <tr>
+                        <td>Unvisited Link Selector</td>
+                        <td>Selects links that have <em>not</em> been visited.</td>
+                        <td>a:link</td>
+                    </tr>
+                    <tr>
+                        <td>Visited Link Selector</td>
+                        <td>Selects links that have been visited.</td>
+                        <td>a:visited</td>
+                    </tr>
+                    <tr>
+                        <td>Hover Selector</td>
+                        <td>Selects an element when the mouse is hovering over it.</td>
+                        <td>li:hover</td>
+                    </tr>
+                    <tr>
+                        <td>Active Selector</td>
+                        <td>Selects an element at the time when the user is interacting with it, such as clicking on it.</td>
+                        <td>button:active</td>
+                    </tr>
+                    <tr>
+                        <td>Focus Selector</td>
+                        <td>Selects an element when it has keyboard focus, such as when you use the tab key to move the cursor into a text box.</td>
+                        <td>input:focus</td>
+                    </tr>
+                    <tr>
+                        <td>Attribute Existance Selector</td>
+                        <td>Selects elements that have a particular attribute.</td>
+                        <td>p[class]</td>
+                    </tr>
+                    <tr>
+                        <td>Attribute Equality Selector</td>
+                        <td>Selects elements whose attribute value equals the given value.</td>
+                        <td>p[class="foo"]</td>
+                    </tr>
+                    <tr>
+                        <td>Attribute Contains Word Selector</td>
+                        <td>Selects elements whose attribute value is a set of words separated by a space and one of those words matches the given value.</td>
+                        <td>p[class~="foo"]</td>
+                    </tr>
+                    <tr>
+                        <td>Attribute Starts With Selector</td>
+                        <td>Selects elements whose attribute value starts with the given value.</td>
+                        <td>p[class^="foo"]</td>
+                    </tr>
+                    <tr>
+                        <td>Attribute End With Selector</td>
+                        <td>Selects elements whose attribute value ends with the given value.</td>
+                        <td>p[class$="foo"]</td>
+                    </tr>
+                    <tr>
+                        <td>Attribute Contains Selector</td>
+                        <td>Selects elements whose attribute value contains the given text (anywhere - could be in the middle, start, or end).</td>
+                        <td>p[class*="foo"]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                You can even combine selectors. For example if you want to style all p elements with a class of "foo" that are focused, you would write
+                the selector like so: <code>p.foo:focused { }</code>. You can also combine two or more selectors with a comma. This allows you to apply some rule to
+                two completely different sets of elements. For example, <code>section > h1, p.foo { }</code> would apply to both an <code>h1</code>
+                that is an immediate child of a <code>section</code> element <em>and</em> all <code>p</code> elements with a class of "foo".
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Colors</h2>
+        <div>
+            <h3>How to Represent Colors</h3>
+            <p>
+                You might have heard that the primary colors are red, yellow, and blue, but with light that is not true. The primary colors are actually
+                red, green, and blue. When these three colors are combined, they make white light. This is just a natural property of light.
+                See <a href="http://en.wikipedia.org/wiki/RGB_color_model">http://en.wikipedia.org/wiki/RGB_color_model</a>.
+            </p>
+            <p>
+                In CSS, one way to specify a color is to specify how much red, how much green, and how much blue the pixel(s) should have. This is done by
+                expressing a value like so: <code>rgb(100, 100, 90)</code>, where <code>rgb</code> stands for red, green, blue. The values
+                can range from 0 to 255. That makes 256 (including 0) possible values per color component. This number happens to fit into a computer byte.
+                The number of possible colors that can be specified in this way is 256 * 256 * 256 = 16777216.
+            </p>
+            <p>
+                Another equivalent way to specify a color (and this is perhaps the most common) is to specify the rgb values as a hexidecimal value.
+                An example looks like this <code>#ee3e80</code>. The first two characters, in this case <code>ee</code>, specify the red component.
+                The next two (<code>3e</code>) specify the green and the last two (<code>80</code>) the blue. Hexidecimal is another numbering system
+                often used in computers. If you're interested, you can read more on <a href="http://en.wikipedia.org/wiki/Hexadecimal">wikipedia</a>.
+            </p>
+            <p>
+                Another way to specify a color is to use a color name. This method is limiting, however, because there are only 147 colors with defined names.
+                You can see a visual depiction of all 147 colors <a href="http://www.colors.commutercreative.com/grid/" target="_blank">here</a>.
+            </p>
+
+            <h3>Foreground Color</h3>
+            <p>
+                You set the foreground color using the <code>color</code> property. The following three rules are all equivalent:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            p.one {
+                color: rgb(220, 20, 60);
+            }
+            p.two {
+                color: #DC143C;
+            }
+            p.three {
+                color: Crimson;
+            }
+            ")</code></pre>
+
+            <h3>Background Color</h3>
+            <p>
+                You set the background color using the <code>background-color</code> property. Here is an example that sets both the
+                foreground and background colors on several elements:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            section {
+                background-color: lightslategray;
+            }
+            
+            h1 {
+                color: #FFFAFA;
+                background-color: #BA55D3;
+            }
+            p {
+                background-color: teal;
+                color: #FFFAFA;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <section>
+                <h1>Background Demo</h1>
+                <p>This is a paragraph</p>
+            </section>
+            ")</code></pre>
+
+            <p>Result</p>
+
+            <section id="colorDemo">
+                <h1>Background Demo</h1>
+                <p>This is a paragraph</p>
+            </section>
+
+            <h3>Opacity</h3>
+
+            <p>
+                New in CSS3 is the ability to make elements semi-transparent. This can lead to some very cool designs.
+                There are two ways to make an element transparent, you can use the <code>opacity</code> property or you can use
+                the <code>rgba</code> property.
+            </p>
+
+            <p>
+                The <code>opacity</code> property takes a number anywhere from 0.0 to 1.0. Zero (0.0) means fully transparent. One (1.0) means fully
+                opaque. A value of 0.5 means that the element is 50% transparent. Here's a demo that illustrates the <code>opacity</code> property.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            div {
+                background-color: lightblue;
+            }
+            p {
+                background-color: pink;
+            }
+            p.opaque {
+                opacity: 1;
+            }
+            p.opacity75 {
+                opacity: 0.75;
+            }
+            p.opacity50 {
+                opacity: 0.5;
+            }
+            p.opacity25 {
+                opacity: 0.25;
+            }
+            p.transparent {
+                opacity: 0;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div>
+                <p class=""opaque"">Fully Opaque</p>
+                <p class=""opacity75"">75% Opaque / 25% Transparent</p>
+                <p class=""opacity50"">50% Opaque / 50% Transparent</p>
+                <p class=""opacity25"">25% Opaque / 75% Transparent</p>
+                <p class=""transparent"">Fully Transparent</p>
+            </div>
+            ")</code></pre>
+
+            <div id="opacityDemo">
+                <p class="opaque">Fully Opaque</p>
+                <p class="opacity75">75% Opaque / 25% Transparent</p>
+                <p class="opacity50">50% Opaque / 50% Transparent</p>
+                <p class="opacity25">25% Opaque / 75% Transparent</p>
+                <p class="transparent">Fully Transparent</p>
+            </div>
+
+            <h3>rgba</h3>
+
+            <p>
+                The <code>rgba</code> property is very similar to the <code>rgb</code> property, but in addition to the
+                red, green, and blue components you can also specify an <dfn>alpha</dfn> value. The alpha value is very similar
+                to the <code>opacity</code> property. There is a slight difference, though. If you noticed in that previous example,
+                the text inside of each <code>div</code> also became transparent. With <code>rgba</code>, the content does not become
+                transparent. Compare this with the previous example:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            div {
+                background-color: lightblue;
+            }
+            p.opaque {
+                background-color: rgba(255, 192, 203, 1);
+            }
+            p.opacity75 {
+                background-color: rgba(255, 192, 203, 0.75);
+            }
+            p.opacity50 {
+                background-color: rgba(255, 192, 203, 0.50);
+            }
+            p.opacity25 {
+                background-color: rgba(255, 192, 203, 0.25);
+            }
+            p.transparent {
+                background-color: rgba(255, 192, 203, 0);
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div>
+                <p class=""opaque"">Fully Opaque</p>
+                <p class=""opacity75"">75% Opaque / 25% Transparent</p>
+                <p class=""opacity50"">50% Opaque / 50% Transparent</p>
+                <p class=""opacity25"">25% Opaque / 75% Transparent</p>
+                <p class=""transparent"">Fully Transparent</p>
+            </div>
+            ")</code></pre>
+
+            <div id="rgbaDemo">
+                <p class="opaque">Fully Opaque</p>
+                <p class="opacity75">75% Opaque / 25% Transparent</p>
+                <p class="opacity50">50% Opaque / 50% Transparent</p>
+                <p class="opacity25">25% Opaque / 75% Transparent</p>
+                <p class="transparent">Fully Transparent</p>
+            </div>
+        </div>
+    </section>
+
+    @*<section>
+            <h2>Let's Play a Game</h2>
+            <div>
+                <p>
+                    Using only a <code>style</code> element in the <code>head</code> of your web page,
+                    can you make your web page look like each of the following examples?
+                </p>
+                <ul>
+                    <li>@Html.ActionLink("Game 1", "Index", "CSSGames", new { id = 1 }, new { target = "_game1" })</li>
+                    <li>@Html.ActionLink("Game 2", "Index", "CSSGames", new { id = 2 }, new { target = "_game2" })</li>
+                    <li>@Html.ActionLink("Game 3", "Index", "CSSGames", new { id = 3 }, new { target = "_game3" })</li>
+                    <li>@Html.ActionLink("Game 4", "Index", "CSSGames", new { id = 4 }, new { target = "_game4" })</li>
+                    <li>@Html.ActionLink("Game 5", "Index", "CSSGames", new { id = 5 }, new { target = "_game5" })</li>
+                </ul>
+            </div>
+        </section>*@
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
