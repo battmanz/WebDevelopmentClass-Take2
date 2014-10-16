@@ -1,0 +1,1653 @@
+﻿@{
+    ViewBag.Title = "Lesson 5";
+}
+
+<article>
+    <h1>Lesson 5</h1>
+
+    <section>
+        <h2>Text</h2>
+        <div>
+            <h3>Font Family</h3>
+            <p>
+                You can set the typeface (type of font) for your site by using the <code>font-family</code> CSS property.
+                It's <em>very</em> important to note that the computer viewing your website must have that font installed in order to use it.
+                The <code>font-family</code> property allows you to specify multiple values. The additional values are like backup plans. If the
+                user's computer doesn't have the first font, then it will try to use the next, otherwise the third, etc. Here's an example:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            body {
+                font-family: Times, Georgia, serif;
+            }
+            ")</code></pre>
+
+            <p>
+                In that last example, the "Times" font family would be used first. If the computer didn't have it installed, then "Georgia" would be used. The last value
+                "serif" is actually not a specific font, but rather a category of fonts. The term that is used is "generic font family". It's always best to put a generic
+                font family as your last resort. There are five categories that browsers are expected to support:
+            </p>
+            <dl>
+                <dt>serif</dt>
+                <dd>Serif fonts have little hooks or tails, known as serifs, on the ends of letters.</dd>
+
+                <dt>sans-serif</dt>
+                <dd>"Sans" means without, so sans-serif fonts do not have serifs.</dd>
+
+                <dt>monospace</dt>
+                <dd>In a monospace font, each letter has the exact same width. This is not true of other fonts.</dd>
+
+                <dt>cursive</dt>
+                <dd>Cursive fonts generally have connected letters and look, well, cursive.</dd>
+
+                <dt>fantasy</dt>
+                <dd>Fantasy fonts are decorative fonts used for titles. They should not be used for long bodies of text.</dd>
+            </dl>
+
+            <pre><code class="brush: css;">@(@"
+            p.serif {
+                font-family: Georgia, Times, serif;
+            }
+            p.sans {
+                font-family: Arial, Verdana, sans-serif;
+            }
+            p.mono {
+                font-family: Courier, ""Courier New"", monospace;
+            }
+            p.cursive {
+                font-family: ""Comic Sans MS"", ""Monotype Corsiva"", cursive;
+            }
+            p.fantasy {
+                font-family: Impact, Haettenschweiler, fantasy;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <p class=""serif"">The quick brown fox jumps over the lazy dog</p>
+                <p class=""sans"">The quick brown fox jumps over the lazy dog</p>
+                <p class=""mono"">The quick brown fox jumps over the lazy dog</p>
+                <p class=""cursive"">The quick brown fox jumps over the lazy dog</p>
+                <p class=""fantasy"">The quick brown fox jumps over the lazy dog</p>
+            ")</code></pre>
+
+            <div id="fontDemo">
+                <p class="serif">The quick brown fox jumps over the lazy dog</p>
+                <p class="sans">The quick brown fox jumps over the lazy dog</p>
+                <p class="mono">The quick brown fox jumps over the lazy dog</p>
+                <p class="cursive">The quick brown fox jumps over the lazy dog</p>
+                <p class="fantasy">The quick brown fox jumps over the lazy dog</p>
+            </div>
+
+            <h3>Font Size</h3>
+            <p>
+                The size of the font is specified in CSS using the <code>font-size-</code> property. There are different types of units
+                with which the font size can be specified. The four commonly-used units are pixels (<code>px</code>), percentage, ems (<code>em</code>), or points (<code>pt</code>).
+                Points (<code>pt</code>) should only be used when designing styles for print (which you can do with CSS, by the way). That leaves us with three
+                other systems of measurement to talk about.
+            </p>
+            <p>
+                Pixels are the small dots that make up your computer screen. Specifying the font size in pixels is the best way to ensure that your text will look
+                how you designed it. You can make your screen "pixel perfect". However, there is a drawback to this approach. Most browsers allow the user to select
+                how big text should be by default. Using pixels isn't very flexible with different user settings.
+            </p>
+            <p>
+                1 <code>em</code> is equal to the current font size. So an <code>em</code> is a relative measurement, that is, it's relative to the current
+                font size. As the font size increases, so does an em.
+            </p>
+            <p>
+                A percentage is very similar to an em. It is also a relative unit that will increase as the font size increases. There has been much debate and discussion
+                over which to use for the web. It appears that the current accepted philosophy is to specify the font size of the <code>&lt;body&gt;</code> element
+                using a percent and then specify the font size of other elements using the <code>em</code> units. The reason is that a web page needs to look good on many
+                devices with differing screen sizes and resolutions. Using a relative unit (such as <code>em</code> or <code>%</code>) allows the document to resize in proportion to the screen.
+                See <a href="http://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/" target="_blank">http://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/</a> for example.
+            </p>
+
+            <p>
+                Web designers tend to prefer <code>ems</code> or a % over <code>px</code>. The reason is that a web page needs to look good on many devices with differing
+                screen sizes and resolutions. Using a relative unit (such as <code>em</code> or <code>%</code>) allows the document to resize in proportion to the screen.
+                A great article that explains this in depth can be found here: <a href="http://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/">http://kyleschaeffer.com/development/css-font-size-em-vs-px-vs-pt-vs/</a>.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            body {
+                font-size: 100%;
+            }
+            p {
+                font-size: 0.75em;
+            }
+            ")</code></pre>
+
+            <h3>Bold, Italic, Oblique</h3>
+
+            <p>
+                The <code>font-weight</code> property is used to make text bold or, on the other hand, make text <em>not</em> bold. This property has two possible
+                values, <code>normal</code> or <code>bold</code>.
+            </p>
+            <p>
+                The <code>font-style</code> property has three values, <code>normal</code>, <code>italic</code>, or <code>oblique</code>. Though they may look quite
+                similar italic and oblique font are (supposed to be) different. Italicized text is cursive as in calligraphic handwriting. Oblique text is simply text
+                that is on a slant. Though the two are different, many fonts don't have an italic version. In that case the browser just makes the text slanted which
+                ends up making italic and oblique text look the same.
+            </p>
+
+            <h3>Text Transform</h3>
+            <p>
+                The <code>text-transform</code> property can have one of three values:
+            </p>
+
+            <ul>
+                <li><code>uppercase</code></li>
+                <li><code>lowercase</code></li>
+                <li><code>capitalize</code></li>
+            </ul>
+
+            <p>
+                As you could probably guess, <code>uppercase</code> makes the text appear as all uppercase letters, <code>lowercase</code> makes the text appear
+                as all lowercase letters, and <code>capitalize</code> makes only the first letter of each word uppercase.
+            </p>
+
+            <h3>Text Decoration</h3>
+            <p>
+                The <code>text-decoration</code> property allows you to add or remove a decoration from text. For example, most browsers display links with an underline.
+                You could, however, remove that underline by setting the <code>text-decoration</code> property to <code>none</code>. The four possible values are
+                <code>none</code>, <code>underline</code>, <code>overline</code>, and <code>line-through</code>. <code>line-through</code> is a horizontal line
+                through the <span class="line-through">center of the text</span>.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            a.no-decoration {
+                text-decoration: none;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <div><a href=""#"">Standard link</a></div>
+                <div><a href=""#"" class=""no-decoration"">Link with no underline</a></div>
+            ")</code></pre>
+
+            <div><a href="javascript:void(0);" class="standard-link">Standard link</a></div>
+            <div><a href="javascript:void(0);" class="no-decoration">Link with no underline</a></div>
+
+            <h3>Line Height</h3>
+            <p>
+                The <code>line-height</code> property tells the browser how tall a line of text should be.
+                The line height equals the font-size plus the amount of space between lines. Increasing the
+                line hight doesn't change the font size, so it has the effect of putting more space between lines.
+            </p>
+
+            <h3>Letter Spacing and Word Spacing</h3>
+            <p>
+                As the names imply, <code>letter-spacing</code> sets the amount of space between letters and <code>word-spacing</code> set the amount
+                of space between words. It is a good practice to specify the value for either of these properties in terms of <code>ems</code>, because
+                <code>ems</code> are proportional to the font size.
+            </p>
+
+            <h3>Text Align</h3>
+            <p>
+                The <code>text-align</code> property take have one of four values: <code>left</code>, <code>right</code>, <code>center</code>, or <code>justify</code>.
+                Anyone who has used Microsoft Word or other word processing software will be quite familiar with these options.
+                <strong>Text that is left aligned is considered easiest to read.</strong>
+            </p>
+
+            <h3>Vertical Alignment</h3>
+            <p>
+                The <code>vertical-align</code> property has two separate usages. First it can be used to vertically align the content of <strong>
+                    inline elements
+                    and inline elements only. Don't try to use it on block level elements. It won't work!
+                </strong> I know you're going to forget this, and try to use
+                it, so I'll repeat it again. It does not work on block elements. This property can accept one of the following values:
+            </p>
+
+            <ul>
+                <li><code>baselline</code></li>
+                <li><code>sub</code></li>
+                <li><code>super</code></li>
+                <li><code>top</code></li>
+                <li><code>text-top</code></li>
+                <li><code>middle</code></li>
+                <li><code>bottom</code></li>
+                <li><code>text-bottom</code></li>
+            </ul>
+
+            <p>
+                In addition to the values above, it can also accept a length in <code>px</code>, <code>em</code>, or <code>%</code> of the line height.
+            </p>
+
+            <p>
+                The other use for the <code>vertical-align</code> property is to vertically align content within a table cell (either a <code>&lt;td&gt;</code> or <code>&lt;th&gt;</code>).
+                Note that these are block elements. Table cells are the one exception to the rule that <code>vertical-align</code> does not work on block elements.
+                The only relevant values for table cells are <code>baseline</code>, <code>top</code>, <code>middle</code>, and <code>bottom</code>.
+                See the following example.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .baseline {
+                vertical-align: baseline;
+            }
+            .sub {
+                vertical-align: sub;
+            }
+            .super {
+                vertical-align: super;
+            }
+            .top {
+                vertical-align: top;
+            }
+            .text-top {
+                vertical-align: text-top;
+            }
+            .middle {
+                vertical-align: middle;
+            }
+            .bottom {
+                vertical-align: bottom;
+            }
+            .text-bottom {
+                vertical-align: text-bottom;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <p>
+                    <span class=""bottom"">bottom</span>
+                    <span class=""text-top"">text-top</span>
+                    <span class=""sub"">sub</span>
+                    <span class=""middle"">middle</span>
+                    <span class=""baseline"">baseline</span>
+                    <span class=""super"">super</span>
+                    <span class=""text-bottom"">text-bottom</span>
+                    <span class=""top"">top</span>
+                </p>
+                <table>
+                    <tr>
+                        <td class=""baseline"">baseline</td>
+                        <td class=""top"">top</td>
+                        <td class=""middle"">middle</td>
+                        <td class=""bottom"">bottom</td>
+                    </tr>
+                </table>
+            ")</code></pre>
+
+            <div id="verticalAlignDemo">
+                <p>
+                    <span class="bottom">bottom</span>
+                    <span class="text-top">text-top</span>
+                    <span class="sub">sub</span>
+                    <span class="middle">middle</span>
+                    <span class="baseline">baseline</span>
+                    <span class="super">super</span>
+                    <span class="text-bottom">text-bottom</span>
+                    <span class="top">top</span>
+                </p>
+
+                <table>
+                    <tr>
+                        <td class="baseline">baseline</td>
+                        <td class="top">top</td>
+                        <td class="middle">middle</td>
+                        <td class="bottom">bottom</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>A great article that explains the <code>vertical-align</code> property really well is found here: <a href="http://phrogz.net/CSS/vertical-align/">http://phrogz.net/CSS/vertical-align/</a></p>
+
+            <h3>Text Indent</h3>
+            <p>
+                The <code>text-indent</code> property indents the first line of text by a given amount (e.g. <code>text-indent: 1em;</code>).
+                In addition to the obvious use of indenting the first line of paragraphs, the <code>text-indent</code> property has found another surprising use.
+                It can be used to move text far off the screen so it can't be seen. Let me explain.
+            </p>
+            <p>
+                Some websites will add a heading with some text and then, using CSS, will push the text off the screen while at the same time displaying a background image in place of the text.
+                This technique allows the designer to show a more decorative heading than just text alone. So why have the text at all? The reason is that screen readers can't
+                read images, so having the text is good for accessibility. The other reason is that it's good for Search Engine Optimization (<a href="http://en.wikipedia.org/wiki/Search_engine_optimization"><abbr>SEO</abbr></a>).
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #home {
+                text-indent: -9999px;
+                background-image: url(~/Images/homeReplacement.png);
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <h1 id=""home"">Home</h1>
+            ")</code></pre>
+
+            <h1 id="home">Home</h1>
+
+            <h3>Text Shadow</h3>
+            <p>
+                A new feature added in CSS3 is the ability to add a shadow to text. This is done using the <code>text-shadow</code> property. The <code>text-shadow</code> property
+                accepts four values:
+            </p>
+
+            <dl>
+                <dt>horizontal offset</dt>
+                <dd>
+                    specifies how far to the left or right the shadow should be displayed. A negative value will cause the shadow to be displayed to the left and a positive value
+                    will cause the shadow to be diplayed to the right of the text.
+                </dd>
+
+                <dt>vertical offset</dt>
+                <dd>
+                    specifies how far above or below the shadow should be displayed. Negative values cause the shadow to be displayed above and positive values cause the shadow to be
+                    displayed below the text.
+                </dd>
+
+                <dt>blur radius</dt>
+                <dd>
+                    specifies how wide the shadow should be. The higher the number, the wider and lighter the shadow will be (i.e. it will be more spread out).
+                </dd>
+
+                <dt>color</dt>
+                <dd>Any CSS color is allowed (i.e. it doesn't have to be black or gray)</dd>
+            </dl>
+
+            <p>
+                A neat example of using the <code>text-shadow</code> property can be found on the <a href="http://browsehappy.com/">Browse Happy</a> website. Notice how the word "Browse" seems to sink into the page
+                and the word "Happy" seems to pop out. That website also demonstrates the fact that you can place multiple shadows on the text. Just separate each shadow by a comma.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Boxes</h2>
+        <div>
+            <h3>The Box Model</h3>
+            <p>
+                Each HTML element gets rendered on the screen as a box. Actually as several concentric boxes. The innermost box is the content of the element.
+                The next layer is called the padding. After the padding is the border. Finally, outside of the border is the margin. In this section we will look at
+                the ways in which CSS allows us to style these boxes.
+            </p>
+
+            <img id="boxModel" src="~/Images/boxes.png" alt="box model" />
+
+            <p>
+                By the way, that image above is taken from a screenshot of the developer tools in Google Chrome. To see a similar box for any element, simply right click
+                on it and choose "Inspect element". On the right hand side of the developer tools panel, scroll to the bottom and you'll see the box model for that element.
+                The developer tools in other browsers also allow you to see the box model for the currently selected element.
+            </p>
+
+            <h3>Width and Height</h3>
+            <p>
+                CSS allows you to specify the width and height of an element using the <code>width</code> and <code>height</code> properties, respectively.
+                These properties only affect the width and height of the content (the innermost box). The padding, border, and margin are added to the specified
+                width and height. Like other properties, the value can be specified in <code>px</code>, <code>em</code>, or <code>%</code>.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            div {
+                width: 500px;
+                height: 300px;
+                background-color: #FF7F50;
+            }
+            p {
+                width: 50%;
+                height: 66%;
+                background-color: #008B8B;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget ullamcorper odio. Integer interdum lectus mi, sagittis facilisis tortor facilisis quis.</p>
+                </div>
+            ")</code></pre>
+
+            <div id="widthDemo">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget ullamcorper odio. Integer interdum lectus mi, sagittis facilisis tortor facilisis quis.</p>
+            </div>
+
+            <h3>Max and Min</h3>
+            <p>
+                Instead of (or in addition to) specifying the exact width and/or height of an element, CSS allows you to set bounds by using the <code>max-width</code>, <code>min-width</code>,
+                <code>max-height</code>, and <code>min-height</code> properties. This is a useful technique when creating a layout that scales nicely for both mobile devices as well as desktop monitors.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #exactWidth {
+                width: 1000px;
+                background-color: #FF7F50;
+            }
+            #minMaxWidth {
+                min-width: 200px;
+                max-width: 1000px;
+                background-color: #FF7F50;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <div id=""exactWidth"">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget ullamcorper odio. Integer interdum lectus mi, sagittis facilisis tortor facilisis quis.</p>
+                </div>
+                <div id=""minMaxWidth"">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget ullamcorper odio. Integer interdum lectus mi, sagittis facilisis tortor facilisis quis.</p>
+                </div>
+            ")</code></pre>
+
+            <p>
+                To see the demo of the previous code follow this link @Html.ActionLink("Min Max Demo", "MinMaxDemo", "Lessons"). Try resizing the browser window. Notice how the <code>div</code>
+                with min and max values resizes as the window does. Whereas the <code>div</code> with an exact width does not.
+            </p>
+
+            <h3>Overflow</h3>
+            <p>
+                What happens when the content of an element is too large to fit in the space allotted for that element? Well, it depends on the <code>overflow</code> property.
+                By default, the content that doesn't fit is shown anyways. This may not look good because the content might be on top of some other element's content.
+                These are the possible values for the <code>overflow</code> property:
+            </p>
+
+            <dl>
+                <dt><code>visible</code></dt>
+                <dd>This is the default value. Content outside of the box is shown.</dd>
+
+                <dt><code>hidden</code></dt>
+                <dd>Content outside of the box is not displayed.</dd>
+
+                <dt><code>scroll</code></dt>
+                <dd>Scrollbars are <em>always</em> shown regardless of whether the content fits or not.</dd>
+
+                <dt><code>auto</code></dt>
+                <dd>Scrollbars are shown only if the content does not fit.</dd>
+            </dl>
+
+            <p>
+                The following demo has a <code>&lt;div&gt;</code> whose content does not fit within it's boundaries. You can change the value of the overflow property to see
+                the effect it has on the div and its content.
+            </p>
+
+            <select id="overflowChanger">
+                <option value="visible">visible</option>
+                <option value="hidden">hidden</option>
+                <option value="scroll">scroll</option>
+                <option value="auto">auto</option>
+            </select>
+
+            <div id="overflower">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu orci sit amet dolor molestie suscipit ac in enim. Cras varius varius justo.
+                Sed ultricies risus laoreet vehicula pellentesque. Aliquam posuere a libero in molestie. Sed vehicula nisl at arcu mollis, iaculis vulputate lectus sodales.
+                Sed mauris risus, interdum sed aliquet et, viverra varius orci. Fusce porttitor quis massa at iaculis. Mauris fringilla neque risus.
+                Vivamus porta consectetur sem, ut malesuada tortor pretium ut. Cras mollis, est vel mollis ornare, magna neque lobortis lorem, eget tincidunt nibh felis et neque.
+                Mauris sagittis convallis turpis, in ultrices dui imperdiet quis. Aliquam tortor tortor, vehicula non purus eget, condimentum interdum dolor.
+                Etiam laoreet blandit pharetra. Cras varius, mauris non convallis consectetur, mi turpis tincidunt metus, eu dignissim odio nibh ac nisi.
+                Suspendisse nec lectus eu metus semper vehicula et sit amet justo. Donec sed risus convallis lectus eleifend bibendum non sed diam.
+            </div>
+
+            <h3>Border Width</h3>
+            <p>
+                There are several interesting properties of borders that can be set with CSS. The first we'll talk about is <code>border-width</code>.
+                This property sets the thickness of the border in <code>px</code> or <code>em</code>. Note that using a percentage (%) is not allowed.
+                You can also use one of these three values:
+            </p>
+
+            <ul>
+                <li><code>thin</code></li>
+                <li><code>medium</code></li>
+                <li><code>thick</code></li>
+            </ul>
+
+            <p>
+                It's up to the browser to determine exactly how thin or thick the border will be with each of those values. So it can vary from browser to browser.
+                Therefore, it's recommended to specify the border in <code>px</code> or <code>em</code>.<br />
+                There are three common ways in which you can specify different values for all four sides:
+            </p>
+
+            <ol>
+                <li>
+                    By using the four individual properties:
+                    <ol>
+                        <li><code>border-top-width</code></li>
+                        <li><code>border-right-width</code></li>
+                        <li><code>border-bottom-width</code></li>
+                        <li><code>border-left-width</code></li>
+                    </ol>
+                </li>
+                <li>
+                    By specifying four values like so: <code>border-width: 20px 10px 5px 10px;</code><br />
+                    The four values are applied to the top, right, bottom, and left, respectively.
+                </li>
+                <li>
+                    By specifying two values like so: <code>border-width: 20px 10px;</code><br />
+                    The first value applies to the top and bottom borders. The second value applies to the left and right borders.
+                </li>
+            </ol>
+
+            <h3>Border Style</h3>
+
+            <p>
+                There are 10 different values that the <code>border-style</code> property can accept:
+            </p>
+
+            <dl>
+                <dt><code>solid</code></dt>
+                <dd>A single solid line.</dd>
+
+                <dt><code>dotted</code></dt>
+                <dd>A dotted line</dd>
+
+                <dt><code>dashed</code></dt>
+                <dd>A dashed line (dashes are longer than dots)</dd>
+
+                <dt><code>double</code></dt>
+                <dd>Two parallel solid lines</dd>
+
+                <dt><code>groove</code></dt>
+                <dd>The border appears to be carved into the page (opposite of ridge)</dd>
+
+                <dt><code>ridge</code></dt>
+                <dd>The border appears to be coming out of the page (opposite of groove)</dd>
+
+                <dt><code>inset</code></dt>
+                <dd>The entire element appears to sink into the page (opposite of outset)</dd>
+
+                <dt><code>outset</code></dt>
+                <dd>The entire element appears to come out of the page (opposite of inset)</dd>
+
+                <dt><code>hidden</code></dt>
+                <dd>No border is displayed</dd>
+
+                <dt><code>none</code></dt>
+                <dd>No border is displayed</dd>
+            </dl>
+
+            <p>An example</p>
+
+            <div id="borderStyleDemo">
+                <div class="solid">solid</div>
+                <div class="dotted">dotted</div>
+                <div class="dashed">dashed</div>
+                <div class="double">double</div>
+                <div class="groove">groove</div>
+                <div class="ridge">ridge</div>
+                <div class="inset">inset</div>
+                <div class="outset">outset</div>
+                <div class="hidden">hidden</div>
+                <div class="none">none</div>
+            </div>
+
+            <p>Again you can specify different border styles for the four sides similar to how you could specify different border widths:</p>
+
+            <ol>
+                <li>
+                    By using the four individual properties:
+                    <ol>
+                        <li><code>border-top-style</code></li>
+                        <li><code>border-right-style</code></li>
+                        <li><code>border-bottom-style</code></li>
+                        <li><code>border-left-style</code></li>
+                    </ol>
+                </li>
+                <li>
+                    By specifying four values like so: <code>border-style: solid dashed dotted outset;</code><br />
+                    The four values are applied to the top, right, bottom, and left, respectively.
+                </li>
+                <li>
+                    By specifying two values like so: <code>border-style: solid dashed;</code><br />
+                    The first value applies to the top and bottom borders. The second value applies to the left and right borders.
+                </li>
+            </ol>
+
+            <h3>Border Color</h3>
+
+            <p>
+                The <code>border-color</code> property sets the color of the border just as you would expect. Once again you can specify different
+                colors for the four sides:
+            </p>
+
+            <ol>
+                <li>
+                    By using the four individual properties:
+                    <ol>
+                        <li><code>border-top-color</code></li>
+                        <li><code>border-right-color</code></li>
+                        <li><code>border-bottom-color</code></li>
+                        <li><code>border-left-color</code></li>
+                    </ol>
+                </li>
+                <li>
+                    By specifying four values like so: <code>border-color: #e6e6e6 blue #FF0000 #ee3e80;</code><br />
+                    The four values are applied to the top, right, bottom, and left, respectively.
+                </li>
+                <li>
+                    By specifying two values like so: <code>border-color: #e6e6e6 blue;</code><br />
+                    The first value applies to the top and bottom borders. The second value applies to the left and right borders.
+                </li>
+            </ol>
+
+            <h3>Border Shorthand</h3>
+
+            <p>
+                CSS provides a shorthand property to set the width, style, and color of the border for all four sides in one declaration.
+                The property is simply called the <code>border</code> property. To use this property you specify the width, style, and color separated by spaces.<br />
+                For example, to set the border to a purple dotted border that is 5 pixels wide, you would write the following:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            div {
+                border: 5px dotted purple;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <div>Hello World</div>
+            ")</code></pre>
+
+            <p>Which gives the following results:</p>
+
+            <div id="borderShorthandDemo">Hello World</div>
+
+            <h3>Padding</h3>
+
+            <p>
+                The padding is the space that is between the border and the content of the element. Adding padding can make your webpage more readable and feel less cluttered.
+                In the image shown earlier and shown again here, it is represented as the green box.
+            </p>
+            <img id="boxModel" src="~/Images/boxes.png" alt="box model" />
+            <p>
+                Consider the difference a little padding can make between the following two paragraphs:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            p {
+                border: 2px solid #999;
+                width: 300px;
+                height: 100px;
+            }
+            .breathing-room {
+                padding: 10px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <p>
+                    A neutrino is an electrically neutral, weakly interacting elementary subatomic particle with half-integer spin.
+                </p>
+                <p class=""breathing-room"">
+                    A neutrino is an electrically neutral, weakly interacting elementary subatomic particle with half-integer spin.
+                </p>
+            ")</code></pre>
+
+            <div id="paddingDemo">
+                <p>
+                    A neutrino is an electrically neutral, weakly interacting elementary subatomic particle with half-integer spin.
+                </p>
+
+                <p class="breathing-room">
+                    A neutrino is an electrically neutral, weakly interacting elementary subatomic particle with half-integer spin.
+                </p>
+            </div>
+
+            <p>
+                Notice how the padding makes the content inside of the paragraph feel less cluttered. Also note that the second paragraph
+                is larger than the first. That is because padding is added to the width of the element, and here we have specified a width
+                and height.
+            </p>
+
+            <p>
+                You can set the padding independently on each of the four sides of the box using any one of these three methods:
+            </p>
+
+            <ol>
+                <li>
+                    By using the four individual properties:
+                    <ol>
+                        <li><code>padding-top</code></li>
+                        <li><code>padding-right</code></li>
+                        <li><code>padding-bottom</code></li>
+                        <li><code>padding-left</code></li>
+                    </ol>
+                </li>
+                <li>
+                    By specifying four values like so: <code>padding: 20px 5px 10px 15px;</code><br />
+                    The four values are applied to the top, right, bottom, and left, respectively.
+                </li>
+                <li>
+                    By specifying two values like so: <code>padding: 20px 5px;</code><br />
+                    The first value applies to the top and bottom. The second value applies to the left and right.
+                </li>
+            </ol>
+
+            <h3>Margin</h3>
+
+            <p>
+                The margin is the space outside of the border. It is shown as the orange box in the image below.
+            </p>
+            <img id="boxModel" src="~/Images/boxes.png" alt="box model" />
+            <p>
+                The margin helps to separate elements from one another. By design, vertical margins can <dfn>collapse</dfn>. What that means
+                is that if one element is above another element on the page, then only the larger of the two margins will be display rather than
+                of the sum of the two margins. With horizontal margins it's different. The sum of the two margins is used. The reason for this behavior
+                is that, by design, the content on a webpage is meant to be displayed as high on the page as possible. So vertical margins collapse.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            p, span {
+                margin: 0;
+                background-color: #00CC99;
+                border: 2px solid #FF6633;
+            }
+            p.margin {
+                margin: 20px 0;
+            }
+            span.margin {
+                margin: 0 20px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+                <!-- Vertical Margin -->
+                <p class=""margin"">Paragraph 1</p>
+                <p class=""margin"">Paragraph 2</p>
+                <!-- Horizontal Margin -->
+                <span class=""margin"">Span 1</span>
+                <span class=""margin"">Span 2</span>
+                <!-- Without a Margin -->
+                <p>Paragraph 1</p>
+                <p>Paragraph 2</p>
+                
+                <span>Span 1</span>
+                <span>Span 2</span>
+            ")</code></pre>
+
+            <section class="marginDemo" id="verticalMarginDemo">
+                <h5>Vertical Margin</h5>
+                <p class="margin">Paragraph 1</p>
+                <p class="margin">Paragraph 2</p>
+            </section>
+
+            <section class="marginDemo" id="horizontalMarginDemo">
+                <h5>Horizontal Margin</h5>
+                <span class="margin">Span 1</span>
+                <!--
+                -->
+                <span class="margin">Span 2</span>
+            </section>
+
+            <section class="marginDemo" id="noMarginDemo">
+                <h5>Without a Margin</h5>
+                <p>Paragraph 1</p>
+                <p>Paragraph 2</p>
+
+                <span>Span 1</span>
+                <!--
+                -->
+                <span>Span 2</span>
+            </section>
+
+            <p>
+                If you look carefully (perhaps open the developer tools and inspect), you'll see that the two vertical margins for the top two paragraphs
+                overlap. In other words the distance between the paragraphs is only 20px instead of 40px. The horizontal distance between the two spans
+                is 40px because the horizontal margins don't collapse.
+            </p>
+
+            <p class="notice">
+                It's also important to note that the top and bottom margin have no effect on inline elements such as a <code>&lt;span&gt;</code>.
+                The same is also true for padding - the top and bottom padding have no effect on inline elements.
+            </p>
+
+            <p>
+                You can set the margin independently on each of the four sides of the box using one of these three methods:
+            </p>
+
+            <ol>
+                <li>
+                    By using the four individual properties:
+                    <ol>
+                        <li><code>margin-top</code></li>
+                        <li><code>margin-right</code></li>
+                        <li><code>margin-bottom</code></li>
+                        <li><code>margin-left</code></li>
+                    </ol>
+                </li>
+                <li>
+                    By specifying four values like so: <code>margin: 20px 5px 10px 15px;</code><br />
+                    The four values are applied to the top, right, bottom, and left, respectively.
+                </li>
+                <li>
+                    By specifying two values like so: <code>margin: 20px 5px;</code><br />
+                    The first value applies to the top and bottom. The second value applies to the left and right.
+                </li>
+            </ol>
+
+            <h3>Centering Content</h3>
+
+            <p>Suppose you have some HTML that looks like this:</p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Centered Content Demo</title>
+            </head>
+            <body>
+                <div id=""contentWrapper"">
+                    <h1>Finland</h1>
+                    <p>
+                        Finland, officially the Republic of Finland, is a Nordic country situated
+                        in the Fennoscandian region of Northern Europe.
+                        It is bordered by Sweden to the west, Norway to the north, Russia to the east,
+                        and Estonia to the south across the Gulf of Finland.</p>
+                    <p>
+                        As of 2012, Finland's population was around 5.4 million, with the majority
+                        concentrated in its southern regions.
+                        In terms of area, it is the eighth largest country in Europe and the most
+                        sparsely populated country in the European Union.
+                        Finland is a parliamentary republic with a central government based in the
+                        capital of Helsinki, local governments in 336 municipalities
+                        and an autonomous region, the Åland Islands. About one million residents
+                        live in the Greater Helsinki area (consisting of Helsinki, Espoo,
+                        Kauniainen, and Vantaa), which also produces a third of the country's GDP.
+                        Other large cities include Tampere, Turku, Oulu, Jyväskylä, Lahti, and Kuopio.
+                    </p
+                </div>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                Now suppose that you want the <code>div</code> with an id of <code>contentWrapper</code> to be <code>800px</code> wide and centered on the page.
+                Well, the way to do it is to use a value of <code>auto</code> for the left and right margins. Here's what the CSS would look like. (I've also gone ahead
+                and added a grayish background color to the <code>body</code> and a white background to the <code>div</code>).
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            body {
+                background-color: #e6e6e6;
+            }
+            #contentWrapper {
+                width: 800px;
+                background-color: white;
+                margin: 0 auto;
+            }
+            ")</code></pre>
+
+            <p>Here's a @Html.ActionLink("demo", "CenteredContentDemo", "Lessons") of what that would look like.</p>
+
+            <h3>Display</h3>
+
+            <p>
+                You can change how an element is displayed by using the <code>display</code> property. For example, you can make a block element be displayed as an inine element
+                or vice versa. You can even display an element as a hybrid of the two called an <code>inline-block</code>. Here are the common values used for the <code>display</code>
+                property:
+            </p>
+
+            <dl>
+                <dt><code>block</code></dt>
+                <dd>
+                    The element is displayed as a block level element. It is displayed as if there were a line break before and after it.
+                    It takes up the full width of the screen by default.
+                </dd>
+
+                <dt><code>inline</code></dt>
+                <dd>
+                    The element allows other elements to the right or left of it. <code>width</code>, <code>height</code>, and top and bottom <code>margin</code>
+                    and <code>padding</code> have no effect on it.
+                </dd>
+
+                <dt><code>inline-block</code></dt>
+                <dd>
+                    The element allows other elements to the right and left of it. <code>width</code>, <code>height</code>, and top and bottom <code>margin</code>
+                    and <code>padding</code> <em>do</em> have an effect on it.
+                </dd>
+
+                <dt><code>none</code></dt>
+                <dd>The element is not displayed and no space is allotted for it on the screen.</dd>
+            </dl>
+
+            <p>
+                One important use of <code>display: inline;</code> is to have a horizontal navigation list, since an <code>&lt;li&gt;</code>
+                is displayed as a block by default.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            nav li {
+                display: inline;
+                list-style-type: none;
+                margin-right: 20px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <header>
+                <nav>
+                    <ul>
+                        <li><a href=""#"">Home</a></li>
+                        <li><a href=""#"">Products</a></li>
+                        <li><a href=""#"">About</a></li>
+                        <li><a href=""#"">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
+            ")</code></pre>
+
+            <ul id="navDemo">
+                <li><a href="#navDemo">Home</a></li>
+                <li><a href="#navDemo">Products</a></li>
+                <li><a href="#navDemo">About</a></li>
+                <li><a href="#navDemo">Contact</a></li>
+            </ul>
+
+            <h3>Visibility</h3>
+
+            <p>
+                The <code>visibility</code> property can have one of two values:
+            </p>
+
+            <dl>
+                <dt><code>visible</code></dt>
+                <dd>The element is displayed. This is the default value.</dd>
+
+                <dt><code>hidden</code></dt>
+                <dd>
+                    The element is not shown, <em>but there will be a blank space left in its place</em>.
+                    That is the difference between <code>display: none;</code> and <code>visibility: hidden;</code>,
+                    <code>display: none;</code> does not leave space where the element would have appeared.
+                </dd>
+            </dl>
+
+            <h3>Border Image</h3>
+            <p>
+                Consider this image:
+            </p>
+
+            <img src="~/Images/border.png" alt="border image" />
+
+            <p>
+                We can use it as a border for a much larger element using the <code>border-image</code> property. This property takes an image and essentially cuts it up
+                into nine equal squares.
+            </p>
+
+            <img src="~/Images/borderWithLines.png" alt="border image cut into nine squares" />
+
+            <p>
+                The outer eight squares are used as the border for the element. The corner squares are placed onto the corners of the element.
+                There are three possible ways to create the side borders:
+            </p>
+
+            <dl>
+                <dt><code>stretch</code></dt>
+                <dd>The side squares are stretched across the border.</dd>
+
+                <dt><code>repeat</code></dt>
+                <dd>The side squares are repeated along the border.</dd>
+
+                <dt><code>round</code></dt>
+                <dd>The side squares are repeated along the border but will be scaled so that they fit the border exactly.</dd>
+            </dl>
+
+            <pre><code class="brush: css;">@(@"
+            .stretch {
+                border-image: url(/Images/border.png) 27 stretch;
+            }
+            .repeat {
+                border-image: url(/Images/border.png) 27 repeat;
+            }
+            .round {
+                border-image: url(/Images/border.png) 27 round;
+            }
+            p {
+                height: 40px;
+                border-width: 27px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p class=""stretch"">Stretch</p>
+            <p class=""repeat"">Repeat</p>
+            <p class=""round"">Round</p>
+            ")</code></pre>
+
+            <div id="borderImageDemo">
+                <p class="stretch">Stretch</p>
+                <p class="repeat">Repeat</p>
+                <p class="round">Round</p>
+            </div>
+
+            <h3>Box Shadow</h3>
+
+            <p>
+                The <code>box-shadow</code> property is akin to the <code>text-shadow</code> property, but instead of placing a shadow around text, it places a shadow
+                around the border of an element. You must specify, at a minimum, the horizontal and vertical offset. You can specify up to six different parameters that
+                determine how the shadow is displayed.
+            </p>
+
+            <dl>
+                <dt>inset</dt>
+                <dd>(optional) If this value is given, then the shadow will be inside the border as if the element were sinking into the page.</dd>
+
+                <dt>horizontal offset</dt>
+                <dd>A positive value will shift the shadow to the right. A negative value will shift the shadow to the left.</dd>
+
+                <dt>vertical offset</dt>
+                <dd>A positive value will shift the shadow up. A negative value will shift the shadow down.</dd>
+
+                <dt>blur radius</dt>
+                <dd>(optional) The larger the value, the more spread out and lighter the shadow will be.</dd>
+
+                <dt>spread radius</dt>
+                <dd>(optional) A positive value will cause the shadow to expand. A negative value will cause the shadow to contract.</dd>
+
+                <dt>color</dt>
+                <dd>(optional) The color of the shadow. If not given, the browser will choose a color.</dd>
+            </dl>
+
+            <p>Also, note that you can specify multiple box shadows by separating them with a comma.</p>
+
+            <pre><code class="brush: css;">@(@"
+            .insetShadow {
+                box-shadow: inset 2px 2px 8px black;
+            }
+            .thinShadow {
+                box-shadow: 2px 2px 1px black;
+            }
+            .wideShadow {
+                box-shadow: 2px 2px 20px black;
+            }
+            .topLeftShadow {
+                box-shadow: -2px -2px 8px black;
+            }
+            /* Borrowed from http://markusstange.wordpress.com/2009/02/15/fun-with-box-shadows */
+            .multipleShadows {
+                box-shadow:
+                  0 0 20px black,
+                  20px 15px 30px yellow,
+                  -20px 15px 30px lime,
+                  -20px -15px 30px blue,
+                  20px -15px 30px red;
+            }
+            div {
+                border: solid 1px #aaaacc;
+                width: 100px;
+                height: 100px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""insetShadow""> </div>
+            <div class=""thinShadow""> </div>
+            <div class=""wideShadow""> </div>
+            <div class=""topLeftShadow""> </div>
+            <div class=""multipleShadows""> </div>
+            ")</code></pre>
+
+            <div id="boxShadowDemo">
+                <div class="insetShadow"> </div>
+                <div class="thinShadow"> </div>
+                <div class="wideShadow"> </div>
+                <div class="topLeftShadow"> </div>
+                <div class="multipleShadows"> </div>
+            </div>
+
+            <h3>Border Radius</h3>
+
+            <p>
+                The <code>border-radius</code> property allows you to give an element rounded corners. You can even make the element look like a circle if the
+                border radius is the same as the width and height of a square element.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .smallCorners {
+                border-radius: 5px;
+            }
+            .largeCorners {
+                border-radius: 20px;
+            }
+            .circle {
+                border-radius: 100px;
+            }
+            p {
+                width: 100px;
+                height: 100px;
+                background-color: #2F4F4F;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p> </p>
+            <p class=""smallCorners""> </p>
+            <p class=""largeCorners""> </p>
+            <p class=""circle""> </p>
+            ")</code></pre>
+
+            <div id="borderRadiusDemo">
+                <p> </p>
+                <p class="smallCorners"> </p>
+                <p class="largeCorners"> </p>
+                <p class="circle"> </p>
+            </div>
+
+            <p>
+                You can also make elliptical corners by specifying different values for the horizontal and vertical radii. And similar to other properties,
+                you can set the radius separately for each corner by using these properties:
+            </p>
+
+            <ul>
+                <li><code>border-top-left-radius</code></li>
+                <li><code>border-top-right-radius</code></li>
+                <li><code>border-bottom-left-radius</code></li>
+                <li><code>border-bottom-right-radius</code></li>
+            </ul>
+
+            <pre><code class="brush: css;">@(@"
+            .shape1 {
+                border-top-left-radius: 40px 25px;
+                border-top-right-radius: 10px 25px;
+                border-bottom-left-radius: 7px;
+            }
+            .shape2 {
+                border-radius: 40px / 20px;
+            }
+            p {
+                width: 100px;
+                height: 100px;
+                background-color: #2F4F4F;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p class=""shape1""> </p>
+            <p class=""shape2""> </p>
+            ")</code></pre>
+
+            <div id="ellipticalCornersDemo">
+                <p class="shape1"> </p>
+                <p class="shape2"> </p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Layout</h2>
+        <div>
+            <h3>position:static</h3>
+            <p>
+                The <code>postion</code> property affects how and where an element is displayed on the page. The default value is <code>static</code>.
+                This means that the elements are laid out one after another. As mentioned before block elements always start on a new line while inline elements can
+                be on the same line. If there are too many inline elements to fit on a single line, then they'll wrap to the next line.
+            </p>
+
+            <h3>position:relative</h3>
+            <p>
+                Setting the <code>position</code> property to have a value of <code>relative</code> means that the element will be moved relative to where it normally
+                would have been placed. It is important to know that the space that the element would normally have taken up is preserved. Other elements don't move in
+                to fill in that space. To be useful this would be used in conjunction with one or more of the offset properties:
+            </p>
+
+            <dl>
+                <dt><code>top</code></dt>
+                <dd>Specifies an offset for the top of the element. A positive value moves the element down. A negative value moves the element up.</dd>
+
+                <dt><code>bottom</code></dt>
+                <dd>Specifies an offset for the bottom of the element. A positive value moves the element up. A negative value moves the element down.</dd>
+
+                <dt><code>left</code></dt>
+                <dd>
+                    Specifies an offset for the left side of the element. A positive value moves the element to the right.
+                    A negative value moves the element to the left.
+                </dd>
+
+                <dt><code>right</code></dt>
+                <dd>
+                    Specifies an offset for the right side of the element. A positive value moves the element to the left.
+                    A negative value moves the element to the right.
+                </dd>
+            </dl>
+
+            <p>
+                You should only use one of the <code>top</code> or <code>bottom</code> properties.
+                Likewise, use only one of the <code>left</code> or <code>right</code> properties.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            div {
+                border: solid 1px blue;
+                padding: 20px;
+            }
+            .relative {
+                position: relative;
+                top: 35px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div>
+                Lorem ipsum dolor
+            </div>
+            <div>
+                Lorem <span class=""relative"">ipsum</span> dolor
+            </div>
+            ")</code></pre>
+
+            <div id="relativeDemo">
+                <div>
+                    Lorem ipsum dolor
+                </div>
+
+                <div>
+                    Lorem <span class="relative">ipsum</span> dolor
+                </div>
+            </div>
+
+            <h3>position:absolute</h3>
+            <p>
+                Whereas <code>position: relative</code> moves an element relative to where it would have normaly been, <code>position: absolute</code>
+                places an element at a precise location on the screen. To do so, you use the <code>top</code>, <code>bottom</code>, <code>left</code>,
+                and/or <code>right</code> properties. In contrast to a relatively positioned element, an absolutely positioned element is moved out of the
+                normal flow of the document and other elements move in to take up the space.
+            </p>
+
+            <p>
+                Relative and absolutely positioned elements are most commonly used together. To do so, place an absolutely positioned element inside of a
+                relatively positioned element. When an absolutely positioned element is inside of a relatively positioned element then the <code>top</code>,
+                <code>left</code>, etc properties only move the absolutely positioned element within its parent element.
+            </p>
+
+            <p>
+                So <code>top: 0; left: 0;</code> refers to the top left most corner of the parent element. If there's were no relatively positioned parent element
+                then <code>top: 0; left: 0;</code> refers to the top left most corner of the entire window.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .relative {
+                border: solid 1px blue;
+                height: 120px;
+                position: relative;
+            }
+            .absolute {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50px;
+                height: 50px;
+                border: 1px solid orange;
+                margin: 0;
+                padding: 0;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""relative"">
+                <p class=""absolute"">Move me</p>
+            </div>
+            ")</code></pre>
+
+            <div id="absoluteDemo" class="relative">
+                <p id="moveableParagraph" class="absolute">Move me</p>
+            </div>
+
+            <label>Top <input type="text" id="top" value="0" /></label>
+            <label>Left <input type="text" id="left" value="0" /></label>
+            <button id="setPositionButton">Set Position</button>
+
+            <p>
+                This technique of moving an absolutely positioned element inside of a relatively positioned element is exaclty how image sliders such as
+                this <a href="http://wowslider.com/jquery-gallery-dot-seven-demo.html">WOW Slider</a> work.
+            </p>
+
+            <h3>position:fixed</h3>
+            <p>
+                <code>position: fixed</code> is a form of absolute positioning, but it differs in that the element does not scroll with the rest of the page.
+                The element stays fixed wherever it's placed and does not move. In the following demo, the header at the top of the page has its position property
+                set to <code>fixed</code>. Notice that it does not scroll with the rest of the page. @Html.ActionLink("Go to demo", "FixedPositioningDemo", "Lessons")
+            </p>
+
+            <h3>z-index</h3>
+            <p>
+                When you have multiple elements that are positioned using <code>relative</code>, <code>absolute</code>, or <code>fixed</code>, you may have elements
+                on top of other elements. When that happens the <code>z-index</code> property determines the order in which the elements are placed on top of each other.
+            </p>
+
+            <p>
+                To understand the <code>z-index</code> property, think back to math class and imagine that the bottom of the monitor is the x-axis and the left side
+                of the monitor is the y-axis. The z-axis then is coming straight out of the screen at you. The higher the number of the <code>z-index</code>, the closer
+                the element is to you. By default elements created later in the HTML document have a higher <code>z-index</code>. Consider the difference between these
+                two examples.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .zIndexDemo {
+                border: solid 1px blue;
+                height: 120px;
+                position: relative;
+            }
+            .zIndexDemo div {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                margin: 0;
+                padding: 0;
+            }
+            .one {
+                top: 15px;
+                left: 15px;
+                background-color: blue;
+            }
+            .two {
+                top: 30px;
+                left: 30px;
+                background-color: orange;
+            }
+            .three {
+                top: 45px;
+                left: 45px;
+                background-color: green;
+            }
+            .onTop {
+                z-index: 1000;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""zIndexDemo"">
+                <div class=""one""> </div>
+                <div class=""two""> </div>
+                <div class=""three""> </div>
+            </div>
+            <div class=""zIndexDemo"">
+                <div class=""one""> </div>
+                <div class=""two onTop""> </div>
+                <div class=""three""> </div>
+            </div>
+            ")</code></pre>
+
+            <div class="zIndexDemo">
+                <div class="one"> </div>
+                <div class="two"> </div>
+                <div class="three"> </div>
+            </div>
+
+            <div class="zIndexDemo">
+                <div class="one"> </div>
+                <div class="two onTop"> </div>
+                <div class="three"> </div>
+            </div>
+
+            <h3>float</h3>
+            <p>
+                The <code>float</code> property allows you to take an element and move it to the far left or far right within its parent element.
+                Although it alters the position of an element, floating an element is different from setting the <code>position</code> property.
+            </p>
+
+            <p>
+                There are two common uses of the <code>float</code> property. One is to wrap text around an image as in the following example.
+                Note that a margin is also added around the <code>figure</code> to give it some space from the text.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #imgFloatDemo figure {
+                float: left;
+                margin-top: 5px;
+                margin-right: 15px;
+                border: dashed 1px #999;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div id=""imgFloatDemo"">
+                Lorem ipsum dolor sit amet...
+                
+                <figure>
+                    <img src=""~/Images/dreamstimefree_223552.jpg"" alt=""homework"" width=""200"" />
+                    <figcaption>
+                        © <a href=""http://www.dreamstime.com/johnlric_info"">Johnlric</a> |
+                        <a href=""http://www.dreamstime.com/"">Dreamstime Stock Photos</a>
+                    </figcaption>
+                </figure>
+                
+                Morbi commodo, diam in ...
+            </div>
+            ")</code></pre>
+
+            <div id="imgFloatDemo">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at urna arcu. Mauris faucibus ligula metus, eu maximus leo accumsan ut. Nam elit tortor, ullamcorper nec laoreet nec, facilisis nec elit. Suspendisse ac porta magna. Morbi ac congue urna, id mattis risus. Sed id auctor ipsum. Proin maximus cursus nibh sit amet molestie. Integer et cursus orci, a elementum diam. Duis id nisl ut ligula lacinia eleifend. Mauris eget scelerisque quam. Morbi maximus maximus felis sit amet faucibus. Pellentesque pulvinar blandit suscipit. Morbi et facilisis turpis. Pellentesque sit amet ipsum a augue hendrerit pulvinar. Morbi at dignissim magna.
+                <figure>
+                    <img src="~/Images/dreamstimefree_223552.jpg" alt="homework" width="200" />
+                    <figcaption>
+                        © <a href="http://www.dreamstime.com/johnlric_info">Johnlric</a> | <a href="http://www.dreamstime.com/">Dreamstime Stock Photos</a>
+                    </figcaption>
+                </figure>
+                Morbi commodo, diam in vulputate aliquam, arcu urna venenatis urna, nec vulputate leo eros et risus. Vivamus viverra quis quam nec volutpat. Suspendisse ornare luctus dictum. Sed tempus suscipit quam ut molestie. Duis facilisis massa ante, nec dignissim nibh sollicitudin vel. Vivamus dapibus diam eu augue gravida, a faucibus magna maximus. Phasellus bibendum vel est sit amet placerat. Quisque nec tempus nulla. Pellentesque fermentum elit id dolor commodo pharetra. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam finibus nulla ut purus venenatis scelerisque. Maecenas facilisis lacus sed neque pharetra, at mollis leo viverra. Integer lacinia viverra elit. Suspendisse accumsan tortor ac eleifend malesuada.
+                Vestibulum facilisis convallis pellentesque. Aliquam vehicula ac velit ac tristique. Nunc vestibulum risus sed arcu convallis, et vulputate enim ultricies. Cras convallis turpis nulla. Sed ac arcu iaculis, volutpat tortor eu, rhoncus tortor. Donec blandit aliquam nisl, sit amet congue urna rhoncus sit amet. Phasellus leo mauris, luctus id lobortis et, pharetra et orci. Pellentesque sodales, justo in maximus cursus, nulla elit dapibus quam, eu vestibulum risus lacus mollis lorem.
+            </div>
+
+            <p>
+                The other common use is to create two or more columns in your layout. You can either float one element to the left and one to the right or simply
+                float them both to the left. It works to float them both to the left, because a floated element won't float past another floated element.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .left {
+                float: left;
+                margin: 10px;
+                width: 200px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""columnContainer"">
+                <div class=""left"">
+                    <ul>
+                        <li>One</li>
+                        <li>Two</li>
+                        <li>Three</li>
+                    </ul>
+                </div>
+                <div class=""left"">
+                    <ul>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+                <div class=""left"">
+                    <ul>
+                        <li>Do</li>
+                        <li>Re</li>
+                        <li>Me</li>
+                    </ul>
+                </div>
+            </div>
+            ")</code></pre>
+
+            <div class="columnContainer">
+                <div class="left">
+                    <ul>
+                        <li>One</li>
+                        <li>Two</li>
+                        <li>Three</li>
+                    </ul>
+                </div>
+
+                <div class="left">
+                    <ul>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+
+                <div class="left">
+                    <ul>
+                        <li>Do</li>
+                        <li>Re</li>
+                        <li>Me</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>clear</h3>
+            <p>
+                The <code>clear</code> property determines which side or sides cannot have floated elements. The values are
+            </p>
+
+            <dl>
+                <dt><code>left</code></dt>
+                <dd>The left-hand side of the element is not allowed to touch other floated elements.</dd>
+
+                <dt><code>right</code></dt>
+                <dd>The right-hand side of the element is not allowed to touch other floated elements.</dd>
+
+                <dt><code>both</code></dt>
+                <dd>The neither the left nor the right-hand sides of the element are not allowed to touch other floated elements.</dd>
+
+                <dt><code>none</code></dt>
+                <dd>The element allows floated elements on either side.</dd>
+            </dl>
+
+            <p>
+                One important use for <code>clear: both</code> is when a parent element only contains floated children. When that happens, the parent element
+                collapses, that is, its height is zero. In order to make the parent element expand so that it encompasses its children, you can place an extra
+                element at the end that has <code>clear: both</code> set.
+            </p>
+
+            <p>
+                There is an alternative way to force the parent to encompass its floated children. That is to set <code>overflow: hidden</code> on the parent.
+                Don't ask me why it works, it just does. See the @Html.ActionLink("Demo", "ClearFloatDemo", "Lessons").
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Images</h2>
+        <div>
+            <h3>Background Images</h3>
+            <p>
+                You can add a background image to an element using the <code>background-image</code> property. This property takes a URL that specifies where the
+                image is located. The URL can be either absolute or relative.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #backgroundImageDemo {
+                background-image: url(/Images/Carbon_Fiber_Tile100.jpg);
+                background-repeat: repeat;
+                font-size: 1.7em;
+                padding: 20px;
+                color: white;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p id=""backgroundImageDemo"">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis.
+                Integer euismod risus felis, sed pharetra turpis malesuada eget.
+                Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit.
+                Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+            ")</code></pre>
+
+            <p id="backgroundImageDemo">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+
+            <p>The <code>background-repeat</code> property can take one of the following values:</p>
+            <ul>
+                <li><code>repeat</code></li>
+                <li><code>repeat-x</code></li>
+                <li><code>repeat-y</code></li>
+                <li><code>no-repeat</code></li>
+            </ul>
+
+            <p>The <code>background-attachment</code> property can accept one of the two following properties:</p>
+            <ul>
+                <li><code>fixed</code></li>
+                <li><code>scroll</code></li>
+            </ul>
+
+            <p>
+                The <code>background-position</code> property specifies where the background image is displayed.
+                You can specify two values. The first is the horizontal position and the second is the vertical position.
+                You can specify a length such as a percent (%), <code>em</code>, or <code>px</code> or you can use any of these values:
+            </p>
+            <ul>
+                <li><code>left</code></li>
+                <li><code>right</code></li>
+                <li><code>center</code></li>
+                <li><code>top</code></li>
+                <li><code>bottom</code></li>
+            </ul>
+
+            <h3>Sprites</h3>
+            <p>
+                A sprite is an image that is composed of two or more smaller images. Different parts of the image can be shown in response to a user
+                event such as hovering over or clicking on a link or button.
+            </p>
+
+
+
+            <h3>Gradients</h3>
+            <p>
+                A gradient is a smooth transition from one color to another. In the past gradients were typically made in Photoshop (or other photo
+                editing software) and then added to an HTML document using the <code>background-image</code> property. CSS3 now allows you to generate
+                a gradient in the browser.
+            </p>
+
+            <p>
+                Because the specs are not finalized, yet browsers want to go ahead and implement this feature, you must use vendor-specific prefixes
+                for this property. It is often convenient to use a gradient generator such as at <a href="http://www.colorzilla.com/gradient-editor/">colorzilla</a>.
+                And you should specify a color as a backup in case the browser does not support gradients at all.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #gradientDemo {
+                background-repeat: repeat;
+                padding: 20px;
+                background: #b3dced;
+                background: -moz-linear-gradient(top,  #b3dced 0%, #29b8e5 50%, #bce0ee 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b3dced), color-stop(50%,#29b8e5), color-stop(100%,#bce0ee));
+                background: -webkit-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                background: -o-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                background: -ms-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                background: linear-gradient(to bottom,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 );
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p id=""gradientDemo"">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+            ")</code></pre>
+
+            <p id="gradientDemo">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+
+            $("#overflowChanger").change(function () {
+                var newOverflow = $(this).val();
+                $("#overflower").css("overflow", newOverflow);
+            });
+
+            $("#setPositionButton").click(function () {
+                var top = parseInt($("#top").val());
+                var left = parseInt($("#left").val());
+
+                if (!isNaN(top) && !isNaN(left)) {
+                    $("#moveableParagraph").css({ top: top, left: left });
+                }
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}

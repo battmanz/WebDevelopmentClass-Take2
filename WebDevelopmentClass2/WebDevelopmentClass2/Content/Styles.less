@@ -87,3 +87,421 @@ td.code .container {
         &.transparent { background-color: rgba(255, 192, 203, 0); }
     }
 }
+
+/*      Lesson 5
+-------------------------------- */
+#fontDemo p {
+    margin: 0;
+
+    &.serif { font-family: Georgia, Times, serif; }
+    &.sans { font-family: Arial, Verdana, sans-serif; }
+    &.mono { font-family: Courier, 'Courier New', monospace; }
+    &.cursive { font-family: 'Comic Sans MS', 'Monotype Corsiva', cursive; }
+    &.fantasy { font-family: Impact, Haettenschweiler, fantasy; }
+}
+
+a.standard-link {
+    text-decoration: underline;
+}
+
+a.no-decoration:hover {
+    text-decoration: none;
+}
+
+#verticalAlignDemo .baseline {
+    vertical-align: baseline;
+}
+
+#verticalAlignDemo .sub {
+    vertical-align: sub;
+}
+
+#verticalAlignDemo .super {
+    vertical-align: super;
+}
+
+#verticalAlignDemo .top {
+    vertical-align: top;
+}
+
+#verticalAlignDemo .text-top {
+    vertical-align: text-top;
+}
+
+#verticalAlignDemo .middle {
+    vertical-align: middle;
+}
+
+#verticalAlignDemo .bottom {
+    vertical-align: bottom;
+}
+
+#verticalAlignDemo .text-bottom {
+    vertical-align: text-bottom;
+}
+
+#verticalAlignDemo p {
+    line-height: 3;
+    border: solid 1px red;
+}
+
+#verticalAlignDemo span {
+    border: solid 1px green;
+}
+
+#verticalAlignDemo td {
+    height: 50px;
+    border: solid 1px #999;
+}
+
+#home {
+    text-indent: -9999px;
+    background-image: url(/Images/homeReplacement.png);
+    background-repeat: no-repeat;
+    min-height: 70px;
+}
+
+#widthDemo {
+    width: 500px;
+    height: 300px;
+    background-color: #FF7F50;
+}
+
+#widthDemo p {
+    width: 50%;
+    height: 66%;
+    background-color: #008B8B;
+}
+
+#overflower {
+    width: 650px;
+    height: 200px;
+    border: solid 2px violet;
+    margin: 10px 0 130px 0;
+}
+
+#borderStyleDemo {
+    overflow: hidden;
+    background-color: white;
+    /*background-color: green; #3399FF;*/
+    width: 620px;
+}
+
+#borderStyleDemo div {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    /*color: white;*/
+    border-width: 4px;
+    float: left;
+    margin: 10px;
+    padding:10px;
+    /*border-color: #e6e6e6;*/
+}
+
+#borderStyleDemo .solid {
+    border-style: solid;
+}
+
+#borderStyleDemo .dotted {
+    border-style: dotted;
+}
+
+#borderStyleDemo .dashed {
+    border-style: dashed;
+}
+
+#borderStyleDemo .double {
+    border-style: double;
+}
+
+#borderStyleDemo .groove {
+    border-style: groove;
+}
+
+#borderStyleDemo .ridge {
+    border-style: ridge;
+}
+
+#borderStyleDemo .inset {
+    border-style: inset;
+}
+
+#borderStyleDemo .outset {
+    border-style: outset;
+}
+
+#borderStyleDemo .hidden {
+    border-style: hidden;
+}
+
+#borderStyleDemo .none {
+    border-style: none;
+}
+
+#borderShorthandDemo {
+    border: 5px dotted purple;
+    width: 100px;
+    height: 70px;
+    padding: 20px 10px 10px 10px;
+}
+
+#paddingDemo p {
+    border: 2px solid #999;
+    width: 300px;
+}
+
+.breathing-room {
+    padding: 15px;
+}
+
+.marginDemo {
+    border: 2px dashed #ccc;
+    padding: 1px 10px 15px 10px;
+    margin-bottom: 10px;
+}
+
+.marginDemo span, .marginDemo p {
+    background-color: #00CC99;
+    margin: 0;
+    padding: 0 5px;
+    border: 2px solid #FF6633;
+}
+
+    .marginDemo p {
+        padding: 5px;
+    }
+
+.marginDemo p.margin {
+    margin: 20px 0;
+}
+
+.marginDemo span.margin {
+    margin: 0 20px;
+}
+
+.notice {
+    border: 3px dotted #ccc;
+    background-color: #FFFF99;
+    padding: 10px;
+}
+
+#navDemo li {
+    display: inline;
+    list-style-type: none;
+    margin: 0 10px;
+}
+
+#borderImageDemo .stretch {
+    border-image: url(/Images/border.png) 27 stretch;
+}
+
+#borderImageDemo .repeat {
+    border-image: url(/Images/border.png) 27 repeat;
+}
+
+#borderImageDemo .round {
+    border-image: url(/Images/border.png) 27 round;
+}
+
+#borderImageDemo p {
+    //height: 40px;
+    border-width: 27px;
+    margin: 40px 0;
+    padding: 5px;
+}
+
+#boxShadowDemo {
+    overflow: hidden;
+}
+
+#boxShadowDemo div {
+    border: solid 1px #aaaacc;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 30px;
+}
+
+#boxShadowDemo .insetShadow {
+    box-shadow: inset 2px 2px 8px black;
+}
+
+#boxShadowDemo .thinShadow {
+    box-shadow: 2px 2px 1px black;
+}
+
+#boxShadowDemo .wideShadow {
+    box-shadow: 2px 2px 20px black;
+}
+
+#boxShadowDemo .topLeftShadow {
+    box-shadow: -2px -2px 8px black;
+}
+
+#boxShadowDemo .multipleShadows {
+    /* Borrowed from http://markusstange.wordpress.com/2009/02/15/fun-with-box-shadows */
+    box-shadow:
+  0 0 20px black,
+  20px 15px 30px yellow,
+  -20px 15px 30px lime,
+  -20px -15px 30px blue,
+  20px -15px 30px red;
+}
+
+#borderRadiusDemo, #ellipticalCornersDemo {
+    overflow: hidden;
+}
+
+#borderRadiusDemo p, #ellipticalCornersDemo p {
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 20px;
+    background-color: #2F4F4F;
+}
+
+#borderRadiusDemo .smallCorners {
+    border-radius: 5px;
+}
+
+#borderRadiusDemo .largeCorners {
+    border-radius: 20px;
+}
+
+#borderRadiusDemo .circle {
+    border-radius: 100px;
+}
+
+#ellipticalCornersDemo .shape1 {
+    border-top-left-radius: 40px 25px;
+    border-top-right-radius: 10px 25px;
+    border-bottom-left-radius: 7px;
+}
+
+#ellipticalCornersDemo .shape2 {
+    border-radius: ~"40px / 20px";
+}
+
+#relativeDemo div {
+    border: solid 1px blue;
+    padding: 20px;
+}
+
+#relativeDemo .relative {
+    position: relative;
+    top: 35px;
+}
+
+#absoluteDemo {
+    border: solid 1px blue;
+    height: 120px;
+    position: relative;
+}
+
+#absoluteDemo .absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border: 1px solid orange;
+    margin: 0;
+    padding: 0;
+}
+
+.zIndexDemo {
+    border: solid 1px blue;
+    height: 120px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.zIndexDemo div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+.one {
+    top: 15px;
+    left: 15px;
+    background-color: blue;
+}
+
+.two {
+    top: 30px;
+    left: 30px;
+    background-color: orange;
+}
+
+.three {
+    top: 45px;
+    left: 45px;
+    background-color: green;
+}
+
+.onTop {
+    z-index: 1000;
+}
+
+#imgFloatDemo {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#imgFloatDemo figure {
+    float: left;
+    margin-top: 5px;
+    margin-right: 15px;
+    border: dashed 1px #999;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#imgFloatDemo figcaption {
+    font-size: 0.6em;
+}
+
+.columnContainer {
+    overflow: hidden;
+}
+
+.columnContainer .left {
+    float: left;
+    margin: 10px;
+    width: 200px;
+    background-color: #2F4F4F;
+    border-radius: 10px;
+    padding: 10px;
+    color: #ddd;
+}
+
+#backgroundImageDemo {
+    background-image: url(/Images/Carbon_Fiber_Tile100.jpg);
+    background-repeat: repeat;
+    font-size: 1.7em;
+    padding: 20px;
+    color: white;
+}
+
+#gradientDemo {
+    background-repeat: repeat;
+    padding: 20px;
+    background: #b3dced;
+    background: -moz-linear-gradient(top,  #b3dced 0%, #29b8e5 50%, #bce0ee 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b3dced), color-stop(50%,#29b8e5), color-stop(100%,#bce0ee));
+    background: -webkit-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+    background: -o-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+    background: -ms-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+    background: linear-gradient(to bottom,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 );
+}
+
+#homePageMockup {
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}

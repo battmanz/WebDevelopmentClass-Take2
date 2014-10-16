@@ -256,8 +256,15 @@
     </Content>
     <Content Include="Content\jquery-ui\images\Thumbs.db" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Images\1024x768-serafina-linen-large.jpg" />
     <Content Include="Images\468px-Client-server-model.svg.png" />
     <Content Include="Images\aptanaDownload.png" />
+    <Content Include="Images\border.png" />
+    <Content Include="Images\borderWithLines.png" />
+    <Content Include="Images\boxes.png" />
+    <Content Include="Images\Carbon_Fiber_Tile100.jpg" />
+    <Content Include="Images\dreamstimefree_223552.jpg" />
+    <Content Include="Images\homeReplacement.png" />
     <Content Include="Images\html&amp;css.jpg" />
     <Content Include="Images\macbook-air-all-faded-and-stuff.jpg" />
     <Content Include="Images\macbook-air-all-faded-and-stuff_dark.jpg" />
@@ -327,6 +334,11 @@
     <Content Include="Views\Lessons\Lesson3.cshtml" />
     <Content Include="Views\Echo\Index.cshtml" />
     <Content Include="Views\Lessons\Lesson4.cshtml" />
+    <Content Include="Views\Lessons\Lesson5.cshtml" />
+    <Content Include="Views\Lessons\CenteredContentDemo.cshtml" />
+    <Content Include="Views\Lessons\FixedPositioningDemo.cshtml" />
+    <Content Include="Views\Lessons\MinMaxDemo.cshtml" />
+    <Content Include="Views\Lessons\ClearFloatDemo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

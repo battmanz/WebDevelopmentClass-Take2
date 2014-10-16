@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Clear Float Demo</title>
+    <style type="text/css">
+        body {
+            background-color:  #aaa;
+        }
+
+        section {
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: #333;
+        }
+
+        .hidden {
+            overflow: hidden;
+        }
+
+        .box {
+            width: 150px;
+            height: 150px;
+            float: left;
+            background-color: #2F4F4F;
+            margin: 10px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clear Float Demo</h1>
+
+    <section>
+        <h2>No Clear</h2>
+        <p>
+            There should be a dark background behind these boxes, but it's not showing because the parent element (that has the dark background)
+            has collapsed because all of its children are floated.
+        </p>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Extra Element With <code>clear: both;</code></h2>
+        <p>
+            Here you can see the dark background because there is an extra element at the bottom with the following css rule: <code>clear: both;</code>.
+        </p>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+
+            <!-- Here is the extra element I'm talking about -->
+            <div class="clear"></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Css trick <code>overflow: hidden;</code></h2>
+        <p>
+            Here again you can see the dark background. This time it is because the parent element has <code>overflow: hidden;</code> applied to it.
+        </p>
+        <div class="container hidden">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </section>
+</body>
+</html>
