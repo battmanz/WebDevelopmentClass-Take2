@@ -430,4 +430,15 @@ a.no-decoration:hover {
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
+#upDownSprite {
+  background-image: url(/Images/upDownSprite.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 0;
+  width: 24px;
+  height: 24px;
+}
+#upDownSprite:hover {
+  background-position-y: -26px;
+}
 /*# sourceMappingURL=Styles.css.map */

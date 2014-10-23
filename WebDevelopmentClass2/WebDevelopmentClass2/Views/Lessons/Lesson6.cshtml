@@ -1,0 +1,513 @@
+﻿@{
+    ViewBag.Title = "Lessons 6";
+}
+
+<article>
+    <h1>Lessons 6</h1>
+
+    <section>
+        <h2>Layout</h2>
+        <div>
+            <h3>position:static</h3>
+            <p>
+                The <code>postion</code> property affects how and where an element is displayed on the page. The default value is <code>static</code>.
+                This means that the elements are laid out one after another. As mentioned before block elements always start on a new line while inline elements can
+                be on the same line. If there are too many inline elements to fit on a single line, then they'll wrap to the next line.
+            </p>
+
+            <h3>position:relative</h3>
+            <p>
+                Setting the <code>position</code> property to have a value of <code>relative</code> means that the element will be moved relative to where it normally
+                would have been placed. It is important to know that the space that the element would normally have taken up is preserved. Other elements don't move in
+                to fill in that space. To be useful this would be used in conjunction with one or more of the offset properties:
+            </p>
+
+            <dl>
+                <dt><code>top</code></dt>
+                <dd>Specifies an offset for the top of the element. A positive value moves the element down. A negative value moves the element up.</dd>
+
+                <dt><code>bottom</code></dt>
+                <dd>Specifies an offset for the bottom of the element. A positive value moves the element up. A negative value moves the element down.</dd>
+
+                <dt><code>left</code></dt>
+                <dd>
+                    Specifies an offset for the left side of the element. A positive value moves the element to the right.
+                    A negative value moves the element to the left.
+                </dd>
+
+                <dt><code>right</code></dt>
+                <dd>
+                    Specifies an offset for the right side of the element. A positive value moves the element to the left.
+                    A negative value moves the element to the right.
+                </dd>
+            </dl>
+
+            <p>
+                You should only use one of the <code>top</code> or <code>bottom</code> properties.
+                Likewise, use only one of the <code>left</code> or <code>right</code> properties.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            div {
+                border: solid 1px blue;
+                padding: 20px;
+            }
+            .relative {
+                position: relative;
+                top: 35px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div>
+                Lorem ipsum dolor
+            </div>
+            <div>
+                Lorem <span class=""relative"">ipsum</span> dolor
+            </div>
+            ")</code></pre>
+
+            <div id="relativeDemo">
+                <div>
+                    Lorem ipsum dolor
+                </div>
+
+                <div>
+                    Lorem <span class="relative">ipsum</span> dolor
+                </div>
+            </div>
+
+            <h3>position:absolute</h3>
+            <p>
+                Whereas <code>position: relative</code> moves an element relative to where it would have normaly been, <code>position: absolute</code>
+                places an element at a precise location on the screen. To do so, you use the <code>top</code>, <code>bottom</code>, <code>left</code>,
+                and/or <code>right</code> properties. In contrast to a relatively positioned element, an absolutely positioned element is moved out of the
+                normal flow of the document and other elements move in to take up the space.
+            </p>
+
+            <p>
+                Relative and absolutely positioned elements are most commonly used together. To do so, place an absolutely positioned element inside of a
+                relatively positioned element. When an absolutely positioned element is inside of a relatively positioned element then the <code>top</code>,
+                <code>left</code>, etc properties only move the absolutely positioned element within its parent element.
+            </p>
+
+            <p>
+                So <code>top: 0; left: 0;</code> refers to the top left most corner of the parent element. If there's were no relatively positioned parent element
+                then <code>top: 0; left: 0;</code> refers to the top left most corner of the entire window.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .relative {
+                border: solid 1px blue;
+                height: 120px;
+                position: relative;
+            }
+            .absolute {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 50px;
+                height: 50px;
+                border: 1px solid orange;
+                margin: 0;
+                padding: 0;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""relative"">
+                <p class=""absolute"">Move me</p>
+            </div>
+            ")</code></pre>
+
+            <div id="absoluteDemo" class="relative">
+                <p id="moveableParagraph" class="absolute">Move me</p>
+            </div>
+
+            <label>Top <input type="text" id="top" value="0" /></label>
+            <label>Left <input type="text" id="left" value="0" /></label>
+            <button id="setPositionButton">Set Position</button>
+
+            <p>
+                This technique of moving an absolutely positioned element inside of a relatively positioned element is exaclty how image sliders such as
+                this <a href="http://wowslider.com/jquery-gallery-dot-seven-demo.html">WOW Slider</a> work.
+            </p>
+
+            <h3>position:fixed</h3>
+            <p>
+                <code>position: fixed</code> is a form of absolute positioning, but it differs in that the element does not scroll with the rest of the page.
+                The element stays fixed wherever it's placed and does not move. In the following demo, the header at the top of the page has its position property
+                set to <code>fixed</code>. Notice that it does not scroll with the rest of the page. @Html.ActionLink("Go to demo", "FixedPositioningDemo", "Lessons")
+            </p>
+
+            <h3>z-index</h3>
+            <p>
+                When you have multiple elements that are positioned using <code>relative</code>, <code>absolute</code>, or <code>fixed</code>, you may have elements
+                on top of other elements. When that happens the <code>z-index</code> property determines the order in which the elements are placed on top of each other.
+            </p>
+
+            <p>
+                To understand the <code>z-index</code> property, think back to math class and imagine that the bottom of the monitor is the x-axis and the left side
+                of the monitor is the y-axis. The z-axis then is coming straight out of the screen at you. The higher the number of the <code>z-index</code>, the closer
+                the element is to you. By default elements created later in the HTML document have a higher <code>z-index</code>. Consider the difference between these
+                two examples.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .zIndexDemo {
+                border: solid 1px blue;
+                height: 120px;
+                position: relative;
+            }
+            .zIndexDemo div {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                margin: 0;
+                padding: 0;
+            }
+            .one {
+                top: 15px;
+                left: 15px;
+                background-color: blue;
+            }
+            .two {
+                top: 30px;
+                left: 30px;
+                background-color: orange;
+            }
+            .three {
+                top: 45px;
+                left: 45px;
+                background-color: green;
+            }
+            .onTop {
+                z-index: 1000;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""zIndexDemo"">
+                <div class=""one""> </div>
+                <div class=""two""> </div>
+                <div class=""three""> </div>
+            </div>
+            <div class=""zIndexDemo"">
+                <div class=""one""> </div>
+                <div class=""two onTop""> </div>
+                <div class=""three""> </div>
+            </div>
+            ")</code></pre>
+
+            <div class="zIndexDemo">
+                <div class="one"> </div>
+                <div class="two"> </div>
+                <div class="three"> </div>
+            </div>
+
+            <div class="zIndexDemo">
+                <div class="one"> </div>
+                <div class="two onTop"> </div>
+                <div class="three"> </div>
+            </div>
+
+            <h3>float</h3>
+            <p>
+                The <code>float</code> property allows you to take an element and move it to the far left or far right within its parent element.
+                Although it alters the position of an element, floating an element is different from setting the <code>position</code> property.
+            </p>
+
+            <p>
+                There are two common uses of the <code>float</code> property. One is to wrap text around an image as in the following example.
+                Note that a margin is also added around the <code>figure</code> to give it some space from the text.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #imgFloatDemo figure {
+                float: left;
+                margin-top: 5px;
+                margin-right: 15px;
+                border: dashed 1px #999;
+                border-radius: 10px;
+                padding: 10px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div id=""imgFloatDemo"">
+                Lorem ipsum dolor sit amet...
+                
+                <figure>
+                    <img src=""~/Images/dreamstimefree_223552.jpg"" alt=""homework"" width=""200"" />
+                    <figcaption>
+                        © <a href=""http://www.dreamstime.com/johnlric_info"">Johnlric</a> |
+                        <a href=""http://www.dreamstime.com/"">Dreamstime Stock Photos</a>
+                    </figcaption>
+                </figure>
+                
+                Morbi commodo, diam in ...
+            </div>
+            ")</code></pre>
+
+            <div id="imgFloatDemo">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at urna arcu. Mauris faucibus ligula metus, eu maximus leo accumsan ut. Nam elit tortor, ullamcorper nec laoreet nec, facilisis nec elit. Suspendisse ac porta magna. Morbi ac congue urna, id mattis risus. Sed id auctor ipsum. Proin maximus cursus nibh sit amet molestie. Integer et cursus orci, a elementum diam. Duis id nisl ut ligula lacinia eleifend. Mauris eget scelerisque quam. Morbi maximus maximus felis sit amet faucibus. Pellentesque pulvinar blandit suscipit. Morbi et facilisis turpis. Pellentesque sit amet ipsum a augue hendrerit pulvinar. Morbi at dignissim magna.
+                <figure>
+                    <img src="~/Images/dreamstimefree_223552.jpg" alt="homework" width="200" />
+                    <figcaption>
+                        © <a href="http://www.dreamstime.com/johnlric_info">Johnlric</a> | <a href="http://www.dreamstime.com/">Dreamstime Stock Photos</a>
+                    </figcaption>
+                </figure>
+                Morbi commodo, diam in vulputate aliquam, arcu urna venenatis urna, nec vulputate leo eros et risus. Vivamus viverra quis quam nec volutpat. Suspendisse ornare luctus dictum. Sed tempus suscipit quam ut molestie. Duis facilisis massa ante, nec dignissim nibh sollicitudin vel. Vivamus dapibus diam eu augue gravida, a faucibus magna maximus. Phasellus bibendum vel est sit amet placerat. Quisque nec tempus nulla. Pellentesque fermentum elit id dolor commodo pharetra. In hac habitasse platea dictumst. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam finibus nulla ut purus venenatis scelerisque. Maecenas facilisis lacus sed neque pharetra, at mollis leo viverra. Integer lacinia viverra elit. Suspendisse accumsan tortor ac eleifend malesuada.
+                Vestibulum facilisis convallis pellentesque. Aliquam vehicula ac velit ac tristique. Nunc vestibulum risus sed arcu convallis, et vulputate enim ultricies. Cras convallis turpis nulla. Sed ac arcu iaculis, volutpat tortor eu, rhoncus tortor. Donec blandit aliquam nisl, sit amet congue urna rhoncus sit amet. Phasellus leo mauris, luctus id lobortis et, pharetra et orci. Pellentesque sodales, justo in maximus cursus, nulla elit dapibus quam, eu vestibulum risus lacus mollis lorem.
+            </div>
+
+            <p>
+                The other common use is to create two or more columns in your layout. You can either float one element to the left and one to the right or simply
+                float them both to the left. It works to float them both to the left, because a floated element won't float past another floated element.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            .left {
+                float: left;
+                margin: 10px;
+                width: 200px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div class=""columnContainer"">
+                <div class=""left"">
+                    <ul>
+                        <li>One</li>
+                        <li>Two</li>
+                        <li>Three</li>
+                    </ul>
+                </div>
+                <div class=""left"">
+                    <ul>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+                <div class=""left"">
+                    <ul>
+                        <li>Do</li>
+                        <li>Re</li>
+                        <li>Me</li>
+                    </ul>
+                </div>
+            </div>
+            ")</code></pre>
+
+            <div class="columnContainer">
+                <div class="left">
+                    <ul>
+                        <li>One</li>
+                        <li>Two</li>
+                        <li>Three</li>
+                    </ul>
+                </div>
+
+                <div class="left">
+                    <ul>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                    </ul>
+                </div>
+
+                <div class="left">
+                    <ul>
+                        <li>Do</li>
+                        <li>Re</li>
+                        <li>Me</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>clear</h3>
+            <p>
+                The <code>clear</code> property determines which side or sides cannot have floated elements. The values are
+            </p>
+
+            <dl>
+                <dt><code>left</code></dt>
+                <dd>The left-hand side of the element is not allowed to touch other floated elements.</dd>
+
+                <dt><code>right</code></dt>
+                <dd>The right-hand side of the element is not allowed to touch other floated elements.</dd>
+
+                <dt><code>both</code></dt>
+                <dd>Neither the left nor the right-hand sides of the element are not allowed to touch other floated elements.</dd>
+
+                <dt><code>none</code></dt>
+                <dd>The element allows floated elements on either side.</dd>
+            </dl>
+
+            <p>
+                One important use for <code>clear: both</code> is when a parent element only contains floated children. When that happens, the parent element
+                collapses, that is, its height is zero. In order to make the parent element expand so that it encompasses its children, you can place an extra
+                element at the end that has <code>clear: both</code> set.
+            </p>
+
+            <p>
+                There is an alternative way to force the parent to encompass its floated children. That is to set <code>overflow: hidden</code> on the parent.
+                Don't ask me why it works, it just does. See the @Html.ActionLink("Demo", "ClearFloatDemo", "Lessons").
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Images</h2>
+        <div>
+            <h3>Background Images</h3>
+            <p>
+                You can add a background image to an element using the <code>background-image</code> property. This property takes a URL that specifies where the
+                image is located. The URL can be either absolute or relative.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #backgroundImageDemo {
+                background-image: url(/Images/Carbon_Fiber_Tile100.jpg);
+                background-repeat: repeat;
+                font-size: 1.7em;
+                padding: 20px;
+                color: white;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p id=""backgroundImageDemo"">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis.
+                Integer euismod risus felis, sed pharetra turpis malesuada eget.
+                Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit.
+                Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+            ")</code></pre>
+
+            <p id="backgroundImageDemo">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+
+            <p>The <code>background-repeat</code> property can take one of the following values:</p>
+            <ul>
+                <li><code>repeat</code></li>
+                <li><code>repeat-x</code></li>
+                <li><code>repeat-y</code></li>
+                <li><code>no-repeat</code></li>
+            </ul>
+
+            <p>The <code>background-attachment</code> property can accept one of the two following properties:</p>
+            <ul>
+                <li><code>fixed</code></li>
+                <li><code>scroll</code></li>
+            </ul>
+
+            <p>
+                The <code>background-position</code> property specifies where the background image is displayed.
+                You can specify two values. The first is the horizontal position and the second is the vertical position.
+                You can specify a length such as a percent (%), <code>em</code>, or <code>px</code> or you can use any of these values:
+            </p>
+            <ul>
+                <li><code>left</code></li>
+                <li><code>right</code></li>
+                <li><code>center</code></li>
+                <li><code>top</code></li>
+                <li><code>bottom</code></li>
+            </ul>
+
+            <h3>Sprites</h3>
+            <p>
+                A sprite is an image that is composed of two or more smaller images. Different parts of the image can be shown in response to a user
+                event such as hovering over or clicking on a link or button.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #upDownSprite {
+                background-image: url(/Images/upDownSprite.png);
+                background-repeat: no-repeat;
+                background-position-x: center;
+                background-position-y: 0;
+                width: 24px;
+                height: 24px;
+            }
+
+            #upDownSprite:hover {
+                background-position-y: -26px;
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <div id=""upDownSprite""></div>
+            ")</code></pre>
+
+            <div id="upDownSprite"> </div>
+
+            <h3>Gradients</h3>
+            <p>
+                A gradient is a smooth transition from one color to another. In the past gradients were typically made in Photoshop (or other photo
+                editing software) and then added to an HTML document using the <code>background-image</code> property. CSS3 now allows you to generate
+                a gradient in the browser.
+            </p>
+
+            <p>
+                Because the specs are not finalized, yet browsers want to go ahead and implement this feature, you must use vendor-specific prefixes
+                for this property. It is often convenient to use a gradient generator such as at <a href="http://www.colorzilla.com/gradient-editor/">colorzilla</a>.
+                And you should specify a color as a backup in case the browser does not support gradients at all.
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            #gradientDemo {
+                background-repeat: repeat;
+                padding: 20px;
+                background: #b3dced;
+                background: -moz-linear-gradient(top,  #b3dced 0%, #29b8e5 50%, #bce0ee 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b3dced), color-stop(50%,#29b8e5), color-stop(100%,#bce0ee));
+                background: -webkit-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                background: -o-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                background: -ms-linear-gradient(top,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                background: linear-gradient(to bottom,  #b3dced 0%,#29b8e5 50%,#bce0ee 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 );
+            }
+            ")</code></pre>
+
+            <pre><code class="brush: html;">@(@"
+            <p id=""gradientDemo"">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+            ")</code></pre>
+
+            <p id="gradientDemo">
+                In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
+            </p>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+
+            $("#setPositionButton").click(function () {
+                var top = parseInt($("#top").val());
+                var left = parseInt($("#left").val());
+
+                if (!isNaN(top) && !isNaN(left)) {
+                    $("#moveableParagraph").css({ top: top, left: left });
+                }
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
