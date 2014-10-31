@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Widget Factory</title>
+    <script src="../Scripts/jquery-1.9.0.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Content/bootstrap-3.2.0-dist/bootstrap.css" />
+    <style>
+        /*body {
+            height: 100%;
+        }*/
+
+        /*main {
+            min-height: 100%;
+        }
+
+        main .container {
+            overflow: auto;
+            padding-bottom: 150px;
+        }*/
+
+        footer {
+            background-color: #333;
+            /*position: relative;
+            margin-top: -150px;
+            height: 150px;
+            clear: both;
+            padding-top: 20px;*/
+        }
+
+            footer a {
+                color: #ccc;
+            }
+
+        @media(max-width: 768px) {
+            #myFooter {
+                position: static;
+            }
+        }
+
+        /*@media(min-width: 992px) {
+            main {
+                min-height: 800px;
+            }
+        }*/
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarContent">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">Widget Factory</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <section class="jumbotron">
+                <h1>The Widget Factory</h1>
+                <p>We make all kinds of custom widgets. Get yours today!</p>
+                <p><a href="#" class="btn btn-primary btn-lg">Learn More</a></p>
+            </section>
+
+            <section class="row">
+                <div class="col-sm-4">
+                    <h2>Widget 1</h2>
+                    <p>This is our basic widget that is still way better than our competitors.</p>
+                </div>
+                <div class="col-sm-4">
+                    <h2>Widget 2</h2>
+                    <p>This widget packs some extra power for those who need it.</p>
+                </div>
+                <div class="col-sm-4">
+                    <h2>Widget 3</h2>
+                    <p>This widget has all the features of the other too plus some extra gizmos for those who demand the best.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer id="myFooter" class="navbar navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul>
+                        <li><a href="#">Link 1</a></li>
+                        <li><a href="#">Link 2</a></li>
+                        <li><a href="#">Link 3</a></li>
+                        <li><a href="#">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul>
+                        <li><a href="#">Link 5</a></li>
+                        <li><a href="#">Link 6</a></li>
+                        <li><a href="#">Link 7</a></li>
+                        <li><a href="#">Link 8</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <ul>
+                        <li><a href="#">Link 9</a></li>
+                        <li><a href="#">Link 10</a></li>
+                        <li><a href="#">Link 11</a></li>
+                        <li><a href="#">Link 12</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

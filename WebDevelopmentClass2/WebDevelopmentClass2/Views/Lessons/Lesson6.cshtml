@@ -333,13 +333,13 @@
 
             <dl>
                 <dt><code>left</code></dt>
-                <dd>The left-hand side of the element is not allowed to touch other floated elements.</dd>
+                <dd>The element is moved down past left floated elements.</dd>
 
                 <dt><code>right</code></dt>
-                <dd>The right-hand side of the element is not allowed to touch other floated elements.</dd>
+                <dd>The element is moved down past right floated elements.</dd>
 
                 <dt><code>both</code></dt>
-                <dd>Neither the left nor the right-hand sides of the element are not allowed to touch other floated elements.</dd>
+                <dd>The element is moved down past both left and right floated elements.</dd>
 
                 <dt><code>none</code></dt>
                 <dd>The element allows floated elements on either side.</dd>
@@ -432,7 +432,6 @@
                 width: 24px;
                 height: 24px;
             }
-
             #upDownSprite:hover {
                 background-position-y: -26px;
             }
@@ -481,6 +480,39 @@
             <p id="gradientDemo">
                 In sit amet tincidunt arcu. Nam tincidunt feugiat leo ac facilisis. Integer euismod risus felis, sed pharetra turpis malesuada eget. Quisque quis elit tempor quam sollicitudin aliquet vitae congue elit. Phasellus vel eros at metus sollicitudin venenatis.
             </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Media Queries</h2>
+        <div>
+            <p>
+                A powerful tool to use when building a responsive design for your website is the use of media queries.
+                A <dfn>media query</dfn> allow you to specify that certain CSS rules only apply when the device the webpage
+                is presented on meets certain criteria. For example you can specify that the screen must be at least a certain size.
+            </p>
+
+            <p>
+                You can use the <code>@@media</code> syntax <strong>inside</strong> of your css like so:
+            </p>
+
+            <pre><code class="brush: css;">@(@"
+            @media (min-width: 700px) {
+                .big-thingy {
+                    display: none;
+                }
+            }
+            ")</code></pre>
+
+            <p>
+                You can also specify a media query by using the <code>media</code> attribute on the <code>link</code> tag that references your CSS.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <link rel=""stylesheet"" media=""(min-width: 700px)"" href=""styles.css"" />
+            ")</code></pre>
+
+            <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries" target="_blank">MDN Media Queries</a> to see more examples.</p>
         </div>
     </section>
 </article>

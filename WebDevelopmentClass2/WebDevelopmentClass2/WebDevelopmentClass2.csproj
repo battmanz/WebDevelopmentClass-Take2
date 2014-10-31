@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-3.2.0-dist\bootstrap.css" />
     <Content Include="Content\bootstrap\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
@@ -274,6 +275,8 @@
     <Content Include="Images\macbook-air-all-faded-and-stuff_tonedDown.jpg" />
     <Content Include="Images\servers.jpg" />
     <Content Include="Images\upDownSprite.png" />
+    <Content Include="Images\widgetFactory.png" />
+    <Content Include="Images\widgetFactorySmall.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
@@ -308,6 +311,7 @@
     <Content Include="Scripts\SyntaxHighlighter\shBrushXml.js" />
     <Content Include="Scripts\SyntaxHighlighter\shCore.js" />
     <Content Include="Scripts\SyntaxHighlighter\shLegacy.js" />
+    <Content Include="Static\WidgetFactory.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -341,6 +345,7 @@
     <Content Include="Views\Lessons\MinMaxDemo.cshtml" />
     <Content Include="Views\Lessons\ClearFloatDemo.cshtml" />
     <Content Include="Views\Lessons\Lesson6.cshtml" />
+    <Content Include="Views\Lessons\Lesson7.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

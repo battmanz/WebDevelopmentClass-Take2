@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Lesson 7";
+}
+
+<article>
+    <h1>Lesson 7</h1>
+
+    <section>
+        <h2>Bootstrap</h2>
+        <div>
+            <blockquote cite="http://getbootstrap.com/">
+                <q>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.</q>
+                <div>
+                    <cite><a href="http://getbootstrap.com/" target="_blank">http://getbootstrap.com</a></cite>
+                </div>
+            </blockquote>
+
+            <p>
+                Note that the website is <a href="http://getbootstrap.com/" target="_blank">http://getbootstrap.com</a>
+                not http://bootstrap.com or http://www.bootstrap.com
+            </p>
+
+            <p>Can you make a website that looks like this on a big screen?</p>
+
+            <div style="border: solid 2px black; max-width: 850px;"><img src="~/Images/widgetFactory.png" width="800" /></div>
+
+            <p>And like this on a small screen?</p>
+
+            <div style ="border: solid 2px black; max-width: 350px;"><img src="~/Images/widgetFactorySmall.png" /></divstyle>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
