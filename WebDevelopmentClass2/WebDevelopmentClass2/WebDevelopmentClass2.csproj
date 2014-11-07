@@ -264,6 +264,8 @@
     <Content Include="Images\borderWithLines.png" />
     <Content Include="Images\boxes.png" />
     <Content Include="Images\Carbon_Fiber_Tile100.jpg" />
+    <Content Include="Images\crowdsInTheStreet.jpg" />
+    <Content Include="Images\crowdsInTheStreetBanner.jpg" />
     <Content Include="Images\dreamstimefree_223552.jpg" />
     <Content Include="Images\homeReplacement.png" />
     <Content Include="Images\html&amp;css.jpg" />
@@ -273,7 +275,12 @@
     <Content Include="Images\macbook-air-all-faded-and-stuff_hero.jpg" />
     <Content Include="Images\macbook-air-all-faded-and-stuff_redish.jpg" />
     <Content Include="Images\macbook-air-all-faded-and-stuff_tonedDown.jpg" />
+    <Content Include="Images\ny_Skyline.jpg" />
+    <Content Include="Images\rockConcert.jpg" />
+    <Content Include="Images\rockConcertBanner.jpg" />
     <Content Include="Images\servers.jpg" />
+    <Content Include="Images\treeInLake.jpg" />
+    <Content Include="Images\treeInLakeBanner.jpg" />
     <Content Include="Images\upDownSprite.png" />
     <Content Include="Images\widgetFactory.png" />
     <Content Include="Images\widgetFactorySmall.png" />
@@ -311,7 +318,11 @@
     <Content Include="Scripts\SyntaxHighlighter\shBrushXml.js" />
     <Content Include="Scripts\SyntaxHighlighter\shCore.js" />
     <Content Include="Scripts\SyntaxHighlighter\shLegacy.js" />
+    <Content Include="Static\AboutUs.html" />
+    <Content Include="Static\ContactUs.html" />
+    <Content Include="Static\Products.html" />
     <Content Include="Static\WidgetFactory.html" />
+    <Content Include="Static\WidgetFactoryRedesign.html" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -346,6 +357,7 @@
     <Content Include="Views\Lessons\ClearFloatDemo.cshtml" />
     <Content Include="Views\Lessons\Lesson6.cshtml" />
     <Content Include="Views\Lessons\Lesson7.cshtml" />
+    <Content Include="Views\Lessons\Lesson8.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

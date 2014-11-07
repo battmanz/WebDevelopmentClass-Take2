@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Lesson 8";
+}
+
+<article>
+    <h1>Lesson 8</h1>
+
+    <section>
+        <h2>Build a Website</h2>
+        <div>
+            Build the website found <a href="~/Static/WidgetFactoryRedesign.html">Here</a>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
