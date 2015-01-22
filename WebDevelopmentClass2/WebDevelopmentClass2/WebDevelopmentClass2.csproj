@@ -266,9 +266,11 @@
     <Content Include="Images\Carbon_Fiber_Tile100.jpg" />
     <Content Include="Images\crowdsInTheStreet.jpg" />
     <Content Include="Images\crowdsInTheStreetBanner.jpg" />
+    <Content Include="Images\developerTools.png" />
     <Content Include="Images\dreamstimefree_223552.jpg" />
     <Content Include="Images\homeReplacement.png" />
     <Content Include="Images\html&amp;css.jpg" />
+    <Content Include="Images\javaScriptConsole.png" />
     <Content Include="Images\macbook-air-all-faded-and-stuff.jpg" />
     <Content Include="Images\macbook-air-all-faded-and-stuff_dark.jpg" />
     <Content Include="Images\macbook-air-all-faded-and-stuff_desaturated.jpg" />
@@ -333,6 +335,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EchoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JavaScriptLessonsController.cs" />
     <Compile Include="Controllers\LessonsController.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -358,6 +361,7 @@
     <Content Include="Views\Lessons\Lesson6.cshtml" />
     <Content Include="Views\Lessons\Lesson7.cshtml" />
     <Content Include="Views\Lessons\Lesson8.cshtml" />
+    <Content Include="Views\JavaScriptLessons\Lesson1.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

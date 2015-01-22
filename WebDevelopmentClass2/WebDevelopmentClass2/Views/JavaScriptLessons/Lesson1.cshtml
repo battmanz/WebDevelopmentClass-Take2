@@ -1,0 +1,667 @@
+﻿@{
+    ViewBag.Title = "Lesson 1";
+}
+
+<article>
+    <h1>Lesson 1</h1>
+    <section>
+        <h2>Getting Started using JavaScript</h2>
+        <div>
+            <h3>Developer Tools</h3>
+            <p>
+                JavaScript is the only language that runs in a web browser.
+                Any browser that you use today is likely to include developer tools that allow you to run JavaScript commands from a console.
+                To open the developer tools, press <kbd>F12</kbd> on any webpage. You should see something like the screenshot below.
+            </p>
+
+            <p>
+                <img src="~/Images/developerTools.png" alt="Developer Tools" width="880" />
+            </p>
+
+            <p>
+                The console isn't shown by default. You need to press a button to find it. Here's how it looks in Internet Explorer.
+                Other browsers will be slightly different.
+            </p>
+
+            <p>
+                <img src="~/Images/javaScriptConsole.png" alt="Developer Tools" width="880" />
+            </p>
+
+            <p>Enter the following code into the console. What does it do?</p>
+
+            <pre><code class="brush: js;">@(@"
+            document.getElementsByTagName('body')[0].style.backgroundColor = 'red';
+            ")</code></pre>
+
+            <h3>Navigation Bar</h3>
+
+            <p>
+                You can also enter JavaScript code directly into the navigation bar (the same place where you enter a URL or web address).
+                In order to do that, you must type the text "<code>javascript:</code>" (note the colon) first.
+            </p>
+
+            <p>
+                <strong>
+                    Caution: you cannot copy/paste the text "<code>javascript:</code>" into the navigation bar, you must type it.
+                    The browser does this for security reasons. It's protecting you against inadvertently using some malicious
+                    code you got from somewhere else on the web. When you type it, the browser assumes you know what you are doing.
+                </strong>
+            </p>
+
+            <p>
+                It's also sometimes required to "wrap" your code in a <code>function</code> when running it from the navigation bar.
+                We'll talk more about functions later. For now just think of it as something that contains code.
+                Try the following code in the naviagtion bar. Don't forget to <strong>type</strong> <code>javascript:</code>.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            javascript:(function() { document.getElementsByTagName('body')[0].style.backgroundColor = 'blue'; })();
+            ")</code></pre>
+
+            <h3>Script Tags</h3>
+
+            <p>
+                By far the most common way to execute JavaScript code is to include it in a <code>script</code> tag.
+                A <dfn><code>script</code> tag</dfn> is part of the HTML that makes up the web page. Using JavaScript in this way,
+                makes it an important piece of your web page.
+            </p>
+
+            <p>
+                In this class, we'll use Aptana Studio as our JavaScript and HTML editor.
+                You can download <a href="http://www.aptana.com/" target="_blank">Aptana Studio</a> for free by following the link.
+                Click on the large blue button that says, "Download Aptana Studio 3".
+            </p>
+
+            <p><img src="~/Images/aptanaDownload.png" alt="Aptana Studio Home Page" width="880" /></p>
+
+            <p>
+                To begin with, create a new HTML file that looks like the one below. Save the file and then view it in a browser.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+            </head>
+            <body>
+                <h1>Hello World</h1>
+
+                <script>
+                    document.getElementsByTagName('body')[0].style.backgroundColor = 'yellow';
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Storing and Retrieving Information</h2>
+        <div>
+            <h3>Variables</h3>
+            <p>
+                A very important part of programming is storing information and then being able to later retrieve that information.
+                The vast majority of the time, that information is stored in memory. Occasionally we'll read or write to the hard drive,
+                but those cases will be rare in this class.
+            </p>
+
+            <p>
+                You can think of memory as an endless line of buckets, or an endless tape as Alan Turing did (see <a href="http://en.wikipedia.org/wiki/Turing_machine" target="_blank">Turing Machine</a>).
+                We can put a value into a bucket, look at what's inside the bucket, or even change the value inside the bucket.
+                In order to keep track of our data, JavaScript provides variables. A <dfn>variable</dfn> is a symbolic name that identifies data
+                stored in memory. You can think of it like a variable in math, however there is a difference.
+                In math we usually try to solve for a variable using an equation. Whereas in computer science, you as the programmer, get to choose
+                the value of the variable. How would that be if your math teacher let you choose the value of x!
+            </p>
+
+            <p>
+                The following example shows the variable <code>x</code> being assigned a value of 5.
+                In other words, the value 5 is placed into the bucket named "x".
+                Notice that the keyword <code>var</code> is used to declare a variable. The statement ends with a semicolon.
+                By analogy, you can think of the semicolon in JavaScript like a period in English, it ends the sentence.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var x = 5;
+            ")</code></pre>
+
+            <p>
+                We aren't limited to just numbers when putting data into variables. We can store other types of values as well.
+                These include strings, booleans, arrays, and objects. Let's first look at examples of all of these types.
+                Then afterwards, we'll look at each one, one at a time.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // A whole number
+            var x = 5;
+
+            // A real number
+            var y = 3.1415927;
+
+            // A string using double quotes
+            var name1 = ""Bob"";
+
+            // Another string - this time using single quotes.
+            var name2 = 'Mary';
+            
+            // boolean values can either be true or false, that's it
+            var b = true;
+            var c = false;
+
+            // An array can be considered a ""bunch of buckets in a row""
+            var ages = [10, 15, 20, 25];
+            
+            // We can put anything into an array
+            var names = ['Bill', 'Susan', 'Michael', 'Sarah'];
+
+            // We can even have a mixed array of different types. Be careful doing this, you can get into trouble easily.
+            var hodgepodge = ['Hello', 10.56, true];
+            ")</code></pre>
+
+            <h3>Displaying a Variable</h3>
+            <p>
+                I bet you're wondering right now, "How do I see the value of a variable?" That would come in handy, wouldn't it?
+                Let's talk about that for a moment. There are two commonly used ways to see the value of a variable. The first is to use the console.
+                If you are already using the console, then simply type the name of the variable to see it's value.
+                If you are writing your code inside of a <code>script</code> tag, then you can tell the console to display a variable as shown in the
+                following code.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var x = 5;
+            console.log(x);
+
+            var y = 3;
+            console.log(y);
+
+            var sum = x + y;
+            console.log(sum);
+            ")</code></pre>
+
+            <p>
+                The second common way to display the value of a variable is to show it in a message box.
+                In JavaScript this is done by calling the <code>alert</code> function.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var x = 5;
+            alert(x);
+
+            var y = 3;
+            alert(y);
+
+            var sum = x + y;
+            alert(sum);
+            ")</code></pre>
+
+            <h3>Numbers</h3>
+            <p>
+                A number is just what you would expect. You can add, subtract, multiply, and divide them.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var x = 5;
+            var y = 3;
+
+            var sum = x + y;
+            var difference = x - y;
+            var product = x * y;
+            var quotient = x / y;
+            ")</code></pre>
+
+            <h3>Strings</h3>
+            <p>
+                Strings represent words or text — things that you might read or say.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var name = ""Benedict Timothy Carlton Cumberbatch"";
+            var make = 'Honda';
+            var model = 'Accord';
+            ")</code></pre>
+
+            <p>
+                You can use double or single quotes to start and end a string, but you can't mix and match.
+                If you start a string with a double quote, you must end with a double quote. Same goes for single quotes.
+                What if you want to include a single or double quote inside your string?
+                For example, what if you wanted to include a compound word with an apostrophe in your string?
+                One way of handling that is to use double quotes to start and end your string.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var text = ""I can't believe it's not butter!"";
+            
+            // This is invalid and will throw an error.
+            var error = 'I can't believe it's not butter!';
+            ")</code></pre>
+
+            <p>
+                Another way of handling it is to escape the single quote. To <dfn>escape</dfn> the single quote means to tell JavaScript that
+                we want it to be part of the string and not to be used to end the string. You can escape it by using a backslash before the quote.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var text = 'I can\'t believe it\'s not butter!';
+            ")</code></pre>
+
+            <p>
+                Same thing goes for double quotes. You can include them in your string if you start and end your string with single quotes.
+                You can also escape double quotes using a backslash.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var text1 = 'He said, ""Programming sure is fun!""';
+            var text2 = ""She said, \""Programming will make me rich and famous!\"""";
+            ")</code></pre>
+
+            <h3>Booleans</h3>
+            <p>
+                A <dfn>boolean</dfn> variable can only have one of two possible values: <code>true</code> or <code>false</code>. That's it.
+                Though there are only two values, booleans are very powerful and used frequently. In fact a boolean value closely resembles
+                what the computer is actually doing at a deeper level. Remember, that a computer is comprised of transistors that can either
+                be on or off -- 1 or 0. So you can think of <code>true</code> as being on (1), and <code>false</code> as being off (0).
+            </p>
+
+            <h4>NOT (!) operator</h4>
+            <p>
+                There are three operators for you to use directly on boolean values. First is the <dfn>NOT (<code>!</code>) operator</dfn>.
+                This operator makes <code>true</code> => <code>false</code> and <code>false</code> => <code>true</code>.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var bool1 = true;
+            var bool2 = !bool1;
+            alert(bool2); // => false
+            ")</code></pre>
+
+            <h4>AND (&amp;&amp;) operator</h4>
+            <p>
+                Second is the <dfn>AND (<code>&amp;&amp;</code>) operator</dfn>. This operator combines two booleans
+                such that the result is <code>true</code> only if both of the orignal booleans are <code>true</code>. The following table summarizes this.
+            </p>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Variable1</th>
+                        <th>Variable2</th>
+                        <th>Variable1 &amp;&amp; Variable2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>true</td>
+                        <td>true</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>true</td>
+                        <td>false</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>false</td>
+                        <td>true</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>false</td>
+                        <td>false</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>OR (||) operator</h4>
+            <p>
+                Third is the <dfn>OR (<code>||</code>) operator</dfn>. This operator combines two booleans
+                such that the result is <code>true</code> only if at least one of the orignal booleans is <code>true</code>. The following table summarizes this.
+            </p>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Variable1</th>
+                        <th>Variable2</th>
+                        <th>Variable1 || Variable2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>true</td>
+                        <td>true</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>true</td>
+                        <td>false</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>false</td>
+                        <td>true</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>false</td>
+                        <td>false</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>Comparison operators</h4>
+            <p>
+                Now there are other operators that are used to compare numbers, strings, etc and returns a boolean value.
+                You have probably seen these operators before in math class, and the example for numbers will make complete sense to you.
+                What might not be immediately obvious is that the same operators can be used on strings. Strings are compared based on
+                alphabetical order, where closer to A is consider <em>smaller</em>. So, for example "A" < "B".
+                Surprisingly uppercase letters are considered smaller than lowercase letters. So "A" < "a", and in fact "Z" < "a".
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(55 > 10); // => true
+            alert(55 < 10); // => false
+            alert(55 >= 10); // => true
+            alert(55 <= 10); // => false
+            alert(55 == 55); // => true (note that you need two equals signs)
+
+            alert('b' > 'a'); // => true
+            alert('b' < 'a'); // => false
+            alert('b' >= 'a'); // => true
+            alert('b' <= 'a'); // => false
+            alert('b' == 'b'); // => true
+            ")</code></pre>
+
+            <h3>Arrays</h3>
+            <p>
+                If a variable is a bucket, then an array is a range of buckets. You can create an array using square brackets.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var emptyArray = [];
+            var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+            var bands = ['AC/DC', ""Foo Fighters"", 'Fleetwood Mac', ""Red Hot Chili Peppers""];
+            ")</code></pre>
+
+            <p>
+                You can retrieve the value from a single bucket using an index. An <dfn>index</dfn> is a number that tells the array
+                which bucket to look at. By the way, the first element has index 0, the second element has index 1, and so on.
+                Remember to always start counting with zero, when programming.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var bands = ['AC/DC', ""Foo Fighters"", 'Fleetwood Mac', ""Red Hot Chili Peppers""];
+            
+            var first = bands[0];
+            alert(first); // => AC/DC
+            ")</code></pre>
+
+            <p>
+                You can also modify the value stored in a single bucket. That is done using the index as well.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            bands[0] = 'Smashing Pumpkins';
+            alert(bands[0]); // => Smashing Pumpkins
+            ")</code></pre>
+
+            <p>
+                You can add items to an array using the <code>push</code> method. We'll talk more about methods later, but
+                first let's see what it looks like.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+    
+            primes.push(29);
+            primes.push(31);
+            ")</code></pre>
+
+            <h3>Functions</h3>
+            <p>
+                Lets say you write some amazing code and then you want it to be executed 10 times. You could just copy and paste
+                the code 10 times. The problem with that, though, is that if you later wanted to modify your code, you would be forced
+                to change it in 10 places. Now suppose that instead of the exact same code being executed 10 times, you wanted it slighly
+                different each time. You would again have to go modify the code 10 times - making it slighly different in each case.
+            </p>
+
+            <p>
+                A much better way of writing code so that it can be reused is to place it inside of a function.
+                A <dfn>function</dfn> encapsulates code into a reusable block. It also helps us break down a complex problem into
+                smaller sub-problems that are easier to work with. A function can also have <dfn>parameters</dfn> that allow it to accept
+                input values that it can use to compute its output. Consider the following function that finds the average of an array of numbers.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            function average(array) {
+                var sum = 0;
+                for (var i = 0; i < array.length; i++) {
+                    sum = sum + array[i];
+                }
+                return sum / array.length;
+            }
+
+            var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+            var avg = average(primes);
+            alert(avg); // => 11.1111111111
+    
+            var evens = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+            avg = average(evens);
+            alert(avg); // => 11
+            ")</code></pre>
+
+            <p>
+                In that preceding example, we defined a function named "average". That function has one <i>parameter</i> named "array".
+                The function was invoked twice. Once with the "primes" array as the input and once with the "evens" array as the input.
+                The <dfn>return</dfn> keyword determines what the output of the function should be.
+            </p>
+
+            <h3>Objects</h3>
+            <p>
+                JavaScript is an object-oriented programming language. That means that we model the real word using objects.
+                An <dfn>object</dfn> is a data structure, where the data is organized into, what we call, properties and methods.
+                A <dfn>property</dfn> is a piece of data that has a name and a value, much like a variable.
+                The property, however, is part of an object. It doesn't exist on it's own.
+                For example, let's suppose that we wanted to model a car in code. A car object might look like the following.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var car = {
+                make: 'Ford',
+                model: 'Mustang',
+                year: 1967,
+                allWheelDrive: false
+            };
+            ")</code></pre>
+
+            <p>
+                In addition to properties, objects can also have methods. A <dfn>method</dfn> is a function that belongs to an object.
+                In simple terms, you can think of a method as a function that's a property of an object. It belongs to the object
+                just like a property does. Let's modify our car object above and give it a method that makes it "drive" forward by simply
+                increasing it one-dimensional position. We'll have to add a <code>position</code> property as well. Notice the special keyword <dfn><code>this</code></dfn>.
+                It is used within methods to refer to the current object. Without it, the program wouldn't know that you are refering to the car object's
+                <code>position</code> property.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var car = {
+                make: 'Ford',
+                model: 'Mustang',
+                year: 1967,
+                allWheelDrive: false
+                position: 0,
+                drive: function(howFar) {
+                    this.position = this.position + howFar;
+                }
+            };
+            ")</code></pre>
+
+            <h4>Constructors</h4>
+            <p>
+                There is another way to create an object, and that is using a <dfn>constructor</dfn>. A constructor is a function
+                that assigns properties to the object. You use the <dfn><code>new</code></dfn> operator to create objects.
+                In other words, you can use the constructor repeatedly to create objects that all have the same properties.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            function Car(make, model, year, allWheelDrive) {
+                this.make = make;
+                this.model = model;
+                this.year = year;
+                this.allWheelDrive = allWheelDrive;
+            }
+
+            var familyCar = new Car('Honda', 'Accord', 1998, false);
+            var sportsCar = new Car('Porsche', 'Boxster', 2015, false);
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Conditionals and Loops</h2>
+        <div>
+            <h3>Conditionals</h3>
+            <h4>If</h4>
+            <p>
+                A <dfn>conditional</dfn> statement <em>conditionally</em> executes one part or other of your program. In other words, the computer
+                is making a decision based on the data given to it. This is also called <dfn>branching</dfn> because the program is choosing
+                which "branch" it should follow. Think of it like a fork in the road. The most basic conditional is the <dfn><code>if</code></dfn> statement.
+                This statement will execute a piece of code only if a boolean value given to it is true. Let's look at an example.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var userPreferences = getUserPreferences();
+
+            if (userPreferences.shouldNotifyUser) {
+                alert(""You are hereby notified!"");
+            }
+            ")</code></pre>
+
+            <p>
+                In that previous example we have a mythical function named <code>getUserPreferences</code> that returns an object that
+                we store in a variable named <code>userPreferences</code>. We then examine the <code>shouldNotifyUser</code> property of the
+                object, and only if it's true will we call the <code>alert</code> function to notify the user.
+            </p>
+
+            <h4>else</h4>
+            <p>
+                What if we want to do something different if the boolean variable is false? We can handle that with an <dfn><code>if/else</code></dfn> statement.
+                An <code>if/else</code> statement has an <code>if</code> statement just like the one above followed immediately by an <code>else</code> statement.
+                The following example builds on the prior one and adds an <code>else</code> statement.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var userPreferences = getUserPreferences();
+
+            if (userPreferences.shouldNotifyUser) {
+                alert(""You are hereby notified!"");
+            }
+            else {
+                console.log(""The user didn't want to be notified, so I'm logging it to the console instead"");
+            }
+            ")</code></pre>
+
+            <h4>else if</h4>
+            <p>
+                We can have several <dfn><code>else if</code></dfn> statements after an <code>if</code> statement, but before the <code>else</code> statement.
+                This allows us to handle several possibilities. For example, suppose we need to verify the user's age or have parental consent before allowing
+                him/her to post on our social media site.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var userPreferences = getUserPreferences();
+
+            if (userPreferences.age >= 13) {
+                alert(""Please accept the user agreement."");
+            }
+            else if(userPreferences.parentalConsent) {
+                alert(""You have parental consent. You may continue."");
+            }
+            else {
+                alert(""You must get parental consent before continuing."");
+            }
+            ")</code></pre>
+
+            <h3>Loops</h3>
+            <p>
+                Computers are great at doing things over and over again very fast. When we want the computer to do something repeatedly,
+                we use what is called a <dfn>loop</dfn>. There are a few kinds of loops.
+            </p>
+
+            <h4>While loop</h4>
+            <p>
+                A <dfn><code>while</code></dfn> loop is commonly used when you don't know exactly how many times the loop should execute.
+                A good example is if you need to repeatedly ask the user for input until you get the correct data from him/her.
+                The following example does just that. It uses the built-in <code>prompt</code> function to ask the user for data.
+                It then keeps asking until the user gives a number between 1 and 10.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var gotNumber = false;
+            
+            while(!gotNumber) {
+                var response = prompt('Pick a number between 1 and 10');
+                var number = parseInt(response, 10);
+
+                if (number >= 1 && number <= 10) {
+                    gotNumber = true;
+                }
+            }
+            ")</code></pre>
+
+            <h4>For loop</h4>
+            <p>
+                <dfn><code>for</code></dfn> loop is commonly use when you know the exact number of times you want to loop.
+                This is the case with arrays, since all arrays have a <code>length</code> property that tells you the number
+                of items in the array. The following example shows how to create a new array where each element is the square of
+                the corresponding item from the original array.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var originalArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var squaredArray = [];
+            
+            for (var i = 0; i < originalArray.length; i++) {
+                var num = originalArray[i];
+                squaredArray.push(num * num);
+            }
+            ")</code></pre>
+
+            <h3>Code Challenge</h3>
+            <p>
+                Your first code challenge is to build a JavaScript program that picks a random number between 1 and 100,
+                and then asks the user to guess the number. If the user guesses too high, then the program needs to tell the user
+                to guess lower. If the user guesses too low, then the program needs to tell the user to guess higher.
+                If the user guesses the number exactly, then the program needs to display a message that tells the user he/she won!
+                Here is code to get you started.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var randomNumber = Math.floor(Math.random() * 100 + 1);
+            var response = prompt('Guess a number between 1 and 100');
+            var guess = parseInt(response, 10);
+            ")</code></pre>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}

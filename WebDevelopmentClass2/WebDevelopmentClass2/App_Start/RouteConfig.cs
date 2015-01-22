@@ -36,11 +36,17 @@ namespace WebDevelopmentClass2
                 url: "Lessons/ClearFloatDemo",
                 defaults: new { controller = "Lessons", action = "ClearFloatDemo" }
             );
-            
+
             routes.MapRoute(
                 name: "Lessons",
                 url: "Lessons/{id}",
                 defaults: new { controller = "Lessons", action = "Index" }
+            );
+            
+            routes.MapRoute(
+                name: "JavaScript Lessons",
+                url: "JavaScriptLessons/{id}",
+                defaults: new { controller = "JavaScriptLessons", action = "Index" }
             );
 
             routes.MapRoute(
