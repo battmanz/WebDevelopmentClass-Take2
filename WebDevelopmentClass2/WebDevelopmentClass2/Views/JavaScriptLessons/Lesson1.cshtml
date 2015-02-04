@@ -98,9 +98,8 @@
     </section>
 
     <section>
-        <h2>Storing and Retrieving Information</h2>
+        <h2>Variables</h2>
         <div>
-            <h3>Variables</h3>
             <p>
                 A very important part of programming is storing information and then being able to later retrieve that information.
                 The vast majority of the time, that information is stored in memory. Occasionally we'll read or write to the hard drive,
@@ -196,7 +195,12 @@
             alert(sum);
             ")</code></pre>
 
-            <h3>Numbers</h3>
+            </div>
+    </section>
+
+    <section>
+        <h2>Numbers</h2>
+        <div>
             <p>
                 A number is just what you would expect. You can add, subtract, multiply, and divide them.
             </p>
@@ -210,8 +214,12 @@
             var product = x * y;
             var quotient = x / y;
             ")</code></pre>
+        </div>
+    </section>
 
-            <h3>Strings</h3>
+    <section>
+        <h2>Strings</h2>
+        <div>
             <p>
                 Strings represent words or text — things that you might read or say.
             </p>
@@ -256,12 +264,17 @@
             var text2 = ""She said, \""Programming will make me rich and famous!\"""";
             ")</code></pre>
 
-            <h3>Booleans</h3>
+        </div>
+    </section>
+
+    <section>
+        <h2>Booleans</h2>
+        <div>
             <p>
                 A <dfn>boolean</dfn> variable can only have one of two possible values: <code>true</code> or <code>false</code>. That's it.
                 Though there are only two values, booleans are very powerful and used frequently. In fact a boolean value closely resembles
                 what the computer is actually doing at a deeper level. Remember, that a computer is comprised of transistors that can either
-                be on or off -- 1 or 0. So you can think of <code>true</code> as being on (1), and <code>false</code> as being off (0).
+                be on or off — 1 or 0. So you can think of <code>true</code> as being on (1), and <code>false</code> as being off (0).
             </p>
 
             <h4>NOT (!) operator</h4>
@@ -354,11 +367,19 @@
 
             <h4>Comparison operators</h4>
             <p>
-                Now there are other operators that are used to compare numbers, strings, etc and returns a boolean value.
+                Now there are other operators that are used to compare numbers, strings, etc and return a boolean value.
                 You have probably seen these operators before in math class, and the example for numbers will make complete sense to you.
-                What might not be immediately obvious is that the same operators can be used on strings. Strings are compared based on
+            </p>
+
+            <p>
+                What might not be immediately obvious is that the same operators can be used on strings. Strings are compared based roughly on
                 alphabetical order, where closer to A is consider <em>smaller</em>. So, for example "A" < "B".
                 Surprisingly uppercase letters are considered smaller than lowercase letters. So "A" < "a", and in fact "Z" < "a".
+            </p>
+
+            <p>
+                The whole truth is that behind the scenes each letter gets assigned a number. In reality the comparison operators are comparing
+                those numbers. Those numbers are called the <a href="http://unicode-table.com/en/" target="_blank">unicode table</a>.
             </p>
 
             <pre><code class="brush: js;">@(@"
@@ -374,8 +395,12 @@
             alert('b' <= 'a'); // => false
             alert('b' == 'b'); // => true
             ")</code></pre>
+        </div>
+    </section>
 
-            <h3>Arrays</h3>
+    <section>
+        <h2>Arrays</h2>
+        <div>
             <p>
                 If a variable is a bucket, then an array is a range of buckets. You can create an array using square brackets.
             </p>
@@ -419,8 +444,12 @@
             primes.push(29);
             primes.push(31);
             ")</code></pre>
+        </div>
+    </section>
 
-            <h3>Functions</h3>
+    <section>
+        <h2>Functions</h2>
+        <div>
             <p>
                 Lets say you write some amazing code and then you want it to be executed 10 times. You could just copy and paste
                 the code 10 times. The problem with that, though, is that if you later wanted to modify your code, you would be forced
@@ -431,7 +460,7 @@
             <p>
                 A much better way of writing code so that it can be reused is to place it inside of a function.
                 A <dfn>function</dfn> encapsulates code into a reusable block. It also helps us break down a complex problem into
-                smaller sub-problems that are easier to work with. A function can also have <dfn>parameters</dfn> that allow it to accept
+                smaller sub-problems that are easier to work with. A function can have <dfn>parameters</dfn> that allow it to accept
                 input values that it can use to compute its output. Consider the following function that finds the average of an array of numbers.
             </p>
 
@@ -458,8 +487,12 @@
                 The function was invoked twice. Once with the "primes" array as the input and once with the "evens" array as the input.
                 The <dfn>return</dfn> keyword determines what the output of the function should be.
             </p>
+        </div>
+    </section>
 
-            <h3>Objects</h3>
+    <section>
+        <h2>Objects</h2>
+        <div>
             <p>
                 JavaScript is an object-oriented programming language. That means that we model the real word using objects.
                 An <dfn>object</dfn> is a data structure, where the data is organized into, what we call, properties and methods.
@@ -481,7 +514,7 @@
                 In addition to properties, objects can also have methods. A <dfn>method</dfn> is a function that belongs to an object.
                 In simple terms, you can think of a method as a function that's a property of an object. It belongs to the object
                 just like a property does. Let's modify our car object above and give it a method that makes it "drive" forward by simply
-                increasing it one-dimensional position. We'll have to add a <code>position</code> property as well. Notice the special keyword <dfn><code>this</code></dfn>.
+                increasing its one-dimensional position. We'll have to add a <code>position</code> property as well. Notice the special keyword <dfn><code>this</code></dfn>.
                 It is used within methods to refer to the current object. Without it, the program wouldn't know that you are refering to the car object's
                 <code>position</code> property.
             </p>
@@ -516,133 +549,6 @@
 
             var familyCar = new Car('Honda', 'Accord', 1998, false);
             var sportsCar = new Car('Porsche', 'Boxster', 2015, false);
-            ")</code></pre>
-        </div>
-    </section>
-
-    <section>
-        <h2>Conditionals and Loops</h2>
-        <div>
-            <h3>Conditionals</h3>
-            <h4>If</h4>
-            <p>
-                A <dfn>conditional</dfn> statement <em>conditionally</em> executes one part or other of your program. In other words, the computer
-                is making a decision based on the data given to it. This is also called <dfn>branching</dfn> because the program is choosing
-                which "branch" it should follow. Think of it like a fork in the road. The most basic conditional is the <dfn><code>if</code></dfn> statement.
-                This statement will execute a piece of code only if a boolean value given to it is true. Let's look at an example.
-            </p>
-
-            <pre><code class="brush: js;">@(@"
-            var userPreferences = getUserPreferences();
-
-            if (userPreferences.shouldNotifyUser) {
-                alert(""You are hereby notified!"");
-            }
-            ")</code></pre>
-
-            <p>
-                In that previous example we have a mythical function named <code>getUserPreferences</code> that returns an object that
-                we store in a variable named <code>userPreferences</code>. We then examine the <code>shouldNotifyUser</code> property of the
-                object, and only if it's true will we call the <code>alert</code> function to notify the user.
-            </p>
-
-            <h4>else</h4>
-            <p>
-                What if we want to do something different if the boolean variable is false? We can handle that with an <dfn><code>if/else</code></dfn> statement.
-                An <code>if/else</code> statement has an <code>if</code> statement just like the one above followed immediately by an <code>else</code> statement.
-                The following example builds on the prior one and adds an <code>else</code> statement.
-            </p>
-
-            <pre><code class="brush: js;">@(@"
-            var userPreferences = getUserPreferences();
-
-            if (userPreferences.shouldNotifyUser) {
-                alert(""You are hereby notified!"");
-            }
-            else {
-                console.log(""The user didn't want to be notified, so I'm logging it to the console instead"");
-            }
-            ")</code></pre>
-
-            <h4>else if</h4>
-            <p>
-                We can have several <dfn><code>else if</code></dfn> statements after an <code>if</code> statement, but before the <code>else</code> statement.
-                This allows us to handle several possibilities. For example, suppose we need to verify the user's age or have parental consent before allowing
-                him/her to post on our social media site.
-            </p>
-
-            <pre><code class="brush: js;">@(@"
-            var userPreferences = getUserPreferences();
-
-            if (userPreferences.age >= 13) {
-                alert(""Please accept the user agreement."");
-            }
-            else if(userPreferences.parentalConsent) {
-                alert(""You have parental consent. You may continue."");
-            }
-            else {
-                alert(""You must get parental consent before continuing."");
-            }
-            ")</code></pre>
-
-            <h3>Loops</h3>
-            <p>
-                Computers are great at doing things over and over again very fast. When we want the computer to do something repeatedly,
-                we use what is called a <dfn>loop</dfn>. There are a few kinds of loops.
-            </p>
-
-            <h4>While loop</h4>
-            <p>
-                A <dfn><code>while</code></dfn> loop is commonly used when you don't know exactly how many times the loop should execute.
-                A good example is if you need to repeatedly ask the user for input until you get the correct data from him/her.
-                The following example does just that. It uses the built-in <code>prompt</code> function to ask the user for data.
-                It then keeps asking until the user gives a number between 1 and 10.
-            </p>
-
-            <pre><code class="brush: js;">@(@"
-            var gotNumber = false;
-            
-            while(!gotNumber) {
-                var response = prompt('Pick a number between 1 and 10');
-                var number = parseInt(response, 10);
-
-                if (number >= 1 && number <= 10) {
-                    gotNumber = true;
-                }
-            }
-            ")</code></pre>
-
-            <h4>For loop</h4>
-            <p>
-                <dfn><code>for</code></dfn> loop is commonly use when you know the exact number of times you want to loop.
-                This is the case with arrays, since all arrays have a <code>length</code> property that tells you the number
-                of items in the array. The following example shows how to create a new array where each element is the square of
-                the corresponding item from the original array.
-            </p>
-
-            <pre><code class="brush: js;">@(@"
-            var originalArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-            var squaredArray = [];
-            
-            for (var i = 0; i < originalArray.length; i++) {
-                var num = originalArray[i];
-                squaredArray.push(num * num);
-            }
-            ")</code></pre>
-
-            <h3>Code Challenge</h3>
-            <p>
-                Your first code challenge is to build a JavaScript program that picks a random number between 1 and 100,
-                and then asks the user to guess the number. If the user guesses too high, then the program needs to tell the user
-                to guess lower. If the user guesses too low, then the program needs to tell the user to guess higher.
-                If the user guesses the number exactly, then the program needs to display a message that tells the user he/she won!
-                Here is code to get you started.
-            </p>
-
-            <pre><code class="brush: js;">@(@"
-            var randomNumber = Math.floor(Math.random() * 100 + 1);
-            var response = prompt('Guess a number between 1 and 100');
-            var guess = parseInt(response, 10);
             ")</code></pre>
         </div>
     </section>

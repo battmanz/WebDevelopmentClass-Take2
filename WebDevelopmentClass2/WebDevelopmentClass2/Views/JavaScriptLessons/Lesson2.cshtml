@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "Lesson 2";
+}
+
+<article>
+    <h1>Lesson 2</h1>
+    <section>
+        <h2>Conditionals</h2>
+        <div>
+            <h3>if</h3>
+            <p>
+                A <dfn>conditional</dfn> statement executes one part or other of your program based on a boolean value. In other words, the computer
+                is making a decision based on the data given to it. This is also called <dfn>branching</dfn> because the program is choosing
+                which "branch" it should follow. Think of it like a fork in the road.
+            </p>
+
+            <p>
+                The most basic conditional is the <dfn><code>if</code></dfn> statement.
+                This statement will execute a piece of code only if a boolean value given to it is true. Let's look at an example.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var userPreferences = {
+                shouldNotifyUser: true
+            };
+            if (userPreferences.shouldNotifyUser) {
+                alert(""You are hereby notified!"");
+            }
+            ")</code></pre>
+
+            <p>
+                In that previous example we have an object stored in a variable named <code>userPreferences</code>. We then examine the <code>shouldNotifyUser</code>
+                property of the object, and only if it's true, will we call the <code>alert</code> function to notify the user.
+            </p>
+
+            <h3>else</h3>
+            <p>
+                What if we want to do something different if the boolean variable is false? We can handle that with an <dfn><code>if/else</code></dfn> statement.
+                An <code>if/else</code> statement has an <code>if</code> statement just like the one above followed immediately by an <code>else</code> statement.
+                The following example builds on the prior one and adds an <code>else</code> statement.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var userPreferences = {
+                shouldNotifyUser: false
+            };
+
+            if (userPreferences.shouldNotifyUser) {
+                alert(""You are hereby notified!"");
+            }
+            else {
+                console.log(""The user didn't want to be notified. Logged to the console instead."");
+            }
+            ")</code></pre>
+
+            <h3>else if</h3>
+            <p>
+                We can have several <dfn><code>else if</code></dfn> statements after an <code>if</code> statement, but before the <code>else</code> statement.
+                This allows us to handle several possibilities. For example, suppose we need to verify the user's age or have parental consent before allowing
+                him/her to post on our social media site.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var userPreferences = {
+                age: 12,
+                parentalConsent: true
+            };
+
+            if (userPreferences.age >= 13) {
+                alert(""Please accept the user agreement."");
+            }
+            else if(userPreferences.parentalConsent) {
+                alert(""You have parental consent. You may continue."");
+            }
+            else {
+                alert(""You must get parental consent before continuing."");
+            }
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Loops</h2>
+        <div>
+            <p>
+                Computers are great at doing things over and over again very fast. When we want the computer to do something repeatedly,
+                we use what is called a <dfn>loop</dfn>. There are a few kinds of loops.
+            </p>
+
+            <h3>while loop</h3>
+            <p>
+                A <dfn><code>while</code></dfn> loop is commonly used when you don't know exactly how many times the loop should execute.
+                A good example is if you need to repeatedly ask the user for input until you get the correct data from him/her.
+                The following example does just that. It uses the built-in <code>prompt</code> function to ask the user for data.
+                It then keeps asking until the user gives a number between 1 and 10.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var number = 0;
+            while(number < 1 || number > 10) {
+                var response = prompt('Pick a number between 1 and 10');
+                number = parseInt(response, 10);
+            }
+            alert('Your number was ' + number);
+            ")</code></pre>
+
+            <h3>do/while loop</h3>
+            <p>
+                If you always want the loop to execute at least once, you can use a <dfn><code>do/while</code></dfn> loop.
+                This loop differs from the <code>while</code> loop in that it checks the conodition <em>after</em>
+                the logic has been executed. We can rewrite the example above using a <code>do/while</code> loop since
+                we always want to ask the user for a number at least once.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var number = 0;
+            do {
+                var response = prompt('Pick a number between 1 and 10');
+                var number = parseInt(response, 10);
+            } while(number < 1 || number > 10);
+            alert('Your number was ' + number);
+            ")</code></pre>
+
+            <p>
+                There is one minor thing to point out in the above example. It is that there is a semicolon that immediately follows the closing parenthesis of the
+                <code>while</code> statement. This is intentional. No such semicolon should be used for a <code>while</code> loop or for the <code>for</code> loop discussed next.
+            </p>
+
+            <h3>for loop</h3>
+            <p>
+                A <dfn><code>for</code></dfn> loop is commonly used when you know the exact number of times you want to loop.
+                This is the case with arrays, since all arrays have a <code>length</code> property that tells you the number
+                of items in the array. The following example shows how to create a new array where each element is the square of
+                the corresponding item from the original array.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var originalArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var squaredArray = [];
+            
+            for (var i = 0; i < originalArray.length; i++) {
+                var num = originalArray[i];
+                squaredArray.push(num * num);
+            }
+            ")</code></pre>
+
+            <p>
+                Between the parantheses of the <code>for</code> loop are three statements. They are:
+            </p>
+            <ol>
+                <li>A statement that initializes the <dfn>counter variable</dfn>. This is the variable that keeps track of how many times the <code>for</code> loop has been executed.</li>
+                <li>A boolean statement that determines when the <code>for</code> loop is finished. This is the termination criteria.</li>
+                <li>A statement that <dfn>increments</dfn> the counter variable. Increment means to increase the value of.</li>
+            </ol>
+
+            <p>
+                Note that <code>++</code> is shorthand for increasing the number by 1. There are other shorthand operators as the following example demonstrates.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var x = 5;
+            
+            // Add 1 to x
+            x++;
+            alert(x); // => 6
+
+            // Same as:
+            x = x + 1;
+            alert(x); // => 7
+
+            // Subtract 1 from x
+            x--;
+            alert(x); // => 6
+
+            // Same as:
+            x = x - 1;
+            alert(x); // => 5
+
+            // Add 3 to x
+            x += 3;
+            alert(x); // => 8
+
+            // Same as:
+            x = x + 3;
+            alert(x); // => 11
+
+            // Subtract 5 from x
+            x -= 5;
+            alert(x); // => 6
+
+            // Same as:
+            x = x - 5;
+            alert(x); // => 1
+
+            // Similar operators exist for multiplication
+            x *= 12;
+            alert(x); // => 12
+
+            // and division
+            x /= 2;
+            alert(x); // => 6
+            ")</code></pre>
+
+        </div>
+    </section>
+
+    <section>
+        <h2>Code Challenge</h2>
+        <div>
+            <p>
+                Your first code challenge is to build a JavaScript program that picks a random number between 1 and 100,
+                and then asks the user to guess the number. If the user guesses too high, then the program needs to tell the user
+                to guess lower. If the user guesses too low, then the program needs to tell the user to guess higher.
+                If the user guesses the number exactly, then the program needs to display a message that tells the user he/she won!
+                Here is code to get you started.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var randomNumber = Math.floor(Math.random() * 100 + 1);
+            var response = prompt('Guess a number between 1 and 100');
+            var guess = parseInt(response, 10);
+            ")</code></pre>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
