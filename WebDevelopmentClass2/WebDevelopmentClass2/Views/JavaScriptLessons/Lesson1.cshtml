@@ -94,6 +94,27 @@
             </body>
             </html>
             ")</code></pre>
+
+            <p>
+                It's considered a best practice to place your JavaScript code in a separate file. You can then include your JavaScript file in the HTML
+                by using the <code>src</code> attribute on the <code>script</code> tag. The example below assumes your file is named "myFile.js".
+                Note that ".js" is the correct extension to use for JavaScript files.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+            </head>
+            <body>
+                <h1>Hello World</h1>
+
+                <script src=""myFile.js""></script>
+            </body>
+            </html>
+            ")</code></pre>
         </div>
     </section>
 
@@ -264,6 +285,36 @@
             var text2 = ""She said, \""Programming will make me rich and famous!\"""";
             ")</code></pre>
 
+            <p>
+                One more thing to mention about strings. You can use the <code>+</code> operator on strings, but it behaves differently on
+                strings vs numbers. When used on strings the <code>+</code> operator <dfn>concatenates</dfn> the strings. <dfn>concatenate</dfn>
+                means to join the strings together end-to-end. An example will illustrate this point.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var text1 = 'hello';
+            var text2 = ' world';
+
+            alert(text1 + text2); // => 'hello world'
+            ")</code></pre>
+
+            <p>
+                It's also worth mentioning that strings can contain any symbol, and that includes numeric characters. So, for example, it's legal
+                to have a string such as "123". This is different from the number 123 (no quotes). It's also legal to concatenate a string with a
+                number. When that happens, the number is automatically converted to a string. The following example illustrates this.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var strNumber1 = '123';
+            var strNumber2 = '456';
+
+            var number1 = 123;
+            var number2 = 456;
+
+            alert(strNumber1 + strNumber2); // => '123456'
+            alert(number1 + number2);       // => 579
+            alert(strNumber1 + number2);    // => '123456'
+            ")</code></pre>
         </div>
     </section>
 
@@ -367,26 +418,19 @@
 
             <h4>Comparison operators</h4>
             <p>
-<<<<<<< HEAD
-                Now there are other operators that are used to compare numbers, strings, etc and return a boolean value.
-                You have probably seen these operators before in math class, and the example for numbers will make complete sense to you.
+                Now, there are other operators that are used to compare numbers, strings, etc. These operators return a boolean value.
+                You have probably seen these operators before in math class, and the way in which they are used on numbers will make complete sense to you.
             </p>
 
             <p>
                 What might not be immediately obvious is that the same operators can be used on strings. Strings are compared based roughly on
-                alphabetical order, where closer to A is consider <em>smaller</em>. So, for example "A" < "B".
-=======
-                Now there are other operators that are used to compare numbers, strings, etc. These operators return a boolean value.
-                You have probably seen these operators before in math class, and the way in which they are used on numbers will make complete sense to you.
-                What might not be immediately obvious is that the same operators can be used on strings. Strings are compared based on
                 alphabetical order, where closer to "A" is consider <em>smaller</em>. So, for example "A" < "B".
->>>>>>> origin/master
                 Surprisingly uppercase letters are considered smaller than lowercase letters. So "A" < "a", and in fact "Z" < "a".
             </p>
 
             <p>
-                The whole truth is that behind the scenes each letter gets assigned a number. In reality the comparison operators are comparing
-                those numbers. Those numbers are called the <a href="http://unicode-table.com/en/" target="_blank">unicode table</a>.
+                The whole truth is that behind the scenes each letter gets assigned a number. The comparison operators are comparing
+                those numbers. Those numbers are found in the <a href="http://unicode-table.com/en/" target="_blank">unicode table</a>.
             </p>
 
             <pre><code class="brush: js;">@(@"
