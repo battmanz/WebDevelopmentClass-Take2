@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Lesson 3";
+}
+
+<article>
+    <h1>Lesson3</h1>
+
+    <section>
+        <h2>The DOM</h2>
+        <div>
+            <p>
+                DOM stands for <dfn>Document Object Model</dfn>. Because JavaScript is an object-oriented language, we model things as objects. The HTML document
+                is no exception. So the <em>Document</em> in Document Object Model refers to the HTML document. Whenever a web page is loaded by the browser, not
+                only does the browser display the web page to the user, it also create an object that represents the HTML document. The browser makes this document
+                object available to your JavaScript code. This means that you can examine and even modify the web page via JavaScript!
+            </p>
+
+            <p>
+                The object that represents the HTML document is aptly named <code>document</code>. A few simple things you can do with the <code>document</code> object are:
+            </p>
+
+            <ul>
+                <li>find elements by their tag name</li>
+                <li>find elements by their class</li>
+                <li>find elements by their name attribute</li>
+                <li>find a single element by its id</li>
+            </ul>
+
+            <p>
+                Once you have found an element, you can do things such
+                as modify how it looks. You do this by accessing the <code>style</code> property. This property represent all of the CSS for that element.
+                In the following example, the JavaScript code finds the element with the id of "hidden" and hides it from view. It then finds all elements
+                with a class of "highlighted" and sets their background color to yellow. Finally it finds all paragraphs and changes the font color to red.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+            </head>
+            <body>
+                <h1>Hello World</h1>
+                <h2 id=""hidden"">Now you see me...</h2>
+
+                <p>
+                    Paragraph 1
+                </p>
+    
+                <div class=""highlighted"">
+                    Div 1 - highlighted
+                </div>
+    
+                <div>
+                    Div 2
+                </div>
+    
+                <p class=""highlighted"">
+                    Paragraph 2 - highlighted
+                </p>
+    
+                <div>
+                    Div 3
+                </div>
+
+                <script>
+                    // First hide the element with an id of 'hidden'.
+                    var hidden = document.getElementById('hidden');
+                    hidden.style.display = 'none';
+
+                    // Next find all elements with a class of 'highlighted' and set the background color to yellow.
+                    var highlightedNodes = document.getElementsByClassName('highlighted');
+
+                    // A for loop is required to access each node in the list.
+                    for (var i = 0; i < highlightedNodes.length; i++) {
+                        highlightedNodes[i].style.backgroundColor = 'yellow';
+                    }
+
+                    // Finally set the text color to red on all paragraphs.
+                    var paragraphs = document.getElementsByTagName('p');
+
+                    // Again a for loop is required to access each node in the list.
+                    for (var i = 0; i < paragraphs.length; i++) {
+                        paragraphs[i].style.color = 'red';
+                    }
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                You can also create new elements and insert them into the DOM. You create a new element using the <code>document.createElement</code> method.
+                You add text to an element using the <code>document.createTextNode</code> method. Lastly, you insert the new element into the document using
+                the <code>appendChild</code> method. In the following example, JavaScript is used to insert three new paragraphs into the document. A function
+                is used so that the logic can be centralized in one location and not duplicated.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+            <title>JavaScript is Awesome!</title>
+            </head>
+            <body>
+                <h1>Dynamically added content</h1>
+
+                <div id=""container""></div>
+
+                <script>
+                    // This function creates a new paragraph with the given text.
+                    // It then appends the paragraph to the parent element.
+                    function appendParagraph(parent, text) {
+                        var paragraph = document.createElement('p');
+                        var text = document.createTextNode(text);
+                        paragraph.appendChild(text);
+                        parent.appendChild(paragraph);
+                    }
+
+                    // Find the element that will contain our paragraphs.
+                    var container = document.getElementById('container');
+
+                    appendParagraph(container, ""Hi, I'm paragraph 1"");
+                    appendParagraph(container, ""And I'm paragraph 2"");
+                    appendParagraph(container, ""Hola, soy paragraph 3"");
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
