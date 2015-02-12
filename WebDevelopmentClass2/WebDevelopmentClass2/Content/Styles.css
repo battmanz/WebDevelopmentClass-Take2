@@ -17,6 +17,12 @@ dd {
     background-repeat: no-repeat;
     height: 675px;
 }*/
+.no-special-importance {
+  font-weight: normal;
+}
+.highlighted {
+  background-color: yellow;
+}
 td.code .container:before,
 td.code .container:after {
   content: "";
@@ -290,11 +296,11 @@ a.no-decoration:hover {
   box-shadow: 2px 2px 20px black;
 }
 #boxShadowDemo .topLeftShadow {
-  box-shadow: -2px -2px 8px #000000;
+  box-shadow: -2px -2px 8px black;
 }
 #boxShadowDemo .multipleShadows {
   /* Borrowed from http://markusstange.wordpress.com/2009/02/15/fun-with-box-shadows */
-  box-shadow: 0 0 20px #000000, 20px 15px 30px #ffff00, -20px 15px 30px #00ff00, -20px -15px 30px #0000ff, 20px -15px 30px #ff0000;
+  box-shadow: 0 0 20px black, 20px 15px 30px yellow, -20px 15px 30px lime, -20px -15px 30px blue, 20px -15px 30px red;
 }
 #borderRadiusDemo,
 #ellipticalCornersDemo {
