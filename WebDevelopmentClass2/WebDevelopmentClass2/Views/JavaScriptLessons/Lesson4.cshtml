@@ -1,0 +1,662 @@
+﻿@{
+    ViewBag.Title = "Lesson 4";
+}
+
+<article>
+    <h1>Lesson 4</h1>
+
+    <section>
+        <h2>More About the DOM</h2>
+        <div>
+            <h3>The Window Object</h3>
+            <p>
+                In JavaScript there exists a global object. In the browser, that global object is the <code>window</code>.
+                We have been using methods and properties of the <code>window</code> object all along without even knowing it.
+                For example, the <code>alert</code>, <code>prompt</code>, and <code>parseInt</code> methods are actually methods
+                of the <code>window</code>.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(alert === window.alert); // => true
+            alert(prompt === window.prompt); // => true
+            alert(parseInt === window.parseInt); // => true
+            ")</code></pre>
+
+            <p>
+                If you'd like you can always refer to these function using the more verbose syntax of calling the method on the <code>window</code>.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var text = '12345';
+            var number = window.parseInt(text);
+            window.alert(number);
+            ")</code></pre>
+
+            <p>
+                The <code>document</code> object is similarly a property of the <code>window</code> object.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(document === window.document); // => true
+            ")</code></pre>
+
+            <p>
+                In fact whenever you create a new variable that is not contained inside of a function, that variable becomes a property of the <code>window</code>.
+                Functions define, what is called a new <dfn>scope</dfn>. Outside of a function, variables have global scope. That means that they can be used anywhere
+                in your code. Variables defined inside of a function only exist within that function. Having a lessor scope instead of global scope is often a good thing.
+                If you have too many global variables, you might forget that you already used a particular variable name and use it again. This will cause bugs in your code.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var foo = ""I'm a property of the window"";
+            alert(window.foo); // => ""I'm a property of the window""
+            function scope() {
+                var foo2 = 'Not a window property';
+                alert(window.foo2); // => undefined
+            }
+            // Call the function
+            scope();
+            ")</code></pre>
+
+            <h3>Nodes</h3>
+
+            <p>
+                The <code>document</code>, all elements, and even the text contained within those elements are all examples of <dfn>nodes</dfn>.
+                A <dfn>node</dfn> is a general term that includes all parts of the HTML. Just like all trucks are automobiles, all elements are nodes.
+                But not all automobiles are trucks, and neither are all nodes elements.
+            </p>
+
+            <p>
+                You can traverse the tree of nodes using the following node properties:
+            </p>
+
+            <dl>
+                <dt><code>parentNode</code></dt>
+                <dd>Gets the node that contains the current node.</dd>
+
+                <dt><code>childNodes</code></dt>
+                <dd>A array-like object that contains all of the child nodes (not just elements).</dd>
+
+                <dt><code>firstChild</code></dt>
+                <dd>Gets the first child node or null if there are no children.</dd>
+
+                <dt><code>lastChild</code></dt>
+                <dd>Gets the last child node or null if there are no children.</dd>
+
+                <dt><code>nextSibling</code></dt>
+                <dd>Gets the sibling node that immediately follows the current node.</dd>
+
+                <dt><code>previousSibling</code></dt>
+                <dd>Gets the sibling node that immediately precedes the current node.</dd>
+            </dl>
+
+            <p>
+                In addition to the properties above, nodes also have properties that tell you some information about the node itself:
+            </p>
+
+            <dl>
+                <dt><code>nodeType</code></dt>
+                <dd>
+                    Tells you which kind of node it is.
+                    <ul>
+                        <li>cocument nodes = 9</li>
+                        <li>element nodes = 1</li>
+                        <li>text nodes = 3</li>
+                        <li>comment nodes = 8</li>
+                    </ul>
+                </dd>
+
+                <dt><code>nodeValue</code></dt>
+                <dd>The text content of the node. Only useful for text and comment nodes.</dd>
+
+                <dt><code>nodeName</code></dt>
+                <dd>The tag name of an element node.</dd>
+            </dl>
+
+            <h3>Elements</h3>
+            <p>
+                Often it's more convenient to only consider element nodes. The DOM also provides methods for just working with elements.
+            </p>
+
+            <dl>
+                <dt><code>children</code></dt>
+                <dd>Gets an array-like list of children that are elements.</dd>
+
+                <dt><code>firstElementChild</code></dt>
+                <dd>Gets the first child that is an element or null if there is not one.</dd>
+
+                <dt><code>lastElementChild</code></dt>
+                <dd>Gets the last child that is an element or null if there is not one.</dd>
+
+                <dt><code>nextElementSibling</code></dt>
+                <dd>Gets the sibling that is an element and immediately follows the current element.</dd>
+
+                <dt><code>previousElementSibling</code></dt>
+                <dd>Gets the sibling that is an element and immediately precedes the current element.</dd>
+
+                <dt><code>childElementCount</code></dt>
+                <dd>Returns the number of children that are elements. This will return the same value as <code>children.length</code>.</dd>
+            </dl>
+        </div>
+    </section>
+
+    <section>
+        <h2>Truthy and Falsy values</h2>
+        <div>
+            <h3>How to represent "no value"</h3>
+
+            <p>
+                JavaScript has three special values that indicate the absence of a value.
+            </p>
+
+            <h4><code>null</code></h4>
+
+            <p>
+                This is a keyword in JavaScript that indicates that there is no object. In the following example,
+                the alert will show <code>null</code> if there is no element named "foo".
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // Assume there is no element with an id of 'foo'
+            var foo = document.getElementById('foo');
+            alert(foo); // => null
+            ")</code></pre>
+
+            <h4><code>undefined</code></h4>
+
+            <p>
+                This is a special global value that indicates that a particular variable has not been initialized or that a property does not exist on an object.
+                The following example demonstrates both cases.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = { x: 5 };
+
+            // Notice that we're trying to access the ""y"" property rather than ""x""
+            alert(myObject.y); // => undefined
+
+            var z;
+            alert(z); // => undefined
+            ")</code></pre>
+
+            <h4><code>NaN</code></h4>
+
+            <p>
+                <code>NaN</code> stands for "not a number". It is the value that is returned if a particular value is not a number.
+                For example if you use the <code>parseInt</code> function on a string that cannot be converted to a number, then <code>NaN</code> will be returned.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myString = 'hello world';
+            var myNumber = parseInt(myString);
+            alert(myNumber); // => NaN
+            ")</code></pre>
+
+            <p>
+                You can check if a number is <code>NaN</code> using the built-in <code>isNaN</code> function.
+                If the number <em>is</em> a number, then <code>isNaN</code> returns false. That is, the number is not not a number.
+                Yes, that is a double negative. It can be a little confusing.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myString = 'hello world';
+            var myNumber = parseInt(myString);
+            alert(isNaN(myNumber)); // => true
+
+            var myOtherString = '101';
+            var myOtherNumber = parseInt(myOtherString);
+            alert(isNaN(myOtherNumber)); // => false
+            ")</code></pre>
+
+            <h3>Falsy</h3>
+
+            <p>
+                All of the values mentioned above: <code>null</code>, <code>undefined</code>, and <code>NaN</code> are treated as false
+                in JavaScript.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            function isTruthyOrFalsy(value) {
+                if (value) {
+                    alert('truthy');
+                }
+                else {
+                    alert('falsy');
+                }
+            }
+
+            var f1 = null;
+            var f2 = undefined;
+            var f3 = NaN;
+
+            isTruthyOrFalsy(f1); // => falsy
+            isTruthyOrFalsy(f2); // => falsy
+            isTruthyOrFalsy(f3); // => falsy
+            ")</code></pre>
+
+            <p>
+                In addition, the number <code>0</code> and the empty string <code>""</code> or <code>''</code> are also falsy.
+                Of course <code>false</code> is falsy.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // Using the 'isTruthyOrFalsy' function defined above
+
+            var f4 = 0;
+            var f5 = '';
+            var f6 = false;
+
+            isTruthyOrFalsy(f4); // => falsy
+            isTruthyOrFalsy(f5); // => falsy
+            isTruthyOrFalsy(f6); // => falsy
+            ")</code></pre>
+
+            <h3>Truthy</h3>
+
+            <p>
+                Everything else that was not mentioned as being falsy, is truthy. This includes positive and negative numbers,
+                non-empty strings, arrays (even empty ones), and objects (even with no properties).
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // Using the 'isTruthyOrFalsy' function defined above
+
+            var t1 = true;
+            var t2 = 1;
+            var t3 = -1;
+            var t4 = []; // empty array
+            var t5 = [1, 2, 3, 4];
+            var t6 = {}; // no properties
+            var t7 = { x: 5, y: 10 };
+            var t8 = 'hi';
+
+            isTruthyOrFalsy(t1); // => truthy
+            isTruthyOrFalsy(t2); // => truthy
+            isTruthyOrFalsy(t3); // => truthy
+            isTruthyOrFalsy(t4); // => truthy
+            isTruthyOrFalsy(t5); // => truthy
+            isTruthyOrFalsy(t6); // => truthy
+            isTruthyOrFalsy(t7); // => truthy
+            isTruthyOrFalsy(t8); // => truthy
+            ")</code></pre>
+
+            <h3>Testing for Approximate equality</h3>
+            <p>
+                Now that we know about falsy/truthy values, let's look again at the <code>==</code> and <code>!=</code> operators.
+                First of all <code>0</code>, <code>false</code>, and the empty string <code>''</code> are all equal.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(0 == false); // => true
+            alert(0 == ''); // => true
+            alert(false == ''); // => true
+
+            alert(0 != false); // => false
+            alert(0 != ''); // => false
+            alert(false != ''); // => false
+            ")</code></pre>
+
+            <p>
+                <code>null</code> and <code>undefined</code> act a little different. They aren't equal to anything other than themselves.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(null == 0); // => false
+            alert(null == false); // => false
+            alert(null == ''); // => false
+
+            alert(undefined == 0); // => false
+            alert(undefined == false); // => false
+            alert(undefined == ''); // => false
+
+            alert(null == null); // => true
+            alert(undefined == undefined); // => true
+
+            // Note that null equals undefined
+            alert(null == undefined); // => true
+            ")</code></pre>
+
+            <p>
+                And finally <code>NaN</code> does not equal anything &mdash; including itself!
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(NaN == 0); // => false
+            alert(NaN == false); // => false
+            alert(NaN == ''); // => false
+            alert(NaN == null); // => false
+            alert(NaN == undefined); // => false
+            alert(NaN == NaN); // => false
+            ")</code></pre>
+
+            <h3>Testing for Absolute Equality</h3>
+
+            <p>
+                In order to test that two values actually are equal in the truest sense of the word,
+                use the <code>===</code> operator. Yes, three (3) equals signs.
+                The corresponding operator that test whether two object are <strong>not</strong> equal is <code>!==</code>.
+                An exclamation mark followed by two (2) equals signs.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // This is nearly the same example as above, but using the === and !== operators.
+            // Notice that now the return values are the opposite of what they were.
+
+            alert(0 === false); // => false
+            alert(0 === ''); // => false
+            alert(false === ''); // => false
+
+            alert(0 !== false); // => true
+            alert(0 !== ''); // => true
+            alert(false !== ''); // => true
+            ")</code></pre>
+
+            <p>
+                Also when using <code>===</code>, it is no longer true that <code>null</code> equals <code>undefined</code>.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(null === undefined); // => false
+            ")</code></pre>
+
+            <h3>Case Study</h3>
+
+            <p>
+                You can use the truthy/falsy nature of variables/properties to help you write concise code.
+                In following example, if an object doesn't have a property defined, then we go ahead and define it.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = {};
+
+            if (!myObject.id) {
+                myObject.id = 1;
+            }
+            ")</code></pre>
+
+            <p>
+                A word of caution: make sure you know what you are doing. Let's change the example so that the <code>id</code> property is set to <code>0</code>.
+                Just as before, when we get to the <code>if</code> statement, the code <code>!myObject.id</code> will evaluate to <code>true</code> because of the falsy
+                nature of <code>0</code> (and because we've used the <code>!</code> operator). So we will wipe out the <code>0</code> and replace it with a <code>1</code>.
+                This is almost certainly a bug in our program. It might take quite a bit of time to find that error and fix it.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = { id: 0 };
+
+            if (!myObject.id) {
+                myObject.id = 1; // uh-oh we just replaced 0 with 1
+            }
+            ")</code></pre>
+
+            <p>
+                The way to fix that problem is to check if the property has a value of <code>undefined</code>. You could also check for <code>null</code> if it makes sense
+                in this case.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = { id: 0 };
+
+            if (myObject.id === undefined) {
+                myObject.id = 1; // Not going to get here, because id is defined
+            }
+
+            // Could also do:
+            if (myObject.id === undefined || myObject.id === null) {
+                myObject.id = 1; // Still not going to get here, because id is defined and it's not null
+            }
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Events</h2>
+        <div>
+            <h3>Events</h3>
+            <p>
+                An <dfn>event</dfn> signals that some specific action has occurred, and gives you, the programmer, an opportunity to handle the event by executing a function.
+                The browser can raise an event in response to a user action such as clicking on a button or hovering the mouse over an element.
+                Examples of events include:
+            </p>
+
+            <dl>
+                <dt><code>load</code></dt>
+                <dd>The event that is raised when the window has finished loading.</dd>
+
+                <dt><code>click</code></dt>
+                <dd>The event that is raised when the user clicks on an element (not just for buttons).</dd>
+
+                <dt><code>dblclick</code></dt>
+                <dd>The event that is raised when the user double clicks on an element (again, not just for buttons).</dd>
+
+                <dt><code>mouseover</code></dt>
+                <dd>The event that is raised when the user moves the mouse over an element.</dd>
+
+                <dt><code>mouseout</code></dt>
+                <dd>The event that is raised when the user moves the mouse away from an element.</dd>
+
+                <dt><code>keydown</code></dt>
+                <dd>The event that is raised when the user presses a keyboard key down.</dd>
+
+                <dt><code>keypress</code></dt>
+                <dd>The event that is raised when a character is inserted into an element (such as an input, for example).</dd>
+
+                <dt><code>keyup</code></dt>
+                <dd>The event that is raised when the user releases the keyboard key (i.e. lifts her finger up).</dd>
+            </dl>
+
+            <h3>Event Handler</h3>
+            <h4>Don't call me, I'll call you</h4>
+            <p>
+                As the programmer you can create a function that the browser will call whenever the event is raised. This function is called an <dfn>event handler</dfn>.
+                Because the function will be executed at some undetermined time in the future, this is an example of asynchronous programming.
+                The browser, in essence, says, "Don't call me, I'll call you".
+            </p>
+
+            <p>
+                There are two ways to add an event handler. The first is to assign a function to the property of the element.
+                Note that the property always begins with the word "on" followed by the event name. So for example, to assign a handler to the <code>click</code>
+                event, you would use the <code>onclick</code> property.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <button id=""alertButton"">Click Me</button>
+                <script>
+                    var alertButton = document.getElementById('alertButton');
+                    alertButton.onclick = function() {
+                        alert('Thanks for clicking');
+                    };
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                The second way to assign an event handler is to use the element's <code>addEventLister</code> method.
+                In Internet Explorer, you would use the <code>attachEvent</code> method instead. Are you sick of cross-browser incompatibilties yet?
+                Adding a handler using <code>addEventLister</code> (or <code>attachEvent</code>) has an advantage over assigning it to the propery.
+                The reason is that you can add multiple handlers. Using the property (such as <code>onclick</code>), allows you to have only one handler.
+                Note that you should not include the word "on" when using <code>addEventLister</code> (or <code>attachEvent</code>).
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <button id=""multiple"">I have multiple handlers</button>
+                <button id=""single"">I just have one handler</button>
+                <script>
+                    // By using the addEventListener method, we can add two event handlers.                    
+                    var multiple = document.getElementById('multiple');
+                    
+                    multiple.addEventListener('click', function() {
+                        alert('Thanks for clicking');
+                    });
+                    multiple.addEventListener('click', function() {
+                        this.style.backgroundColor = 'red';
+                    });
+                    // Note that the first handler will never be called, because when the second
+                    // function gets assigned to the 'onclick' property, it wipes out the first handler.
+                    var single = document.getElementById('single');
+                    single.onclick = function() {
+                        alert(""You'll never see me"");
+                    };
+                    single.onclick = function() {
+                        alert('Ha ha ha, I completely took control of the onclick event!');
+                    };
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                One thing I want to point out about that previous example is that inside of the event handler, you can use the keyword <code>this</code>
+                to refer to the element that was clicked. Notice that we set the background color using <code>this.style.backgroundColor = 'red'</code>.
+                You can even reuse the same event handler function over and over again for multiple elements. The browser will ensure that <code>this</code>
+                always refers to the element that was clicked on.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <button>Turn me red</button>
+                <button>Turn me red as well</button>
+                <button>And me too</button>
+                <script>
+                    function changeToRed() {
+                        this.style.backgroundColor = 'red';
+                    }
+                    var buttons = document.getElementsByTagName('button');
+                    for(var i = 0; i < buttons.length; i++) {
+                        buttons[i].addEventListener('click', changeToRed);
+                        // Instead, could do: buttons[i].onclick = changeToRed
+                    }
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h3>Event Argument</h3>
+
+            <p>
+                Sometimes you need additional information from the browser about the event. For example, when the user clicks on an element, you
+                might want to know exactly where he clicked. Fortunately the browser gives you that information in the form of an argument that
+                gets passed to your event handler function. If you're not interested in the event argument, then you can simply ignore it like we
+                have done so far. If you would like to access the event argument, then simply define a single parameter for your function.
+                You can name it whatever you'd like, but "e" is a common choice.
+            </p>
+
+            <p>
+                Internet Explorer does not pass an event object to the handler. Instead you obtain the event object using <code>window.event</code>.
+                <code>window.event</code> always refers to the last event that was raised.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <p id=""largeParagraph"">
+                    Morbi in nibh sed metus ultrices molestie. Cras eu rhoncus urna, vel sagittis felis.
+                    Sed accumsan pellentesque felis eget tincidunt. Aenean faucibus ullamcorper purus, et
+                    blandit sapien facilisis in. Maecenas tincidunt odio sit amet nulla mollis, id suscipit
+                    est condimentum. Sed et dui pharetra, ultricies quam sed, ultricies diam. Pellentesque sit
+                    amet ipsum vel erat ullamcorper interdum a a nulla. In hac habitasse platea dictumst.
+                    Nullam hendrerit augue sed mi ullamcorper mollis. Phasellus sagittis lorem diam, ac consequat
+                    lectus dapibus sit amet. Integer feugiat eget massa a sodales. Cras sem nibh, hendrerit sit
+                    amet urna nec, commodo posuere diam. Vestibulum dolor est, sollicitudin at tristique vitae,
+                    sollicitudin eu eros. Nunc ante ligula, mattis molestie congue a, sagittis a lectus.
+                </p>
+                <script>
+                    var largeParagraph = document.getElementById('largeParagraph');
+                    var body = document.getElementsByTagName('body')[0];
+                    // Note the 'e' as an argument to the function                    
+                    largeParagraph.onclick = function(e) {
+                        if (!e) {
+                            e = window.event; // for IE
+                        }
+                        var marker = document.createElement('div');
+                        var text = document.createTextNode('Click');
+                        marker.appendChild(text);
+                        marker.style.position = 'absolute';
+                        marker.style.left = e.clientX + 'px';
+                        marker.style.top = e.clientY + 'px';
+                        marker.style.backgroundColor = 'black';
+                        marker.style.color = 'white';
+                        marker.style.padding = '2px';
+                        body.appendChild(marker);
+                    };
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                In the next example we listen for the <code>keypress</code> event to happen on an <code>&lt;input&gt;</code> element.
+                The event object for keyboard events such as <code>keypress</code> has a property that that tells us which key was pressed.
+                The property is <code>keyCode</code>, and like the name implies, it is a numeric code. So you have to figure out which key the numeric code represents.
+                The Mozilla Developer Network (MDN) has a <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.keyCode">list of key codes</a> on its website.
+                Using the <code>keyCode</code>, we can perform a specific action only if the <kbd>Enter</kbd> key was pressed.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <input type=""text"" id=""userInput"" />
+                <script>
+                    var userInput = document.getElementById('userInput');
+                    userInput.onkeypress = function(e) {
+                        if (!e) {
+                            e = window.event;  // for IE
+                        }
+
+                        var keyCode = e.keyCode;
+
+                        if (keyCode == '13') {
+                            var guess = userInput.value;
+                            userInput.value = '';
+                            alert(""You're guess was "" + guess);
+                        }
+                    };
+                </script>
+            </body>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Your Second Program</h2>
+        <div>
+            <p>
+                Your second program is to start with your first program and get rid of all occurances of <code>prompt</code> and <code>alert</code>.
+                Next, create an HTML page that has just a single <code>&lt;input type="text" &gt;</code> to begin with. Instead of using <code>prompt</code>,
+                you'll create and insert a new paragraph (with a background color such as <strong>blue</strong>) into the page.
+                The pararaph will ask the user to choose a number.
+            </p>
+
+            <p>
+                The user should then enter a number into the textbox and hit enter. You should listen for the <code>keypress</code> event as was shown in the
+                previous section on events (alternatively, you could add a button and listen for the click event). You should then add a new paragraph
+                (with a different background color such as <strong>orange</strong>) below the first one that contains the users guess.
+            </p>
+
+            <p>
+                If the guess was too high or too low, you need to append a new (<strong>blue</strong>) paragraph that says so, and give the user a chance
+                to guess again. When the user guesses correctly, you'll append a final paragraph that tells the user he's won.
+            </p>
+
+            <p>
+                The end result should have alternating <strong>blue</strong> and <strong>orange</strong> (or whatever colors you chose) paragraphs going from top to bottom.
+                The final paragraph will be the one tellin the user that he/she has won.
+            </p>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}

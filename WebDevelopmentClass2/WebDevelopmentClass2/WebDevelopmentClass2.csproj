@@ -364,6 +364,7 @@
     <Content Include="Views\JavaScriptLessons\Lesson1.cshtml" />
     <Content Include="Views\JavaScriptLessons\Lesson2.cshtml" />
     <Content Include="Views\JavaScriptLessons\Lesson3.cshtml" />
+    <Content Include="Views\JavaScriptLessons\Lesson4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
