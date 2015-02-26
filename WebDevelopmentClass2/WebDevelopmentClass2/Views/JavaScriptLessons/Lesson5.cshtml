@@ -1,0 +1,702 @@
+﻿@{
+    ViewBag.Title = "Lesson 5";
+}
+
+<article>
+    <h1>Lesson 5</h1>
+
+    <section>
+        <h2>Programming Problems</h2>
+        <div>
+            <ol>
+                <li>
+                    <h3>Convert a String to an Array</h3>
+                    <p>
+                        Write a program that takes a <code>string</code> consisting of numbers separated by commas,
+                        converts it into an <code>array</code> of numbers, and then adds them all up.
+                        Hint: reading the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/prototype#Methods" target="_blank">string documentation on MDN</a> might help you.
+                    </p>
+
+                    <pre><code class="brush: js;">@(@"
+                    var exampleInput = '12,5,7,42,55';
+                    
+                    // Your code goes here ...
+                    
+                    var expectedOutput = 121;
+                    ")</code></pre>
+                </li>
+
+                <li>
+                    <h3>Build a Simple Accordion</h3>
+                    <p>
+                        In programming the term "accordion" is sometimes used to describe a control that opens and closes when the
+                        user clicks on a heading. Write your own accordion by starting with HTML consisting of pairs of <code>&lt;h1&gt;</code>s and <code>&lt;div&gt;</code>s.
+                        When the user clicks on a heading (i.e. the <code>&lt;h1&gt;</code>), then the following <code>&lt;div&gt;</code> should collapse.
+                        When the user clicks on the heading again, then the <code>&lt;div&gt;</code> should open again.
+                    </p>
+
+                    <p>
+                        To keep it simple, you can "close" the <code>&lt;div&gt;</code> by using this CSS: <code>display: none;</code>.
+                        You can then "open" it again by using this CSS: <code>display: block;</code>
+                    </p>
+
+                    <pre><code class="brush: html;">@(@"
+                    <!-- Example HTML -->
+                    
+                    <h1 id=""heading1"">A</h1>
+                    <div>
+                        Big A, little a, what begins with A?
+                        Aunt Annie's alligator.....A...a...A
+                    </div>
+                    <h1 id=""heading2"">B</h1>
+                    <div>
+                        Big B, little b, what begins with B?
+                        Barber baby bubbles and a bumblebee.
+                    </div>
+                    <h1 id=""heading3"">C</h1>
+                    <div>
+                        Big C, little c, what begins with C?
+                        Camel on the ceiling C...c...C
+                    </div>
+                    ")</code></pre>
+                </li>
+
+                <li>
+                    <h3>Insertion Sort</h3>
+
+                    <h4>Part I</h4>
+                    <p>
+                        Write a program that sorts an array of integers using the <a href="http://en.wikipedia.org/wiki/Insertion_sort" target="_blank">insertion sort</a> algorithm.
+                        To get started, follow that link and find (<kbd>Ctrl+F</kbd>) the section that contains the word "pseudocode".
+                        The output of your program should be an array containing the numbers in order from least to greatest.
+                    </p>
+
+                    <pre><code class="brush: js;">@(@"
+                    var exampleInput = [12, 5, 7, 42, 55];
+                    var expectedOutput = [5, 7, 12, 42, 55];
+                    ")</code></pre>
+
+                    <h4>Part II</h4>
+                    <p>
+                        Now modify your code so that it's contained in a <code>function</code>. Make it so that the function accepts two parameters:
+                    </p>
+                    <ol>
+                        <li><code>array</code> - the array to be sorted</li>
+                        <li>
+                            <code>increasing</code> - a <code>boolean</code> value that, if <code>true</code>, indicates that the output should be in increasing order.
+                            If <code>false</code>, then the output should be in decreasing order.
+                        </li>
+                    </ol>
+                    <br />
+                    <pre><code class="brush: js;">@(@"
+                    function insertionSort(array, increasing) {
+                        // your code goes here
+                    }
+
+                    var exampleInput = [12, 5, 7, 42, 55];
+        
+                    var output1 = insertionSort(exampleInput, true); // => [5, 7, 12, 42, 55]
+                    var output2 = insertionSort(exampleInput, false); // => [55, 42, 12, 7, 5]
+                    ")</code></pre>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <section>
+        <h2>Truthy and Falsy values</h2>
+        <div>
+            <h3>How to represent "no value"</h3>
+
+            <p>
+                JavaScript has three special values that indicate the absence of a value.
+            </p>
+
+            <h4><code>null</code></h4>
+
+            <p>
+                This is a keyword in JavaScript that indicates that there is no object. In the following example,
+                the alert will show <code>null</code> if there is no element named "foo".
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // Assume there is no element with an id of 'foo'
+            var foo = document.getElementById('foo');
+            alert(foo); // => null
+            ")</code></pre>
+
+            <h4><code>undefined</code></h4>
+
+            <p>
+                This is a special global value that indicates that a particular variable has not been initialized or that a property does not exist on an object.
+                The following example demonstrates both cases.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = { x: 5 };
+            // Notice that we're trying to access the ""y"" property rather than ""x""
+            alert(myObject.y); // => undefined
+            var z;
+            alert(z); // => undefined
+            ")</code></pre>
+
+            <h4><code>NaN</code></h4>
+
+            <p>
+                <code>NaN</code> stands for "not a number". It is the value that is returned if a particular value is not a number.
+                For example if you use the <code>parseInt</code> function on a string that cannot be converted to a number, then <code>NaN</code> will be returned.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myString = 'hello world';
+            var myNumber = parseInt(myString);
+            alert(myNumber); // => NaN
+            ")</code></pre>
+
+            <p>
+                You can check if a number is <code>NaN</code> using the built-in <code>isNaN</code> function.
+                If the number <em>is</em> a number, then <code>isNaN</code> returns false. That is, the number is not not a number.
+                Yes, that is a double negative. It can be a little confusing.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myString = 'hello world';
+            var myNumber = parseInt(myString);
+            alert(isNaN(myNumber)); // => true
+            var myOtherString = '101';
+            var myOtherNumber = parseInt(myOtherString);
+            alert(isNaN(myOtherNumber)); // => false
+            ")</code></pre>
+
+            <h3>Falsy</h3>
+
+            <p>
+                All of the values mentioned above: <code>null</code>, <code>undefined</code>, and <code>NaN</code> are treated as false
+                in JavaScript.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            function isTruthyOrFalsy(value) {
+                if (value) {
+                    alert('truthy');
+                }
+                else {
+                    alert('falsy');
+                }
+            }
+            var f1 = null;
+            var f2 = undefined;
+            var f3 = NaN;
+            isTruthyOrFalsy(f1); // => falsy
+            isTruthyOrFalsy(f2); // => falsy
+            isTruthyOrFalsy(f3); // => falsy
+            ")</code></pre>
+
+            <p>
+                In addition, the number <code>0</code> and the empty string <code>""</code> or <code>''</code> are also falsy.
+                Of course <code>false</code> is falsy.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // Using the 'isTruthyOrFalsy' function defined above
+            var f4 = 0;
+            var f5 = '';
+            var f6 = false;
+            isTruthyOrFalsy(f4); // => falsy
+            isTruthyOrFalsy(f5); // => falsy
+            isTruthyOrFalsy(f6); // => falsy
+            ")</code></pre>
+
+            <h3>Truthy</h3>
+
+            <p>
+                Everything else that was not mentioned as being falsy, is truthy. This includes positive and negative numbers,
+                non-empty strings, arrays (even empty ones), and objects (even with no properties).
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // Using the 'isTruthyOrFalsy' function defined above
+            var t1 = true;
+            var t2 = 1;
+            var t3 = -1;
+            var t4 = []; // empty array
+            var t5 = [1, 2, 3, 4];
+            var t6 = {}; // no properties
+            var t7 = { x: 5, y: 10 };
+            var t8 = 'hi';
+            isTruthyOrFalsy(t1); // => truthy
+            isTruthyOrFalsy(t2); // => truthy
+            isTruthyOrFalsy(t3); // => truthy
+            isTruthyOrFalsy(t4); // => truthy
+            isTruthyOrFalsy(t5); // => truthy
+            isTruthyOrFalsy(t6); // => truthy
+            isTruthyOrFalsy(t7); // => truthy
+            isTruthyOrFalsy(t8); // => truthy
+            ")</code></pre>
+
+            <h3>Testing for Approximate equality</h3>
+            <p>
+                Now that we know about falsy/truthy values, let's look again at the <code>==</code> and <code>!=</code> operators.
+                First of all <code>0</code>, <code>false</code>, and the empty string <code>''</code> are all equal.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(0 == false); // => true
+            alert(0 == ''); // => true
+            alert(false == ''); // => true
+            alert(0 != false); // => false
+            alert(0 != ''); // => false
+            alert(false != ''); // => false
+            ")</code></pre>
+
+            <p>
+                <code>null</code> and <code>undefined</code> act a little different. They aren't equal to anything other than themselves.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(null == 0); // => false
+            alert(null == false); // => false
+            alert(null == ''); // => false
+            alert(undefined == 0); // => false
+            alert(undefined == false); // => false
+            alert(undefined == ''); // => false
+            alert(null == null); // => true
+            alert(undefined == undefined); // => true
+            // Note that null equals undefined
+            alert(null == undefined); // => true
+            ")</code></pre>
+
+            <p>
+                And finally <code>NaN</code> does not equal anything &mdash; including itself!
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(NaN == 0); // => false
+            alert(NaN == false); // => false
+            alert(NaN == ''); // => false
+            alert(NaN == null); // => false
+            alert(NaN == undefined); // => false
+            alert(NaN == NaN); // => false
+            ")</code></pre>
+
+            <h3>Testing for Absolute Equality</h3>
+
+            <p>
+                In order to test that two values actually are equal in the truest sense of the word,
+                use the <code>===</code> operator. Yes, three (3) equals signs.
+                The corresponding operator that test whether two object are <strong>not</strong> equal is <code>!==</code>.
+                An exclamation mark followed by two (2) equals signs.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // This is nearly the same example as above, but using the === and !== operators.
+            // Notice that now the return values are the opposite of what they were.
+            alert(0 === false); // => false
+            alert(0 === ''); // => false
+            alert(false === ''); // => false
+            alert(0 !== false); // => true
+            alert(0 !== ''); // => true
+            alert(false !== ''); // => true
+            ")</code></pre>
+
+            <p>
+                Also when using <code>===</code>, it is no longer true that <code>null</code> equals <code>undefined</code>.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            alert(null === undefined); // => false
+            ")</code></pre>
+
+            <h3>Case Study</h3>
+
+            <p>
+                You can use the truthy/falsy nature of variables/properties to help you write concise code.
+                In following example, if an object doesn't have a property defined, then we go ahead and define it.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = {};
+            if (!myObject.id) {
+                myObject.id = 1;
+            }
+            ")</code></pre>
+
+            <p>
+                A word of caution: make sure you know what you are doing. Let's change the example so that the <code>id</code> property is set to <code>0</code>.
+                Just as before, when we get to the <code>if</code> statement, the code <code>!myObject.id</code> will evaluate to <code>true</code> because of the falsy
+                nature of <code>0</code> (and because we've used the <code>!</code> operator). So we will wipe out the <code>0</code> and replace it with a <code>1</code>.
+                This is almost certainly a bug in our program. It might take quite a bit of time to find that error and fix it.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = { id: 0 };
+            if (!myObject.id) {
+                myObject.id = 1; // uh-oh we just replaced 0 with 1
+            }
+            ")</code></pre>
+
+            <p>
+                The way to fix that problem is to check if the property has a value of <code>undefined</code>. You could also check for <code>null</code> if it makes sense
+                in this case.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myObject = { id: 0 };
+            if (myObject.id === undefined) {
+                myObject.id = 1; // Not going to get here, because id is defined
+            }
+            // Could also do:
+            if (myObject.id === undefined || myObject.id === null) {
+                myObject.id = 1; // Still not going to get here, because id is defined and it's not null
+            }
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>jQuery</h2>
+        <div>
+            <h3>What is jQuery?</h3>
+            <blockquote>
+                <p>
+                    jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation,
+                    event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+                    With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.
+                </p>
+                <footer>
+                    <cite><a href="http://jquery.com/" target="_blank">jquery.com</a></cite>
+                </footer>
+            </blockquote>
+
+            <p>
+                That's a big statement that encompasses many things. For now, we're just going to focus on four parts:
+            </p>
+
+            <ol>
+                <li>JavaScript libarary</li>
+                <li>HTML document traversal</li>
+                <li>manipulation</li>
+                <li>event handling</li>
+            </ol>
+
+            <h4>JavaScript library</h4>
+            <p>
+                A <dfn>library</dfn> is simply some code that someone else has written so you don't have to. You can include a library in your
+                code using a <code>&lt;script&gt;</code> tag with a <code>src</code> attribute.
+                For example, you can include jQuery like so:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <script src=""//code.jquery.com/jquery-1.11.2.js""></script>
+            ")</code></pre>
+
+            <h4>HTML document traversal</h4>
+            <p>
+                We have already been doing document traversal using methods such as <code>getElementById</code>, <code>getElementsByTagName</code>, <code>querySelectorAll</code>, etc.
+                You might be interested to know that jQuery existed before the <code>querySelectorAll</code> method did, and was already doing what that method does.
+                It was only decided later to add that method to JavaScript. Interesting, isn't it?
+            </p>
+
+            <p>
+                jQuery uses some special syntax that might take some getting used to.
+                jQuery adds a global variable <code>$</code> (yes, just <code>$</code>) to the <code>window</code>.
+                The <code>$</code> is actually a <code>function</code>. It expects you to pass it a CSS selector, like <code>$('div > p.even')</code> for example.
+                Then it will go out and find all of the elements that match that selector.
+                The advantage of using jQuery is that <strong>you don't have to worry about cross-browser incompatibilities!</strong>
+                Let's go through each method and compare how plain JavaScript does it vs how jQuery does it.
+            </p>
+
+            <h5>getElementById</h5>
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <p id=""paragraph1"">...</p>
+                <script>
+                    // JavaScript
+                    var paragraph1 = document.getElementById('paragraph1');
+
+                    // jQuery
+                    var jq_paragraph1 = $('#paragraph1');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h5>getElementsByTagName</h5>
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <p>Hello</p>
+                <p>World</p>
+                <script>
+                    // JavaScript
+                    var paragraphs = document.getElementsByTagName('p');
+
+                    // jQuery
+                    var jq_paragraphs = $('p');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h5>getElementsByClassName</h5>
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <p>One</p>
+                <p class=""wow"">Two</p>
+                <p class=""wow cool"">Three</p>
+                <p>Four</p>
+
+                <script>
+                    // JavaScript
+                    var wowElements = document.getElementsByClassName('wow');
+
+                    // jQuery
+                    var jq_wowElements = $('.wow');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h5>getElementsByName</h5>
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <form>
+                    <h1>Choose all sports that you enjoy playing</h1>
+                    <label><input type=""checkbox"" name=""sports"" /> Baseball</label>
+                    <label><input type=""checkbox"" name=""sports"" /> Basketball</label>
+                    <label><input type=""checkbox"" name=""sports"" /> Football</label>
+                    <label><input type=""checkbox"" name=""sports"" /> Soccer</label>
+                    <label><input type=""checkbox"" name=""sports"" /> Hockey</label>
+                    
+                    <input type=""submit"" value=""Save"" />
+                </form>
+
+                <script>
+                    // JavaScript
+                    var sports = document.getElementsByName('sports');
+            
+                    // jQuery
+                    var jq_sports = $(""[name='sports']"");
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h5>querySelectorAll</h5>
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <p>I'm not a child of a div</p>
+                <div>
+                    <p>I am a child of a div, but I don't have the 'large' class.</p>
+                    <p class=""large"">I'm the one you're looking for.</p>
+                </div>
+
+                <script>
+                    // JavaScript
+                    var largeChildren = document.querySelectorAll('div > p.large');
+
+                    // jQuery
+                    var jq_largeChildren = $('div > p.large');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h4>HTML Manipulation</h4>
+            <p>
+                One nice thing about jQuery is that it implicitly does a <code>for</code> loop for you whenever you want
+                to modify several elements at once. This is convenient because jQuery always returns an array &mdash; even if there could only
+                possibly be one element, such as finding an element by Id. You can modify the styles using jQuery's <a href="http://api.jquery.com/css/" target="_blank"><code>css</code></a> method.
+                Let's look at some examples that illustrate this.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <h1>Hello World</h1>
+                <h2 id=""hidden"">Now you see me...</h2>
+                <script>
+                    // JavaScript
+                    var hidden = document.getElementById('hidden');
+                    hidden.style.display = 'none';
+
+                    // jQuery
+                    $('#hidden').css('display', 'none');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                There's even a shortcut method for hiding an element like we just did, it's the <a href="http://api.jquery.com/hide/" target="_blank"><code>hide</code></a> method.
+                So that previous example could be re-written like so:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <h1>Hello World</h1>
+                <h2 id=""hidden"">Now you see me...</h2>
+                <script>
+                    // JavaScript
+                    var hidden = document.getElementById('hidden');
+                    hidden.style.display = 'none';
+
+                    // jQuery
+                    $('#hidden').hide();
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                The next example demonstrates that you don't have to use a <code>for</code> loop when there are many elements
+                returned by the selector. In this example we set the font color of all paragraphs to be red.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <h1>Hello World</h1>
+                <p>
+                    Paragraph 1
+                </p>
+                
+                <p>
+                    Paragraph 2
+                </p>
+
+                <p>
+                    Paragraph 3
+                </p>
+
+                <script>
+                    // JavaScript
+                    var paragraphs = document.getElementsByTagName('p');
+
+                    for (var i = 0; i < paragraphs.length; i++) {
+                        paragraphs[i].style.color = 'red';
+                    }
+
+                    // jQuery
+                    $('p').css('color', 'red');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                jQuery also provides the <a href="http://api.jquery.com/text/" target="_blank"><code>text</code></a> method for getting or
+                setting the <code>textContent</code> of an element. Note that this includes the text of <strong>all</strong> elements.
+                If you only want one element, then you must reduce the set of matched elements.
+                For example, if you just want the first element, you can use the <a href="http://api.jquery.com/first/" target="_blank"><code>first</code></a> method.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <p>I don't have much to say.</p>
+                <p>I have something else to say.</p>
+
+                <script>
+                    // Note that the text will include ALL text from ALL elements.
+                    var text = $('p').text();
+                    alert(text); // => ""I don't have much to say.I have something else to say.""
+
+                    // Just the first paragraph's text
+                    var text2 = $('p').first().text();
+                    alert(text2); // => ""I don't have much to say.""
+
+                    // Set the text to something else. Again, this modifies ALL paragraphs.
+                    $('p').text('Something else');
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                Using the <a href="http://api.jquery.com/val/" target="_blank"><code>val</code></a> method, you can get or set the <code>value</code> of an <code>&lt;input&gt;</code>.
+                Note that there is a difference between the <code>text</code> and <code>val</code> methods. The <code>text</code> method returns the combined text of all matched elemennts.
+                Whereas the <code>val</code> method only returns the <code>value</code> of the first matched element.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <input type=""checkbox"" name=""number"" value=""100"" />
+                <input type=""checkbox"" name=""number"" value=""50"" />
+
+                <script>
+                    // Note that the val method only returns the value of the FIRST element.
+                    var val = $(""[name='number']"").val();
+                    alert(val); // => 100
+
+                    // Set the value to something else. This will set the value of ALL elements.
+                    $(""[name='number']"").val(42);
+                </script>
+            </body>
+            ")</code></pre>
+
+            <h4>Event Handling</h4>
+            <p>
+                jQuery allows you to add an event handler to any element in the HTML document. There are two different methods for doing so.
+                Note that both do the same thing. Under the hood, they both use the <code>addEventListener</code> method to attach the handler.
+                This means that you can always add more than one handler.
+            </p>
+
+            <p>
+                The first way to add an event handler, is to use the <a href="http://api.jquery.com/on/" target="_blank"><code>on</code></a> method.
+                This method accepts the name of the event as well as the function to execute when the event is raised.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <button type=""button"" id=""clickable"">Click Me</button>
+
+                <script>
+                    function superAnnoyingPopupHandler() {
+                        alert(""Aren't popups annoying?"");
+                    }
+
+                    // Here, we are using a named function
+                    $('#clickable').on('click', superAnnoyingPopupHandler);
+                    
+                    // Here, we are using an annonymous function
+                    $('#clickable').on('click', function() {
+                        alert('Yes, they are');
+                    });
+                </script>
+            </body>
+            ")</code></pre>
+
+            <p>
+                The second way to add an event handler is to use the event-specific method. For example, to add a handler to the <code>click</code> event,
+                you would use the <a href="http://api.jquery.com/click/" target="_blank"><code>click</code></a> method. This method only requires you to pass it a function.
+                Below is the previous example rewritten using the <code>click</code> method.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <body>
+                <button type=""button"" id=""clickable"">Click Me</button>
+
+                <script>
+                    function superAnnoyingPopupHandler() {
+                        alert(""Aren't popups annoying?"");
+                    }
+
+                    // Here, we are using a named function
+                    $('#clickable').click(superAnnoyingPopupHandler);
+                    
+                    // Here, we are using an annonymous function
+                    $('#clickable').click(function() {
+                        alert('Yes, they are');
+                    });
+                </script>
+            </body>
+            ")</code></pre>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
