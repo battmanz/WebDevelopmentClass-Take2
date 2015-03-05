@@ -10,6 +10,15 @@ main {
 dd {
   margin-bottom: 15px;
 }
+img {
+  max-width: 100%;
+}
+.frame {
+  border-bottom: dotted 2px #999;
+}
+.frame figcaption {
+  margin: 10px 0;
+}
 /*.hero {
     background-image: url(/Images/macbook-air-all-faded-and-stuff_dark.jpg);
     background-attachment: fixed;

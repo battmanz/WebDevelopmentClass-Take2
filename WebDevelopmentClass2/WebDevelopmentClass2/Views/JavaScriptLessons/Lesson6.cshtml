@@ -1,0 +1,382 @@
+﻿@{
+    ViewBag.Title = "Lesson 6";
+}
+
+<article>
+    <h1>Lesson 6</h1>
+
+    <section>
+        <h2>AJAX</h2>
+        <div>
+            <h3>Not this kind of AJAX</h3>
+            <figure class="frame">
+                <img src="http://www.prideproducts.com/images/inventory/96360.jpg" />
+                <figcaption>
+                    AJAX Cleaner.
+                    Image from <cite><a href="http://www.prideproducts.com/images/inventory/96360.jpg">http://www.prideproducts.com/images/inventory/96360.jpg</a></cite>
+                </figcaption>
+            </figure>
+
+            <h3>Nor this kind of AJAX</h3>
+
+            <figure class="frame">
+                <img src="http://merdekabola.com/wp-content/uploads/2014/04/ajax-amsterdam.jpg" />
+                <figcaption>
+                    Dutch AJAX Football Club.
+                    Image from <cite><a href="http://merdekabola.com/wp-content/uploads/2014/04/ajax-amsterdam.jpg">http://merdekabola.com/wp-content/uploads/2014/04/ajax-amsterdam.jpg</a></cite>
+                </figcaption>
+            </figure>
+
+            <h3>Asynchronous JavaScript and XML</h3>
+            <p>
+                The term <dfn>AJAX</dfn> stands for [A]synchronous [J]avaScript [a]nd [X]ML. It encompasses any technologies used by programmers
+                to retrieve data from the server without causing the page to load. Most often it refers to the use of the <code>XMLHttpRequest</code>
+                object. We'll see how to use this object after discussing XML and JSON.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>XML</h2>
+        <div>
+            <p>
+                XML is a markup language just like HTML is a markup language. In fact the "ML" in both XML and HTML stands for "Markup Language".
+                The XML syntax is quite similar to HTML. The difference is that HTML has a finite set of well-defined tags.
+                XML on the other hand is extensible. In fact, the "X" stands for e[x]tensible. Yes, I'm aware that extensible starts with an "E".
+                I guess someone thought that XML sounded better than EML. Because XML is extensible, you are free to define any tags you would like.
+            </p>
+
+            <p>The following is an example of XML. I made up my own tags, because that's what XML allows me to do.</p>
+
+            <pre><code class="brush: xml;">@(@"
+            <?xml version=""1.0"" encoding=""UTF-8""?>
+            <FavoriteCartoon Name=""Phineas and Ferb"">
+                <Characters>
+                    <Character FirstName=""Phineas"" LastName=""Flynn"" />
+                    <Character FirstName=""Ferb"" LastName=""Fletcher"" />
+                    <Character FirstName=""Candace"" LastName=""Flynn"" />
+                    <Character FirstName=""Perry"" LastName=""the Platypus"" />
+                    <Character FirstName=""Linda"" LastName=""Flynn"" />
+                    <Character FirstName=""Lawrence"" LastName=""Fletcher"" />
+                    <Character FirstName=""Heinz"" LastName=""Doofenshmirtz"" />
+                    <Character FirstName=""Vanessa"" LastName=""Doofenshmirtz"" />
+                </Characters>
+            </FavoriteCartoon>
+            ")</code></pre>
+
+            <p>
+                You can use the usual DOM traversal meethods (such as <code>getElementsByTagName</code>, <code>parentNode</code>,
+                <code>childNodes</code>, <code>nextElementSibling</code>, etc) on XML! That's because XML is a tree-like document
+                just as HTML is.
+            </p>
+
+            <p>
+                The following example loads an XML document that is stored in a string, parses it, and then
+                gets data from it. This is to demonstrate that JavaScript can create a DOM for XML as well as HTML.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <header>
+                <h1 id=""heading1""></h1>
+            </header>
+    
+            <footer>
+                <h2 id=""heading2""></h2>
+            </footer>
+
+            <script>
+                // This is just a plain old string. However it looks just like XML.
+                var xmlString = ""<demo><salutation>hello</salutation><valediction>goodbye</valediction></demo>"";
+        
+                // Create a DOMParser object. This object can create a document from a string.
+                var parser = new DOMParser();
+        
+                // Create an XML document from the string.
+                var xmlDocument = parser.parseFromString(xmlString, 'text/xml');
+        
+                // Now we can use the usual DOM methods (such as getElementsByTagName) on the XML document,
+                // because it is a tree-like document just like HTML.
+                var salutationNode = xmlDocument.getElementsByTagName('salutation')[0];
+        
+                // Here's an example of using the 'nextElementSibling' property to traverse the tree.
+                var valedictionNode = salutationNode.nextElementSibling;
+        
+                // Get references to the two heading elements.
+                var heading1 = document.getElementById('heading1');
+                var heading2 = document.getElementById('heading2');
+        
+                heading1.textContent = salutationNode.textContent;
+                heading2.textContent = valedictionNode.textContent;
+            </script>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>JSON</h2>
+        <div>
+            <p>
+                Even though the "X" in AJAX stands for XML, it's far more common to work with JSON data rather than XML.
+                <dfn>JSON</dfn> stands for [J]ava[S]cript [O]bject [N]otation. JSON takes advantage of the fact that you can
+                define object literals in JavaScript.
+            </p>
+
+            <p>
+                We can store the same "Favorite Cartoon" data in JSON as we did in XML. In JSON, it would look like this:
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            {
+                ""name"": ""Phineas and Ferb"",
+                ""Characters"": [
+                    {
+                        ""FirstName"": ""Phineas"",
+                        ""LastName"": ""Flynn""
+                    },
+                    {
+                        ""FirstName"": ""Ferb"",
+                        ""LastName"": ""Fletcher""
+                    },
+                    {
+                        ""FirstName"": ""Candace"",
+                        ""LastName"": ""Flynn""
+                    },
+                    {
+                        ""FirstName"": ""Perry"",
+                        ""LastName"": ""the Platypus""
+                    },
+                    {
+                        ""FirstName"": ""Linda"",
+                        ""LastName"": ""Flynn""
+                    },
+                    {
+                        ""FirstName"": ""Lawrence"",
+                        ""LastName"": ""Fletcher""
+                    },
+                    {
+                        ""FirstName"": ""Heinz"",
+                        ""LastName"": ""Doofenshmirtz""
+                    },
+                    {
+                        ""FirstName"": ""Vanessa"",
+                        ""LastName"": ""Doofenshmirtz""
+                    }
+                ]
+            }
+            ")</code></pre>
+
+            <p>
+                JavaScript can parse a string containing JSON data as well. The <code>JSON</code> object exists just for that purpose.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <p id=""nameGoesHere""></p>
+                       
+            <script>
+                // This is just a plain old string. However it looks just like JSON.
+                var jsonString = '{ ""firstName"": ""George"", ""lastName"": ""Washington"" }';
+
+                // Use the global JSON object to parse the string to an object.
+                var personObject = JSON.parse(jsonString);
+
+                // Get a reference to the paragraph that should display the full name.
+                var nameContainer = document.getElementById('nameGoesHere');
+
+                // Set the text of the paragraph to be the first name and last name separated by a space.
+                nameContainer.textContent = personObject.firstName + ' ' + personObject.lastName;
+                </script>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>How it's done</h2>
+        <div>
+            <h3>XMLHttpRequest</h3>
+            <p>
+                AJAX allows your script to make an HTTP request and get data from the server without refreshing the entire page.
+                It can be used, for example, if you were to send a minimal web page to the user and then load additional data after the page
+                has already loaded. It can also be used to fetch additional data when the user clicks a button or fills out a form.
+                Most of the time the user is unaware that AJAX is happening on the page.
+            </p>
+
+            <p>
+                You make ean HTTP request using the <code>XMLHttpRequest</code> object. This is supported in all modern browsers including IE 7+.
+                IE 5 and 6 use a different object, namely the <code>ActiveXObject</code>. So here again we see an example of a cross-browser
+                incompatibility. But we can't be too upset, because Microsoft invented this technology. The name just got changed.
+            </p>
+
+            <p>
+                Asynchronous means that sending the HTTP request doesn't block the page. The <code>XMLHttpRequest</code> sends the request without
+                blocking the page from doing other things. Whenever the response is returned from the server, then it will be handled at that point
+                in time. The response may come quickly or it may take some time. It depends on the server and the network connection.
+            </p>
+
+            <p>
+                Instead of using the <code>XMLHttpRequest</code> directly, I recommend using the jQuery wrapper instead.
+                jQuery provides the <a href="http://api.jquery.com/jquery.ajax/"><code>$.ajax</code></a> function for making AJAX calls.
+                It also provides shorthand methods such as <a href="http://api.jquery.com/jQuery.get/"><code>$.get</code></a> and
+                <a href="http://api.jquery.com/jQuery.post/"><code>$.post</code></a>.
+            </p>
+
+            <h3>GET vs POST</h3>
+
+            <p>
+                <dfn><code>GET</code></dfn> and <dfn><code>POST</code></dfn> are two <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">HTTP verbs</a>.
+                There are others as well, but the vast majority of requests that you will be making are either <code>GET</code> or <code>POST</code>.
+                A <code>GET</code> request should be used for simply getting data from the server so that it can be displayed.
+                A <code>POST</code> request should be used for creating, editing, or deleting a record.
+                For example, when you view your friend's profile on Facebook, that's a <code>GET</code> request.
+                When you write on your friends timeline, that's a <code>POST</code> request. If you edit or delete your comment, then that as well
+                would be a <code>POST</code> request.
+            </p>
+
+            <p>
+                Example <code>GET</code> and <code>POST</code> requests using jQuery. Note that both the shorthand and full <code>$.ajax</code>
+                methods are used for illustration purposes.
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            // A GET request using the shorthand method.
+            $.get('/view/comment', { id: 5 }, function(data) {
+                alert(data);
+            });
+
+            // A GET request using the full 'ajax' method.
+            $.ajax({
+                url: '/view/comment',
+                type: 'GET',
+                data: {
+                    id: 5
+                },
+                success: function(data) {
+                    alert(data);
+                }
+            });
+
+            // A POST request using the shortand method.
+            $.post('/edit/comment', { id: 5, text: 'Hi friend' }, function(data) {
+                alert(data);
+            });
+
+            // A POST request using the full 'ajax' method.
+            $.ajax({
+                url: '/edit/comment',
+                type: 'POST',
+                data: {
+                    id: 5,
+                    text: 'Hi friend'
+                },
+                success: function(data) {
+                    alert(data);
+                }
+            });
+            ")</code></pre>
+
+            <h3>Same origin policy</h3>
+
+            <p>
+                AJAX calls are subject to the <a href="http://en.wikipedia.org/wiki/Same-origin_policy">Same-origin policy</a>.
+                This means that if my script is running on a site at "http://foo.com", I can't make a call to "http://example.com".
+                The browser simply won't allow it. One way to get around this is to use what's called <a href="http://en.wikipedia.org/wiki/JSONP"><dfn>JSONP</dfn></a>.
+                This gets around the same origin policy by instead of using the <code>XMLHttpRequest</code> object, creating a new <code>&lt;script&gt;</code> tag in the HTML
+                document and pointing its <code>src</code> attribute to the remote URL. We've already seen how we can access jQuery from a remote URL using a CDN.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Programming Assignment</h2>
+        <div>
+            <p>
+                <a href="http://www.rottentomatoes.com/">Rotten Tomatoes</a> is a web site that allows users to rate and review movies.
+                It also provides an <a href="http://www.webopedia.com/TERM/A/API.html"><dfn>Application Programming Interface (API)</dfn></a> so that developers can write
+                a program to access their data. In order to access it from JavaScript, you must use JSONP.
+                You must first <a href="http://developer.rottentomatoes.com/member/register">Register</a>.
+                After you register, you will be sent an email with your API key. You'll need to have this in order for the AJAX calls to work.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <h1>Search for Movies</h1>
+
+            <form>
+                <label for=""keywords"">Keywords</label>
+                <input type=""text"" name=""keywords"" id=""keywords"" />
+                <input type=""submit"" value=""Search"" />
+            </form>
+    
+            <div id=""resultsContainer"">
+            </div>
+
+            <script src=""http://code.jquery.com/jquery-1.11.2.min.js""></script>
+            <script>
+                var myAPIKey = ''; // You need to get your own api key.
+                var url = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
+
+                function displayMovies(movies) {
+                    // TODO: display all movies inside of the ""resultsContainer"".
+                }
+
+                function displayMovies(data) {
+                    // Uncomment the alert if you want to make sure that you're getting this far.
+                    //alert('Success :)');
+                    displayMovies(data.movies);
+                }
+
+                function failedToGetMovies() {
+                    alert('Failure :(');
+                }
+
+                $(""input[type='submit']"").click(function () {
+                    // Get the set of keywords for which to search.
+                    var keywords = $('#keywords').val();
+
+                    // Make sure to URL-encode the keywords. This makes it safe to pass in the URL.
+                    var encodedKeywords = encodeURIComponent(keywords);
+
+                    // This object contains all the data that Rotten Tomatoes needs.
+                    var data = {
+                        q: encodedKeywords,
+                        page_limit: 20,
+                        page: 1,
+                        apikey: myAPIKey
+                    };
+
+                    // Make the AJAX call. The function passed to 'done' will be executed if the AJAX
+                    // call succeeds. The function passed to 'fail' will be executed if the call fails.
+                    $.ajax({
+                        url: url,
+                        data: data,
+                        dataType: 'jsonp', // jsonp must be used for a cross-domain request.
+                        jsonp: 'callback'  // Rotten Tomatoes requires that the parameter be named 'callback'.
+                    })
+                        .done(displayMovies)
+                        .fail(failedToGetMovies);
+
+                    // Returning false prevents the default event from happening.
+                    // In this case it prevents the form from submitting.
+                    return false;
+                });
+            </script>
+            ")</code></pre>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
