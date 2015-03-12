@@ -317,13 +317,13 @@
                     // TODO: display all movies inside of the ""resultsContainer"".
                 }
 
-                function displayMovies(data) {
+                function success(data) {
                     // Uncomment the alert if you want to make sure that you're getting this far.
                     //alert('Success :)');
                     displayMovies(data.movies);
                 }
 
-                function failedToGetMovies() {
+                function failure() {
                     alert('Failure :(');
                 }
 
@@ -350,8 +350,8 @@
                         dataType: 'jsonp', // jsonp must be used for a cross-domain request.
                         jsonp: 'callback'  // Rotten Tomatoes requires that the parameter be named 'callback'.
                     })
-                        .done(displayMovies)
-                        .fail(failedToGetMovies);
+                        .done(success)
+                        .fail(failure);
 
                     // Returning false prevents the default event from happening.
                     // In this case it prevents the form from submitting.

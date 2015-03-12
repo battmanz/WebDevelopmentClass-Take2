@@ -1,0 +1,590 @@
+﻿@{
+    ViewBag.Title = "Lesson 7";
+}
+
+<article>
+    <h1>Lesson 7</h1>
+
+    <section>
+        <h2>Animation</h2>
+        <div>
+            <h3>What is animation?</h3>
+
+            <blockquote>
+                <p>
+                    Animation is the process of creating motion and shape change illusion by means of the rapid display of a sequence of static images that minimally differ from each other.
+                </p>
+                <footer>
+                    <cite><a href="http://en.wikipedia.org/wiki/Animation">http://en.wikipedia.org/wiki/Animation</a></cite>
+                </footer>
+            </blockquote>
+
+            <p>
+                For example, below I have 7 different images of a Fat Spiderman.
+            </p>
+
+            <ul class="list-group row">
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-0.gif" />
+                </li>
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-1.gif" />
+                </li>
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-2.gif" />
+                </li>
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-3.gif" />
+                </li>
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-4.gif" />
+                </li>
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-5.gif" />
+                </li>
+                <li class="list-group-item col-md-2 col-sm-3 col-xs-4">
+                    <img src="~/Images/FatSpiderman/tmp-6.gif" />
+                </li>
+            </ul>
+
+            <p>
+                Now let's see what happens if I show the first image for a split second, followed quickly
+                by the second image, then third, etc.
+            </p>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img id="animatedImage" src="~/Images/FatSpiderman/tmp-0.gif" />
+
+                    <p>
+                        <label for="delay">Transition Time</label>
+                        <input type="text" id="delay" value="80" /> ms
+                        <br />
+
+                        <label for="repeat">No. times to repeat</label>
+                        <input type="text" id="repeat" value="3" />
+                        <br />
+
+                        <button id="startAnimation">Dance</button>
+                        <!--Hint: try quickly pushing the Dance button multiple times.-->
+                    </p>
+                </div>
+            </div>
+
+            <p>
+                The result is that it looks like Fat Spiderman is dancing!
+                This is how animation is done &mdash; in this case, cartoon animation.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>More CSS</h2>
+        <div>
+            <h3>CSS Properties</h3>
+            <p>
+                Before we dive into more animation concepts, it will be very helpful to learn (or review) some CSS properties
+                that we have not already covered in this JavaScript course. These topics are covered in the HTML and CSS course, however.
+                MDN has a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference" target="_blank">full list of css properties</a>.
+                Don't be overwhelmed by the number of properties you see there. For our purposes here, we don't need to know all of them.
+                We'll just look at two properties that are interesting in regards to animation.
+            </p>
+
+            <h3>Position</h3>
+            <p>
+                The <code>position</code> property determines how and where an element is displayed on the page.
+                <code>position: relative</code>, for example, makes it so that an element can be moved <em>relative</em>
+                to where it was initially positioned. In the example below, the middle div has been moved <code>20px</code> to
+                the right and <code>10px</code> down from where it was originally. The <code>left</code> property moves
+                the element to the right and the <code>top</code> property moves the element down. The reason is that <code>left</code>,
+                for example, means that you are moving the left border forward (that is, to the right) by that many pixels.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+                <style>
+                    div {
+                        width: 50px;
+                        height: 50px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-color: green;
+                        margin-right: 5px;
+                    }
+
+                    .weird {
+                        background-color: red;
+                        position: relative;
+                        left: 20px;
+                        top: 10px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div></div>
+                <div class=""weird""></div>
+                <div></div>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                To learn more about positioning, see <a href="http://webdevelopmentclass.apphb.com/Lessons/6">HTML and CSS Lesson 6</a>.
+            </p>
+
+            <h3>Opacity</h3>
+            <p>
+                The <code>opacity</code> property determines how opaque an element is. If an element is not fully opaque, then it is
+                semitransparent, or possible fully transparent. To learn more about <code>opacity</code>, see <a href="http://webdevelopmentclass.apphb.com/Lessons/4">HTML and CSS Lesson 4</a>
+                , particularly the section titled "Colors".
+            </p>
+
+            <p>
+                In the example that follows, we can see that there is a <code>&lt;div&gt;</code> with a background image. It is overlayed by 4 additional <code>&lt;div&gt;</code>s.
+                Each overlay has a different opacity.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+                <style>
+                    div {
+                        width: 800px;
+                        height: 357px;
+                        margin: 0;
+                        padding: 0;
+                    }
+    
+                    .container {
+                        position: relative;
+                        background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/San_Diego_Reflecting_Pond.jpg/800px-San_Diego_Reflecting_Pond.jpg);
+                    }
+        
+                    .overlay {
+                        position: absolute;
+                        background-color: white;
+                        width: 200px;
+                    }
+        
+                    #overlay1 {
+                        opacity: 0.8;
+                        left: 0;
+                    }
+        
+                    #overlay2 {
+                        opacity: 0.6;
+                        left: 200px;
+                    }
+        
+                    #overlay3 {
+                        opacity: 0.4;
+                        left: 400px;
+                    }
+        
+                    #overlay4 {
+                        opacity: 0.2;
+                        left: 600px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class=""container"">
+                    <div class=""overlay"" id=""overlay1""></div>
+                    <div class=""overlay"" id=""overlay2""></div>
+                    <div class=""overlay"" id=""overlay3""></div>
+                    <div class=""overlay"" id=""overlay4""></div>
+                </div>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>DOM Animation</h2>
+        <div>
+            <p>
+                The purpose of this lesson is not to learn cartoon animation.
+                Instead, it is to learn DOM animation. In other words, we want to look at how we can
+                animate changes to the DOM. For example, suppose I want to move an element from one position to another.
+                The following code shows an example of doing just that.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+                <style>
+                    .box {
+                        width: 50px;
+                        height: 50px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-color: green;
+                        margin-right: 5px;
+                    }
+
+                    .box.moveable {
+                        background-color: red;
+                        position: relative;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>
+                    <div class=""box""></div>
+                    <div class=""box moveable""></div>
+                    <div class=""box""></div>
+                </div>
+
+                <p>
+                    <button id=""move"" type=""button"">Move</button>
+                </p>
+
+                <script src=""http://code.jquery.com/jquery-1.11.2.min.js""></script>
+                <script>
+                    $('#move').click(function () {
+                        $('.moveable').css('left', '400px');
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                That's fine, and it works. You'll notice that the red box disappears from its original location
+                and instantaneously shows up at the new location. Wouldn't it be neat if we could animate that move.
+                In other words make it look like its actually sliding from one place to another. Well, we can.
+                It's all a matter of tricking the eye by moving the box a little at a time until it reaches its destination.
+            </p>
+
+            <h3>setTimeout and setInternal</h3>
+            <p>
+                JavaScript provides two functions for setting a timer. The <code>setTimeout</code> function waits for a specified
+                amount of time and then calls a function once. That's it. It only calls the function once and never again.
+                <code>setInterval</code> on the other hand waits for a specified amount of time, calls a function, resets, and then
+                starts all over again. In other words, <code>setInterval</code> will call the function over and over again.
+            </p>
+
+            <p>
+                Eventually you'd like the <code>setInternal</code> method to stop. In order to do that you need to save the <dfn>handle</dfn>
+                that it returns. You can then later call <code>clearInterval</code> to stop it. There is also a <code>clearTimeout</code> function
+                so that you can stop the <code>setTimeout</code> before it goes off.
+            </p>
+
+            <p>
+                The following example shows the difference between <code>setTimeout</code> and <code>setInterval</code>.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <div id=""timeoutDisplay""></div>
+            <div id=""intervalDisplay""></div>
+
+            <p>
+                <button type=""button"" id=""stop"">Stop Interval</button>
+            </p>
+
+            <script src=""http://code.jquery.com/jquery-1.11.2.min.js""></script>
+            <script>
+                var timeoutCounter = 0;
+                var intervalCounter = 0;
+
+                var timeoutHandle = setTimeout(function() {
+                    $('#timeoutDisplay').text('Number of timeouts: ' + (++timeoutCounter));
+                }, 1000); // 1000, means 1000 milliseconds == 1 second
+
+                var intervalHandle = setInterval(function() {
+                    $('#intervalDisplay').text('Number of intervals' + (++intervalCounter));
+                }, 1000); // 1000, means 1000 milliseconds == 1 second
+
+                $('#stop').click(function() {
+                    clearInterval(intervalHandle);
+                });
+            </script>
+            ")</code></pre>
+
+            <p>
+                From now on, we're going to just focus on <code>setInterval</code>.
+                So how does <code>setInterval</code> pertain to animation? Well in order to make something look like it's moving,
+                we need to make it move just a little bit, then a little bit more, then a little bit more, etc. This is perfect
+                for <code>setInterval</code>.
+            </p>
+
+            <p>
+                The following example is similar to the previous one. This time, however, the transition is animated. Note the difference
+                between the two.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+                <style>
+                    .box {
+                        width: 50px;
+                        height: 50px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-color: green;
+                        margin-right: 5px;
+                    }
+
+                    .box.moveable {
+                        background-color: red;
+                        position: relative;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>
+                    <div class=""box""></div>
+                    <div class=""box moveable""></div>
+                    <div class=""box""></div>
+                </div>
+
+                <p>
+                    <button id=""move"" type=""button"">Move</button>
+                </p>
+
+                <script src=""http://code.jquery.com/jquery-1.11.2.min.js""></script>
+                <script>
+                    var started = false;
+    
+                    $('#move').click(function() {
+                        if (!started) {
+                            started = true;
+                
+                            var currentLeft = 0;
+                            var finalLeft = 400;
+                            var shouldStop = false;
+                
+                            var handle = setInterval(function() {
+                                currentLeft += 10;
+                    
+                                // Make sure we don't go too far
+                                if (currentLeft > finalLeft) {
+                                    currentLeft = finalLeft;
+                                    shouldStop = true;
+                                }
+                    
+                                $('.moveable').css('left', currentLeft + 'px');
+                    
+                                if (shouldStop) {
+                                    clearInterval(handle);
+                                    started = false;
+                                }
+                            }, 30);
+                        }
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>jQuery Animation</h2>
+        <div>
+            <h3>The <code>animate</code> Method</h3>
+            <p>
+                The final example from the previous section on DOM animation involved a lot of code to just move a <code>&lt;div&gt;</code>
+                from one place to another. Fortunately jQuery really helps us out here. The following example shows how you can do the same
+                thing with much less code using jQuery's <a href="http://api.jquery.com/animate/" target="_blank"><code>animate</code></a> method.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+                <style>
+                    .box {
+                        width: 50px;
+                        height: 50px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background-color: green;
+                        margin-right: 5px;
+                    }
+
+                    .box.moveable {
+                        background-color: red;
+                        position: relative;
+                    }
+                </style>
+            </head>
+            <body>
+                <div>
+                    <div class=""box""></div>
+                    <div class=""box moveable""></div>
+                    <div class=""box""></div>
+                </div>
+
+                <p>
+                    <button id=""move"" type=""button"">Move</button>
+                </p>
+
+                <script src=""http://code.jquery.com/jquery-1.11.2.min.js""></script>
+                <script>
+                    $('#move').click(function () {
+                        $('.moveable').animate({
+                            left: '400px'
+                        }, 500);
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                The <code>animate</code> method can be used to animate many properties, but not every property can be animated.
+                For example, <code>display: none</code> cannot be animated, because there are no "in-between values".
+                However, if you would like to animate showing or hiding an element, you can do that in one of two ways.
+            </p>
+
+            <ol>
+                <li>
+                    You can animate the <code>opacity</code> of the element.<br />
+                    jQuery even comes with a shortcut method called <code>fadeOut</code> that does just that.
+                </li>
+                <li style="margin-top: 10px;">
+                    You can animate the <code>height</code> of the element.<br />
+                    Here again, jQuery has a shortcut method that will to that. It's called <code>slideUp</code>.
+                </li>
+            </ol>
+
+            <p>
+                The following example shows the difference between these two approaches.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset=""utf-8"" />
+                <title>JavaScript is Awesome!</title>
+                <style>
+                    .box {
+                        width: 100px;
+                        height: 100px;
+                        margin-right: 5px;
+                        color: white;
+                        padding: 20px;
+                    }
+
+                    .fade {
+                        background-color: blue;
+                    }
+
+                    .slide {
+                        background-color: purple;
+                    }
+                </style>
+            </head>
+            <body>
+                <p>
+                    Click on each box to hide it.
+                </p>
+
+                <div>
+                    <div class=""box fade"">Fade out</div>
+                    <div class=""box slide"">Slide up</div>
+                </div>
+
+                <script src=""http://code.jquery.com/jquery-1.11.2.min.js""></script>
+                <script>
+                    $('.fade').click(function () {
+                        $(this).fadeOut();
+                    });
+
+                    $('.slide').click(function() {
+                        $(this).slideUp();
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                Note that the <code>fadeOut</code> and <code>slideUp</code> methods are shortcuts.
+                The <code>animate</code> method can animate any property (that can be animated) including
+                the <code>opacity</code> and <code>height</code>.
+            </p>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+
+            function oneTimeThrough(delay) {
+                $('#animatedImage')
+                    .delay(delay)
+                    .queue(function () {
+                        $(this).attr('src', '/Images/FatSpiderman/tmp-1.gif').dequeue();
+                    })
+                    .delay(delay)
+                    .queue(function () {
+                        $(this).attr('src', '/Images/FatSpiderman/tmp-2.gif').dequeue();
+                    })
+                    .delay(delay)
+                    .queue(function () {
+                        $(this).attr('src', '/Images/FatSpiderman/tmp-3.gif').dequeue();
+                    })
+                    .delay(delay)
+                    .queue(function () {
+                        $(this).attr('src', '/Images/FatSpiderman/tmp-4.gif').dequeue();
+                    })
+                    .delay(delay)
+                    .queue(function () {
+                        $(this).attr('src', '/Images/FatSpiderman/tmp-5.gif').dequeue();
+                    })
+                    .delay(delay)
+                    .queue(function () {
+                        $(this).attr('src', '/Images/FatSpiderman/tmp-6.gif').dequeue();
+                    });
+            }
+
+            $('#startAnimation').click(function () {
+                var delay = parseInt($('#delay').val());
+                if (isNaN(delay)) {
+                    delay = 80;
+                }
+
+                var repeat = parseInt($('#repeat').val());
+                if (isNaN(repeat)) {
+                    repeat = 3;
+                }
+
+                for (var i = 0; i < repeat; i++) {
+                    oneTimeThrough(delay);
+                }
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}
