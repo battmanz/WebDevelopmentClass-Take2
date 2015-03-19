@@ -373,7 +373,7 @@
                                 currentLeft += 10;
                     
                                 // Make sure we don't go too far
-                                if (currentLeft > finalLeft) {
+                                if (currentLeft >= finalLeft) {
                                     currentLeft = finalLeft;
                                     shouldStop = true;
                                 }
@@ -458,11 +458,13 @@
             <ol>
                 <li>
                     You can animate the <code>opacity</code> of the element.<br />
-                    jQuery even comes with a shortcut method called <code>fadeOut</code> that does just that.
+                    jQuery even comes with shortcut methods named <a href="http://api.jquery.com/fadeIn/" target="_blank"><code>fadeIn</code></a> and
+                    <a href="http://api.jquery.com/fadeOut/" target="_blank"><code>fadeOut</code></a> that do just that.
                 </li>
                 <li style="margin-top: 10px;">
                     You can animate the <code>height</code> of the element.<br />
-                    Here again, jQuery has a shortcut method that will to that. It's called <code>slideUp</code>.
+                    Here again, jQuery has shortcut methods to do that. They are named <a href="http://api.jquery.com/slideDown/" target="_blank"><code>slideDown</code></a>
+                    and <a href="http://api.jquery.com/slideUp/" target="_blank"><code>slideUp</code></a>.
                 </li>
             </ol>
 
@@ -480,9 +482,16 @@
                     .box {
                         width: 100px;
                         height: 100px;
-                        margin-right: 5px;
                         color: white;
                         padding: 20px;
+                    }
+
+                    .container {
+                        display: inline-block;
+                        overflow: hidden;
+                        min-height: 140px;
+                        min-width: 140px;
+                        margin-right: 5px;
                     }
 
                     .fade {
@@ -499,8 +508,12 @@
                     Click on each box to hide it.
                 </p>
 
-                <div>
+                <div class=""container"">
                     <div class=""box fade"">Fade out</div>
+                    
+                </div>
+
+                <div class=""container"">
                     <div class=""box slide"">Slide up</div>
                 </div>
 
