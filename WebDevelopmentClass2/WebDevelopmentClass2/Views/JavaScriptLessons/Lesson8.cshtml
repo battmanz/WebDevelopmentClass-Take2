@@ -1,0 +1,875 @@
+﻿@{
+    ViewBag.Title = "Lesson 8";
+}
+
+<article>
+    <h1>Lesson8</h1>
+
+    <section>
+        <h2>Model View Controller (MVC)</h2>
+        <div>
+            <h3>What is MVC and why is it important?</h3>
+            <p>
+                While working on a website, you'll find that over time you'll continue to add more and more features to it.
+                What started out as just one simple webpage, has now turned into a massive multi-page web application.
+                Certainly at that point, and hopefully before, you need to start thinking about <em>organization</em>.
+                One way to organize your code is to use the <dfn>Model View Controller (MVC)</dfn> pattern. To follow the MVC pattern
+                you need to separate your code into three components:
+            </p>
+
+            <dl>
+                <dt>Model</dt>
+                <dd>
+                    The <dfn>model</dfn> represents the data that your website contains. It frequently comes from a database, or web service in the
+                    case of a web application. The model is typically represented by an object (as in <em>object</em>-oriented programming).
+                    For example, the model might be a person or vehicle:
+
+                    <pre><code class="brush: js;">@(@"
+                    // A person model
+                    var person = {
+                        firstName: 'Joe',
+                        lastName: 'Jones',
+                        age: 42,
+                        ssn: '111-22-3333'
+                    };
+
+                    // A vehicle model
+                    var vehicle = {
+                        make: 'Toyota',
+                        model: 'Tacoma',
+                        year: 2010
+                    };
+                    ")</code></pre>
+                </dd>
+
+                <dt>View</dt>
+                <dd>
+                    Everyone is familiar with the view. The <dfn>view</dfn> is what people see when they look at your website.
+                    The view is typically comprised of the HTML, CSS, and images used on your website. The view displays the
+                    model to visitors on your website. The same model can be displayed in infinite ways, because there are infinite
+                    colors, fonts, styles, images, page arrangements, etc. that can be used to display the model. It's a highly artistic
+                    process. For example, below are two different ways to display the <code>person</code> model from above.
+
+                    <pre><code class="brush: html;">@(@"
+                    <!-- View 1 -->
+                    <div>Name:</div>
+                    <div>Jones, Joe</div>
+
+                    <div>Age:</div>
+                    <div>42</div>
+
+                    <div>SSN:</div>
+                    <div>111-22-3333</div>
+
+                    <!-- View 2 -->
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>SSN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Joe</td>
+                                <td>Jones</td>
+                                <td>42</td>
+                                <td>111-22-3333</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    ")</code></pre>
+                </dd>
+
+                <dt>Controller</dt>
+                <dd>
+                    <p>
+                        The <dfn>controller</dfn> is the glue that binds the model and view together. The controller is responsible for
+                        querying the database or calling the webservice to get the data. The controller also is responsible for updating
+                        the model when the user edits the model, such as in an HTML <code>&lt;form&gt;</code>.
+                    </p>
+
+                    <p>
+                        We won't look at an example of a controller here, but we will a little later on after we've talked about
+                        <a href="https://angularjs.org/" target="_blank">AngularJS</a>, which is the MVC framework we'll use in this lesson.
+                    </p>
+                </dd>
+            </dl>
+
+            <h3>Examples of MVC Frameworks</h3>
+            <p>
+                MVC is a hugely popular pattern for application development. Because it is so important, there exists one or more
+                MVC frameworks for just about any language you can think of. The following are examples of MVC frameworks for languages
+                <em>other</em> than JavaScript:
+            </p>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Language</th>
+                        <th>MVC Framework</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Java</td>
+                        <td><a href="http://projects.spring.io/spring-framework/" target="_blank">Spring</a></td>
+                    </tr>
+                    <tr>
+                        <td>Java</td>
+                        <td><a href="https://www.playframework.com/" target="_blank">Play</a></td>
+                    </tr>
+                    <tr>
+                        <td>C#</td>
+                        <td><a href="http://www.asp.net/mvc" target="_blank">ASP.NET MVC</a></td>
+                    </tr>
+                    <tr>
+                        <td>Ruby</td>
+                        <td><a href="http://rubyonrails.org/" target="_blank">Ruby on Rails</a></td>
+                    </tr>
+                    <tr>
+                        <td>Python</td>
+                        <td><a href="https://www.djangoproject.com/" target="_blank">Django</a></td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td><a href="http://www.codeigniter.com/" target="_blank">CodeIgniter</a></td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td><a href="http://cakephp.org/" target="_blank">CakePHP</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>MVC in JavaScript</h3>
+            <p>
+                Those frameworks shown above are all backend (or server-side) MVC frameworks. They differ from JavaScript,
+                because JavaScript is a front-end (or client-side) language. That means that it runs on the computer of the
+                person viewing your website rather than on a server. Just because JavaScript is a front-end language doesn't
+                mean that it can't have an MVC framework. In fact there are several MVC frameworks that have popped up in the
+                past few years. Here are the most popular ones:
+            </p>
+
+            <ul>
+                <li>
+                    <a href="https://angularjs.org/" target="_blank">Angular</a>
+                </li>
+                <li>
+                    <a href="http://emberjs.com/" target="_blank">Ember</a>
+                </li>
+                <li>
+                    <a href="http://backbonejs.org/" target="_blank">Backbone</a>
+                </li>
+                <li>
+                    <a href="http://knockoutjs.com/" target="_blank">Knockout</a>
+                </li>
+            </ul>
+
+            <p>
+                Angular is arguably the most popular JavaScript MVC framework at the present time. It is also the only framework
+                I have used out of the four listed above. So in this lesson, we will focues solely on that one.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Getting Started with AngularJS</h2>
+        <div>
+            <h3>Display a Single Person</h3>
+            <p>
+                Let's see an example of how we would display the <code>person</code> object (from above) using AngularJS.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+
+            <!-- Notice the ng-app attribute, this wires up our app to this HTML. -->
+            <html ng-app=""myCoolApp"">
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Angular.js is Awesome!</title>
+            </head>
+
+            <!-- Notice the ng-controller attribute, this tells Angular which controller we are currently using. -->
+            <body ng-controller=""showPersonController"">
+                <div>
+                    <span>Name:</span>
+                    <span>{{person.lastName}}, {{person.firstName}}</span>
+                </div>
+
+                <div>
+                    <span>Age:</span>
+                    <span>{{person.age}}</span>
+                </div>
+
+                <div>
+                    <span>SSN:</span>
+                    <span>{{person.ssn}}</span>
+                </div>
+
+                <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+                <script>
+                    // Create an app in the form of a module. There can actually be multiple modules,
+                    // but this one is the ""master"" module that would contain any other modules.
+                    var myCoolApp = angular.module('myCoolApp', []);
+
+                    // Create a controller that shows a person.
+                    // Any data that you wish to show to the user must be added to the $scope.
+                    myCoolApp.controller('showPersonController', function ($scope) {
+                        // Add a person property to the scope so that it can be displayed.
+                        $scope.person = {
+                            firstName: 'Joe',
+                            lastName: 'Jones',
+                            age: 42,
+                            ssn: '111-22-3333'
+                        };
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                There are several things to notice. First notice that we must include the <code>angular.js</code> file. In this case,
+                we've included the minified version, <code>angular.min.js</code> using Google's Content Delivery Network (CDN).
+            </p>
+
+            <p>
+                Next, notice that in order to display properties of the <code>person</code>, we use two pairs of curly braces.
+                For example, to display the <code>age</code>, the syntax is <code>{{person.age}}</code>. When the webpage is loaded in the
+                browser, Angular automatically looks for all double curly braces and replaces them with the current value of the corresponding
+                model. In this example, the <code>person</code> is the model.
+            </p>
+
+            <p>
+                The last thing I want to mention here is that we added two new attributees to the HTML, <code>ng-app</code> and <code>ng-controller</code>.
+                These attributes are <strong>not</strong> part of the HTML standard. In fact, they are invalid attributes. But Google can get away
+                with it, because, well, they're Google. AngularJS works by adding custom attributes and even elements to the DOM. We'll see many
+                more examples as we continue on.
+            </p>
+
+            <h3>Editing a Person</h3>
+            <p>
+                One of the coolest features of Angular is the two-way binding between the model and view. If the model changes, then the view is
+                updated. Likewise, if the view is modified, then the underlying model is changed. We can see an example by simply adding a couple
+                of HTML <code>&lt;input&gt;</code> elements to the previous example and using the <code>ng-model</code> attribute to specify that the
+                person's first and last names are to be edited. The following example will illustrate.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+
+            <!-- Notice the ng-app attribute, this wires up our app to this HTML. -->
+            <html ng-app=""myCoolApp"">
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Angular.js is Awesome!</title>
+            </head>
+
+            <!-- Notice the ng-controller attribute, this tells Angular which controller we are currently using. -->
+            <body ng-controller=""showPersonController"">
+                <div>
+                    <span>Name:</span>
+                    <span>{{person.lastName}}, {{person.firstName}}</span>
+                </div>
+
+                <div>
+                    <span>Age:</span>
+                    <span>{{person.age}}</span>
+                </div>
+
+                <div>
+                    <span>SSN:</span>
+                    <span>{{person.ssn}}</span>
+                </div>
+
+                <form>
+                    <div>
+                        <label for=""firstName"">First name</label>
+                        <input type=""text"" id=""firstName"" name=""firstName"" ng-model=""person.firstName"" />
+                    </div>
+
+                    <div>
+                        <label for=""lastName"">Last name</label>
+                        <input type=""text"" id=""lastName"" name=""lastName"" ng-model=""person.lastName"" />
+                    </div>
+                </form>
+
+                <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+                <script>
+                    // Create an app in the form of a module. There can actually be multiple modules,
+                    // but this one is the ""master"" module that would contain any other modules.
+                    var myCoolApp = angular.module('myCoolApp', []);
+
+                    // Create a controller that shows a person.
+                    // Any data that you wish to show to the user must be added to the $scope.
+                    myCoolApp.controller('showPersonController', function ($scope) {
+                        // Add a person property to the scope so that it can be displayed.
+                        $scope.person = {
+                            firstName: 'Joe',
+                            lastName: 'Jones',
+                            age: 42,
+                            ssn: '111-22-3333'
+                        };
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <h3>Displaying an Array of Persons</h3>
+
+            <p>
+                Let's suppose that instead of a single person, we would like to display an array of persons. Angular actually makes it quite
+                simple to do that. We would only have to make two slight adjustments. First, our model needs to be an array. So let's change
+                it to the following:
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            $scope.persons = [
+                {
+                    firstName: 'Joe',
+                    lastName: 'Jones',
+                    age: 42,
+                    ssn: '111-22-3333'
+                },
+                {
+                    firstName: 'Mary',
+                    lastName: 'Jenkins',
+                    age: 74,
+                    ssn: '999-88-4444'
+                },
+                {
+                    firstName: 'Toby',
+                    lastName: 'Smith',
+                    age: 9,
+                    ssn: '123-45-6789'
+                }
+            ];
+            ")</code></pre>
+
+            <p>
+                The next change we need to make is to add an element to the DOM that has the <code>ng-repeat</code> attribute.
+                The value of this attribute should specify the name of the array to iterate over as well as a variable name for
+                each individual person in the array. Here's how it would look in our example:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <div ng-repeat=""person in persons"">
+                <div>
+                    <span>Name:</span>
+                    <span>{{person.lastName}}, {{person.firstName}}</span>
+                </div>
+
+                <div>
+                    <span>Age:</span>
+                    <span>{{person.age}}</span>
+                </div>
+
+                <div>
+                    <span>SSN:</span>
+                    <span>{{person.ssn}}</span>
+                </div>
+            </div>
+            ")</code></pre>
+
+            <p>
+                Notice how we can use the exact same HTML that was used to display an individual person &mdash; all we had to do was wrap it
+                in an element with <code>ng-repeat</code>! I think that's pretty neat. Notice how easy it is to read as well. If we weren't using
+                AngularJS, the alternative would be to use <code>document.createElement</code> multiple times to create all of the elements.
+                The full example looks like this (I added a style to separate each person from the next):
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html ng-app=""myCoolApp"">
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Angular.js is Awesome!</title>
+
+                <style>
+                    .person-container {
+                        margin-bottom: 10px;
+                    }
+                </style>
+            </head>
+            <body ng-controller=""showPersonController"">
+                <div class=""person-container"" ng-repeat=""person in persons"">
+                    <div>
+                        <span>Name:</span>
+                        <span>{{person.lastName}}, {{person.firstName}}</span>
+                    </div>
+
+                    <div>
+                        <span>Age:</span>
+                        <span>{{person.age}}</span>
+                    </div>
+
+                    <div>
+                        <span>SSN:</span>
+                        <span>{{person.ssn}}</span>
+                    </div>
+                </div>
+
+                <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+                <script>
+                    var myCoolApp = angular.module('myCoolApp', []);
+
+                    myCoolApp.controller('showPersonController', function ($scope) {
+                        // Add a persons property to the scope that contains an array of person models.
+                        $scope.persons = [
+                            {
+                                firstName: 'Joe',
+                                lastName: 'Jones',
+                                age: 42,
+                                ssn: '111-22-3333'
+                            },
+                            {
+                                firstName: 'Mary',
+                                lastName: 'Jenkins',
+                                age: 74,
+                                ssn: '999-88-4444'
+                            },
+                            {
+                                firstName: 'Toby',
+                                lastName: 'Smith',
+                                age: 9,
+                                ssn: '123-45-6789'
+                            }
+                        ];
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Multiple Views</h2>
+        <div>
+            <h3>Single Page Application (SPA)</h3>
+            <p>
+                Angular allows you to create what is called a Single Page Application, or SPA for short. That is, a web application
+                that exists entirely on a single web page. This means that the user never has to change pages (i.e. there's no flicker as
+                the user navigates to a new page). But just because it's a single page appplication doesn't mean that it has to look like
+                it's a single page application. In fact, Angular allows you to dynamically change the view so that it appears to the user as
+                if she has navigated to a new page.
+            </p>
+
+            <p>
+                The first thing we'll need to do is to add the <code>angular-route.min.js</code> file to our page. Routing is a separate
+                module that we have the option to include. The Angular team has chosen to place additional modules in separate files.
+                To add the Angular routing module, simply add the following <code>&lt;script&gt;</code> tag <em>below</em> the original
+                <code>angular.min.js</code> file, but above our app's <code>&lt;script&gt;</code> tag. It should look like this:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+            <script src=""https://code.angularjs.org/1.3.15/angular-route.min.js""></script>
+            <script>
+                var myCoolApp = angular.module('myCoolApp', []);
+
+                // ... other code omitted for brevity
+            </script>
+            ")</code></pre>
+
+            <p>
+                Different views are shown inside of the <code>ng-view</code> element. Or likewise, inside of an element with the
+                <code>ng-view</code> attribute. Yes, you read that correctly. <code>ng-view</code> can be used as either an attribute
+                or an element, but just one or the other. It's your choice. We'll modify the person example from above to use the
+                <code>ng-view</code> element. While we're at it we'll need to add <code>'ngRoute'</code> inside of the previously
+                empty array that follows the app name <code>'myCoolApp'</code>. I have also omitted the controller and styles for now.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html ng-app=""myCoolApp"">
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Angular.js is Awesome!</title>
+            </head>
+            <body>
+                <ng-view></ng-view>
+
+                <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+                <script src=""https://code.angularjs.org/1.3.15/angular-route.min.js""></script>
+                <script>
+                    var myCoolApp = angular.module('myCoolApp', ['ngRoute']);
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+
+            <p>
+                If you were to run the code above, you would just get an empty screen. We need to do a few things to get it working again.
+                First, we need to put back the controller &mdash; actually we're going to create two controllers. One will show a simple list that
+                displays each person's name only, and the second will show all the details of a single person. When we're finished, a user of our
+                website will be able to click on a person's name in the list to see all the details of that particular person.
+            </p>
+
+            <h3>Services</h3>
+            <p>
+                There is just one more thing we need to discuss before creating our two controllers, and that is a service.
+                In AngularJS (and other frameworks too) a service is used to get the model from some source. Typically that source will be  web service.
+                However, to keep it simple, for starters we're just going to create a service that just contains a simple array of persons like we've
+                been doing all along.
+            </p>
+
+            <p>
+                Angular even provides us with built-in services. One of those services is <code>$routeParams</code>. This service allows us to pass data
+                between different views of our single page app. So for example, we can pass the social security number (ssn) from a person in the list
+                to the view that displays the details. Then all that the details view has to do is to find the person with that ssn in the array, and
+                displays his/her information. Let's see what that looks like altogether:
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myCoolApp = angular.module('myCoolApp', ['ngRoute']);
+        
+            myCoolApp.service('personService', function() {
+                this.persons = [
+                    {
+                        firstName: 'Joe',
+                        lastName: 'Jones',
+                        age: 42,
+                        ssn: '111-22-3333'
+                    },
+                    {
+                        firstName: 'Mary',
+                        lastName: 'Jenkins',
+                        age: 74,
+                        ssn: '999-88-4444'
+                    },
+                    {
+                        firstName: 'Toby',
+                        lastName: 'Smith',
+                        age: 9,
+                        ssn: '123-45-6789'
+                    }
+                ];
+            });
+        
+            myCoolApp.controller('personListController', function($scope, personService) {
+                // Add all persons to the $scope. This makes it so that they can be shown in the view.
+                $scope.persons = personService.persons;
+            });
+        
+            myCoolApp.controller('personDetailsController', function($scope, personService, $routeParams) {
+                // Loop through all the persons and find the one whose ssn matches the ssn in the $routeParams.
+                for (var i = 0; i < personService.persons.length; i++) {
+                    var person = personService.persons[i];
+                
+                    // When a match is found, add the person to the $scope, so that his/her details can be displayed.
+                    if (person.ssn === $routeParams.ssn) {
+                        $scope.person = person;
+                        break; // Exit the for loop, because we don't need to look any further.
+                    }
+                }
+            });
+            ")</code></pre>
+
+            <h3>Partials</h3>
+            <p>
+                Okay, we're almost there. The next thing we need to do is to create two new HTML templates. A template contains a short snippet of HTML.
+                It will then be inserted into the HTML where the <code>ng-view</code> element is. The templates are added to the document using
+                <code>&lt;script&gt;</code> tags with an attribute that looks like <code>type="text/ng-template"</code>. Also each template <code>script</code>
+                tag needs to have an <code>id</code> so that Angular can find it.
+            </p>
+
+            <p>
+                So we will create two templates, one called <code>personList.html</code>
+                and the other called <code>personDetails.html</code>. Note that in the <code>personList.html</code> template, there is a link with an
+                <code>href</code> attribute. That funny-looking URL is actually there to tell Angular to switch views when the link is clicked on.
+                It will make more sense, when we look at route config next.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <script type=""text/ng-template"" id=""personList.html"">
+                <div ng-repeat=""person in persons"">
+                    <a href=""#/persons/{{person.ssn}}"">{{person.lastName}}, {{person.firstName}}</a>
+                </div>
+            </script>
+
+            <script type=""text/ng-template"" id=""personDetails.html"">
+                <div>
+                    <span>Name:</span>
+                    <span>{{person.lastName}}, {{person.firstName}}</span>
+                </div>
+
+                <div>
+                    <span>Age:</span>
+                    <span>{{person.age}}</span>
+                </div>
+
+                <div>
+                    <span>SSN:</span>
+                    <span>{{person.ssn}}</span>
+                </div>
+            </script>
+            ")</code></pre>
+
+            <h3>Route Config</h3>
+            <p>
+                The final step is to add some configuration to our app so that it knows which view to show and when. You do that by calling the
+                <code>config</code> method on the app. In this case, we have only two views, but it's easy to add more in the future. It's a good
+                idea to always give a default route (using <code>otherwise</code>) as a fallback in case the user tries to go to a view that doesn't exist.
+
+            </p>
+
+            <pre><code class="brush: js;">@(@"
+            var myCoolApp = angular.module('myCoolApp', ['ngRoute']);
+            
+            myCoolApp.config(function($routeProvider) {
+                $routeProvider
+                    // If the URL ends with '/persons', then show the list.
+                    .when('/persons', {
+                        templateUrl: 'personList.html',
+                        controller: 'personListController'
+                    })
+
+                    // If the URL ends with '/persons/111-22-3333' (for example),
+                    // then show the person that has that SSN.
+                    .when('/persons/:ssn', {
+                        templateUrl: 'personDetails.html',
+                        controller: 'personDetailsController'
+                    })
+
+                    // By default view the persons list.
+                    .otherwise({
+                        redirectTo: '/persons'
+                    });
+            });
+        
+            // ... services and controller not shown for brevity
+            ")</code></pre>
+
+            <h3>Putting it all together</h3>
+            <p>
+                Here's what it should look like when everything is put together:
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html ng-app=""myCoolApp"">
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Angular.js is Awesome!</title>
+            </head>
+            <body>
+                <ng-view></ng-view>
+    
+                <script type=""text/ng-template"" id=""personList.html"">
+                    <div ng-repeat=""person in persons"">
+                        <a href=""#/persons/{{person.ssn}}"">{{person.lastName}}, {{person.firstName}}</a>
+                    </div>
+                </script>
+    
+                <script type=""text/ng-template"" id=""personDetails.html"">
+                    <div>
+                        <span>Name:</span>
+                        <span>{{person.lastName}}, {{person.firstName}}</span>
+                    </div>
+
+                    <div>
+                        <span>Age:</span>
+                        <span>{{person.age}}</span>
+                    </div>
+
+                    <div>
+                        <span>SSN:</span>
+                        <span>{{person.ssn}}</span>
+                    </div>
+                </script>
+
+                <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+                <script src="" https />/code.angularjs.org/1.3.15/angular-route.min.js""></script>
+                <script>
+                    var myCoolApp = angular.module('myCoolApp', ['ngRoute']);
+
+                    myCoolApp.config(function ($routeProvider) {
+                        $routeProvider
+                            .when('/persons', {
+                                templateUrl: 'personList.html',
+                                controller: 'personListController'
+                            })
+                            .when('/persons/:ssn', {
+                                templateUrl: 'personDetails.html',
+                                controller: 'personDetailsController'
+                            })
+                            .otherwise({
+                                redirectTo: '/persons'
+                            });
+                    });
+
+                    myCoolApp.service('personService', function () {
+                        this.persons = [
+                            {
+                                firstName: 'Joe',
+                                lastName: 'Jones',
+                                age: 42,
+                                ssn: '111-22-3333'
+                            },
+                            {
+                                firstName: 'Mary',
+                                lastName: 'Jenkins',
+                                age: 74,
+                                ssn: '999-88-4444'
+                            },
+                            {
+                                firstName: 'Toby',
+                                lastName: 'Smith',
+                                age: 9,
+                                ssn: '123-45-6789'
+                            }
+                        ];
+                    });
+
+                    myCoolApp.controller('personListController', function ($scope, personService) {
+                        $scope.persons = personService.persons;
+                    });
+
+                    myCoolApp.controller('personDetailsController', function ($scope, personService, $routeParams) {
+                        for (var i = 0; i < personService.persons.length; i++) {
+                            var person = personService.persons[i];
+
+                            if (person.ssn === $routeParams.ssn) {
+                                $scope.person = person;
+                                break;
+                            }
+                        }
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Rotten Tomatoes Revisited</h2>
+        <div>
+            <h3>Final Programming Assignment</h3>
+            <p>
+                Your final programming assignment for this course is to revisit the
+                @Html.ActionLink("problem given in lesson 6", "Index", "JavaScriptLessons", new { id = 6 }, null)
+                and to redo it (perhaps even make it better than before) using AngularJS.
+            </p>
+
+            <p>
+                You will need to know about the <a href="https://docs.angularjs.org/api/ng/service/$http" target="_blank"><code>$http</code></a>
+                service provided by Angular. This service allows you to make AJAX calls. It is the Angular counterpart for <code>$.ajax</code>
+                in jQuery. For example, to make a JSONP request, you would call <code>$http.jsonp('http://my.url.here')</code>.
+            </p>
+
+            <p>
+                The code below is fully functional once you provide your API key. Your job is then to allow the user to specify the page size (<code>page_limit</code>)
+                as well as which page to show (<code>page</code>). You should also display the total number of results available.
+            </p>
+
+            <pre><code class="brush: html;">@(@"
+            <!DOCTYPE html>
+            <html ng-app=""movieApp"">
+            <head>
+                <meta charset=""utf-8"" />
+                <title>Angular.js is Awesome!</title>
+                <style>
+                    dt {
+                        font-weight: bold;
+                    }
+
+                    dd {
+                        margin-bottom: 10px;
+                    }
+
+                    .movie-display {
+                        margin-bottom: 10px;
+                        background: linear-gradient(to bottom, rgba(252,252,252,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+                        border: dotted 2px #ccc;
+                        padding: 10px;
+                    }
+                </style>
+            </head>
+            <body ng-controller=""moviesController"">
+                <form ng-submit=""search(parameters)"">
+                    <label for=""keywords"">Keywords</label>
+                    <input type=""text"" name=""keywords"" id=""keywords"" ng-model=""parameters.keywords"" />
+
+                    <!-- TODO: add labels and inputs for 'page_limit' and 'page' -->
+        
+                    <input type=""submit"" value=""Search"" />
+                </form>
+    
+                <!-- TODO: display total here (hint: look at the data returned by Rotten Tomatoes) -->
+
+                <dl class=""movie-display"" ng-repeat=""movie in movies"">
+                    <dt>Title</dt>
+                    <dd>{{movie.title}}</dd>
+        
+                    <dt>Year</dt>
+                    <dd>{{movie.year}}</dd>
+        
+                    <dt>MPAA Rating</dt>
+                    <dd>movie.mpaa_rating</dd>
+        
+                    <dt>Runtime</dt>
+                    <dd>{{movie.runtime}} minutes</dd>
+                </dl>
+
+                <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js""></script>
+                <script>
+                    var movieApp = angular.module('movieApp', []);
+
+                    movieApp.controller('moviesController', function ($scope, $http) {
+                        var myAPIKey = ''; // put your API key here
+                        var url = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json';
+
+                        $scope.movies = [];
+                        $scope.parameters = {};
+
+                        $scope.search = function (parameters) {
+                            $http.jsonp(url, {
+                                params: {
+                                    callback: 'JSON_CALLBACK',
+                                    apikey: myAPIKey,
+                                    q: parameters.keywords
+                                    // TODO: add 'page_limit' and 'page'
+                                }
+                            })
+                            .success(function (data) {
+                                console.log('Success');
+                                $scope.movies = data.movies;
+                                // TODO: add total to scope here.
+                            })
+                            .error(function () {
+                                console.log('Failure');
+                            });
+                        };
+                    });
+                </script>
+            </body>
+            </html>
+            ")</code></pre>
+        </div>
+    </section>
+</article>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("article").accordion({
+                header: "h2",
+                heightStyle: "content",
+                collapsible: true,
+                active: false
+            });
+        });
+    </script>
+    <script>
+        SyntaxHighlighter.config.tagName = "code";
+        SyntaxHighlighter.defaults["toolbar"] = false;
+        SyntaxHighlighter.all();
+    </script>
+}

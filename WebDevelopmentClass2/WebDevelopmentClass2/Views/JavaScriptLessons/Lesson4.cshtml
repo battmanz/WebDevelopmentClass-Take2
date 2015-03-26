@@ -221,15 +221,18 @@
                     multiple.addEventListener('click', function() {
                         alert('Thanks for clicking');
                     });
+
                     multiple.addEventListener('click', function() {
                         this.style.backgroundColor = 'red';
                     });
+
                     // Note that the first handler will never be called, because when the second
                     // function gets assigned to the 'onclick' property, it wipes out the first handler.
                     var single = document.getElementById('single');
                     single.onclick = function() {
                         alert(""You'll never see me"");
                     };
+
                     single.onclick = function() {
                         alert('Ha ha ha, I completely took control of the onclick event!');
                     };
@@ -253,7 +256,9 @@
                     function changeToRed() {
                         this.style.backgroundColor = 'red';
                     }
+
                     var buttons = document.getElementsByTagName('button');
+
                     for(var i = 0; i < buttons.length; i++) {
                         buttons[i].addEventListener('click', changeToRed);
                         // Instead, could do: buttons[i].onclick = changeToRed
@@ -290,17 +295,21 @@
                     amet urna nec, commodo posuere diam. Vestibulum dolor est, sollicitudin at tristique vitae,
                     sollicitudin eu eros. Nunc ante ligula, mattis molestie congue a, sagittis a lectus.
                 </p>
+
                 <script>
                     var largeParagraph = document.getElementById('largeParagraph');
                     var body = document.getElementsByTagName('body')[0];
+
                     // Note the 'e' as an argument to the function                    
                     largeParagraph.onclick = function(e) {
                         if (!e) {
                             e = window.event; // for IE
                         }
+
                         var marker = document.createElement('div');
                         var text = document.createTextNode('Click');
                         marker.appendChild(text);
+
                         marker.style.position = 'absolute';
                         marker.style.left = e.clientX + 'px';
                         marker.style.top = e.clientY + 'px';
@@ -369,6 +378,12 @@
             <p>
                 The end result should have alternating <strong>blue</strong> and <strong>orange</strong> (or whatever colors you chose) paragraphs going from top to bottom.
                 The final paragraph will be the one tellin the user that he/she has won.
+            </p>
+
+            <h3>Example Solutions</h3>
+            <p>
+                This <a href="http://jsfiddle.net/80kkyfm2/3/" target="_blank">jsFiddle</a> shows an example solution from <strong>Grant Sommer</strong>.
+                And this <a href="http://jsfiddle.net/f2whvneu/" target="_blank">jsFiddle</a> shows another example solution from <strong>Randy Born</strong>.
             </p>
         </div>
     </section>
